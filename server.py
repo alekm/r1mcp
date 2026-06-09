@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """RUCKUS One MCP Server — exposes R1 API docs and live API calls as tools."""
 
+import base64
 import json
 import os
+import time
 from pathlib import Path
 
 import httpx
@@ -11,9 +13,12 @@ from mcp.server.fastmcp import FastMCP
 
 load_dotenv(Path(__file__).parent / ".env")
 
-API_KEY = os.environ.get("R1_API_KEY", "")
+CLIENT_ID = os.environ.get("R1_CLIENT_ID", "")
+CLIENT_SECRET = os.environ.get("R1_CLIENT_SECRET", "")
+TENANT_ID = os.environ.get("R1_TENANT_ID", "")
 REGION = os.environ.get("R1_REGION", "na").lower()
-DOCS_PATH = Path(os.environ.get("R1_DOCS_PATH", "/home/alek/R1API/llm-docs"))
+MSP_ID = os.environ.get("R1_MSP_ID", "")
+DOCS_PATH = Path(os.environ.get("R1_DOCS_PATH", Path(__file__).parent / "llm-docs"))
 
 REGION_HOSTS = {
     "na": "https://api.ruckus.cloud",
@@ -23,6 +28,62 @@ REGION_HOSTS = {
 BASE_URL = REGION_HOSTS.get(REGION, REGION_HOSTS["na"])
 
 mcp = FastMCP("ruckus-one")
+
+# In-process token cache: (access_token, expires_at)
+_token_cache: tuple[str, float] = ("", 0.0)
+
+
+def _request_token(client: httpx.Client, path: str, data: dict, headers: dict) -> tuple[str, int]:
+    """Make one token request attempt. Returns (access_token, expires_in)."""
+    resp = client.post(
+        BASE_URL + path,
+        data=data,
+        headers={"Content-Type": "application/x-www-form-urlencoded", **headers},
+    )
+    # Some R1 deployments return the token in a response header instead of the body
+    header_token = resp.headers.get("login-token") or resp.headers.get("Login-Token")
+    if resp.status_code == 200 and header_token:
+        return header_token, 3600
+    resp.raise_for_status()
+    payload = resp.json()
+    return payload["access_token"], int(payload.get("expires_in", 3600))
+
+
+def _get_token() -> str:
+    """Return a valid Bearer token, fetching a new one via OAuth2 if needed."""
+    global _token_cache
+    token, expires_at = _token_cache
+    if token and time.time() < expires_at - 30:
+        return token
+
+    if not all([CLIENT_ID, CLIENT_SECRET, TENANT_ID]):
+        raise RuntimeError("R1_CLIENT_ID, R1_CLIENT_SECRET, and R1_TENANT_ID must all be set in .env")
+
+    tenant_path = f"/oauth2/token/{TENANT_ID}"
+    basic = base64.b64encode(f"{CLIENT_ID}:{CLIENT_SECRET}".encode()).decode()
+
+    attempts = [
+        # Preferred: credentials in form body, tenant-scoped endpoint
+        (tenant_path, {"grant_type": "client_credentials", "client_id": CLIENT_ID, "client_secret": CLIENT_SECRET}, {}),
+        # Fallback: HTTP Basic auth, tenant-scoped endpoint
+        (tenant_path, {"grant_type": "client_credentials"}, {"Authorization": f"Basic {basic}"}),
+        # Alternative: credentials in form body, bare endpoint (no tenant in path)
+        ("/oauth2/token", {"grant_type": "client_credentials", "client_id": CLIENT_ID, "client_secret": CLIENT_SECRET}, {}),
+    ]
+
+    last_err: Exception = RuntimeError("No attempts made")
+    with httpx.Client(timeout=15) as client:
+        for path, data, headers in attempts:
+            try:
+                access_token, expires_in = _request_token(client, path, data, headers)
+                expires_in = max(60, expires_in)
+                _token_cache = (access_token, time.time() + expires_in - 30)
+                return access_token
+            except Exception as e:
+                last_err = e
+                continue
+
+    raise RuntimeError(f"Authentication failed: {last_err}")
 
 
 @mcp.tool()
@@ -47,7 +108,6 @@ def r1_get_docs(group: str) -> str:
         group: The group slug, e.g. 'wifi-services', 'switch-services', 'venues',
                'tenant-management', 'events-and-alarms', etc.
     """
-    # Normalize: allow spaces or underscores, lowercase
     slug = group.strip().lower().replace(" ", "-").replace("_", "-")
     doc_file = DOCS_PATH / f"{slug}.md"
     if not doc_file.exists():
@@ -65,6 +125,7 @@ def r1_call(
     path: str,
     query_params: dict | None = None,
     body: dict | None = None,
+    target_tenant_id: str | None = None,
 ) -> str:
     """
     Make an authenticated API call to RUCKUS One and return the response.
@@ -75,24 +136,36 @@ def r1_call(
               (include the leading slash; do NOT include the base URL)
         query_params: Optional dict of query string parameters
         body: Optional dict for the request body (POST/PUT/PATCH)
+        target_tenant_id: For MSP operations — the customer tenant ID to operate on
+                          (sets x-rks-tenantid header; R1_MSP_ID must also be set in .env)
 
     Returns:
         JSON response as a formatted string, or an error message.
     """
-    if not API_KEY:
-        return "ERROR: R1_API_KEY is not set. Add it to your .env file."
-
     method = method.upper()
     if method not in {"GET", "POST", "PUT", "PATCH", "DELETE"}:
         return f"ERROR: Unsupported HTTP method '{method}'"
 
-    url = BASE_URL + path
-    headers = {
-        "Authorization": f"Bearer {API_KEY}",
+    try:
+        token = _get_token()
+    except Exception as e:
+        return f"ERROR: {e}"
+
+    headers: dict[str, str] = {
+        "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
         "Accept": "application/json",
     }
 
+    # MSP headers — set when operating on a customer tenant via an MSP account
+    if target_tenant_id:
+        headers["x-rks-tenantid"] = target_tenant_id
+        if MSP_ID:
+            headers["X-MSP-ID"] = MSP_ID
+    elif MSP_ID:
+        headers["X-MSP-ID"] = MSP_ID
+
+    url = BASE_URL + path
     try:
         with httpx.Client(timeout=30) as client:
             response = client.request(
