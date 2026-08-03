@@ -4,15 +4,28 @@ An [MCP](https://modelcontextprotocol.io) server that connects Claude to the [RU
 
 ## How it works
 
-The server exposes three tools that follow a deliberate discovery flow:
+The server exposes five tools that follow a deliberate discovery flow:
 
 | Tool | Purpose |
 |------|---------|
 | `r1_list_groups` | Returns the full API surface (31 groups, 1616 endpoints) from a local index — no network call |
-| `r1_get_docs(group)` | Returns full endpoint documentation for a group (parameters, request/response schemas) |
+| `r1_get_docs(group)` | Returns full endpoint documentation for a group, plus any field notes for it |
 | `r1_call(method, path, ...)` | Makes an authenticated live API call and returns the JSON response |
+| `r1_wait_for_activity(request_id)` | Polls a 202's `requestId` to completion and reports per-device progress |
+| `r1_field_notes(group)` | Verified real-world behavior the API spec does not document |
 
 Authentication uses OAuth2 client credentials with automatic token caching and refresh. MSP tenants can pass `target_tenant_id` to `r1_call` to operate on a customer tenant.
+
+### Field notes
+
+`llm-docs/` is generated from the OpenAPI spec and says what endpoints exist. `field-notes/` is hand-maintained and says which ones lie — broken endpoints, pagination that fails silently, and writes that clobber omitted fields. The cross-cutting notes ride in the server instructions so they are always in context; per-group notes come back automatically with `r1_get_docs`. See [field-notes/README.md](field-notes/README.md).
+
+### Guardrails in `r1_call`
+
+- **Size** — oversized list responses are trimmed to whole rows with an explicit count of what was dropped, never silently. `count_only=True` returns totals and field names instead of rows.
+- **Completeness** — when a response returns fewer rows than its own `totalCount`, that mismatch is called out. RUCKUS One uses three incompatible pagination conventions and ignores the wrong one silently.
+- **Async writes** — a `202` carries a `requestId` that is an activity ID. Responses say so and point at `r1_wait_for_activity`, which reports whether the config actually reached the devices or only the cloud.
+- **Errors** — responses lead with the RUCKUS error code (`HTTP 400 PROPERTY-MANAGEMENT-001: ...`) rather than burying it in JSON.
 
 ## Setup
 
@@ -77,7 +90,10 @@ List all switches in venue xyz and show their port status
 | `R1_TENANT_ID` | ✓ | — | Your R1 tenant ID |
 | `R1_REGION` | | `na` | API region: `na`, `eu`, or `asia` |
 | `R1_MSP_ID` | | — | MSP tenant ID (if operating as an MSP) |
-| `R1_DOCS_PATH` | | `./llm-docs` | Path to the markdown docs directory |
+| `R1_DOCS_PATH` | | `./llm-docs` | Path to the generated markdown docs |
+| `R1_NOTES_PATH` | | `./field-notes` | Path to the hand-maintained field notes |
+| `R1_MAX_RESPONSE_CHARS` | | `40000` | Cap on `r1_call` response size |
+| `R1_TIMEOUT` | | `30` | Request timeout in seconds |
 
 ## API docs
 

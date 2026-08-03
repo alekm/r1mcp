@@ -21,6 +21,14 @@ MSP_ID = os.environ.get("R1_MSP_ID", "")
 DOCS_PATH = Path(os.environ.get("R1_DOCS_PATH", Path(__file__).parent / "llm-docs"))
 NOTES_PATH = Path(os.environ.get("R1_NOTES_PATH", Path(__file__).parent / "field-notes"))
 
+# A fleet-scale query is hundreds of KB and will swallow a context window.
+MAX_RESPONSE_CHARS = int(os.environ.get("R1_MAX_RESPONSE_CHARS", "40000"))
+TIMEOUT = float(os.environ.get("R1_TIMEOUT", "30"))
+
+# Keys R1 uses for the row list and the true total across its query endpoints.
+_LIST_KEYS = ("data", "content", "items", "results", "list")
+_TOTAL_KEYS = ("totalCount", "totalElements", "total", "totalRows")
+
 REGION_HOSTS = {
     "na": "https://api.ruckus.cloud",
     "eu": "https://api.eu.ruckus.cloud",
@@ -197,6 +205,115 @@ def _async_hint(status: int, data) -> str:
     )
 
 
+def _error_detail(status: int, data) -> str:
+    """
+    R1 returns real error codes. Lead with the code rather than making the caller
+    dig — the code identifies the cause where the HTTP status usually does not.
+    """
+    if not isinstance(data, dict):
+        return ""
+    err = data
+    for k in ("errors", "error"):
+        v = data.get(k)
+        if isinstance(v, list) and v and isinstance(v[0], dict):
+            err = v[0]
+            break
+        if isinstance(v, dict):
+            err = v
+            break
+    code = err.get("code") or err.get("errorCode") or data.get("code")
+    msg = err.get("message") or err.get("errorMessage") or data.get("message")
+    if not code and not msg:
+        return ""
+    lead = f"HTTP {status}" + (f" {code}" if code else "") + (f": {msg}" if msg else "")
+    return f"{lead}\n\n{json.dumps(data, indent=2)}"
+
+
+def _rows(data):
+    """Return (key, list) for the row list in a query response, or (None, None)."""
+    if isinstance(data, list):
+        return "", data
+    if isinstance(data, dict):
+        for k in _LIST_KEYS:
+            if isinstance(data.get(k), list):
+                return k, data[k]
+    return None, None
+
+
+def _declared_total(data):
+    """The count R1 claims exists, which is not always the count it returned."""
+    if isinstance(data, dict):
+        for k in _TOTAL_KEYS:
+            if isinstance(data.get(k), int):
+                return k, data[k]
+    return None, None
+
+
+def _summarize(data) -> str:
+    """count_only: shape and totals, without the payload."""
+    key, rows = _rows(data)
+    total_key, total = _declared_total(data)
+
+    if rows is None:
+        if isinstance(data, dict):
+            return "Not a list response. Top-level keys: " + ", ".join(sorted(data))
+        return f"Not a list response (got {type(data).__name__})."
+
+    lines = [f"returned: {len(rows)} rows" + (f" (under '{key}')" if key else "")]
+    if total is not None:
+        lines.append(f"{total_key}: {total}")
+        if total > len(rows):
+            lines.append(
+                f"\n⚠ INCOMPLETE — {total - len(rows)} rows were not returned. This is "
+                f"the silent-truncation trap: the wrong paging parameter is ignored, the "
+                f"default page size applies, and the total still reports correctly. "
+                f"Check whether this endpoint wants page/pageSize (1-indexed) or "
+                f"page/size (0-indexed)."
+            )
+    if rows and isinstance(rows[0], dict):
+        lines.append("\nfields on first row: " + ", ".join(sorted(rows[0])))
+        lines.append(
+            "(fields are absent rather than null when unpopulated — a missing key "
+            "is normal, not an error)"
+        )
+    return "\n".join(lines)
+
+
+def _shrink(data, body_text: str, limit: int) -> tuple[str, str]:
+    """
+    Cap an oversized response. Returns (text, notice). Trims the row list rather
+    than slicing mid-JSON, so what comes back is still valid and still labelled.
+    """
+    if len(body_text) <= limit:
+        return body_text, ""
+
+    key, rows = _rows(data)
+    if rows:
+        kept = rows
+        while kept:
+            kept = kept[: max(1, len(kept) * 2 // 3)]
+            trial = dict(data) if isinstance(data, dict) else None
+            sample = kept if trial is None else {**trial, key: kept}
+            text = json.dumps(sample, indent=2)
+            if len(text) <= limit:
+                notice = (
+                    f"\n\n⚠ TRUNCATED — showing {len(kept)} of {len(rows)} returned rows "
+                    f"({len(body_text):,} chars exceeded the {limit:,} limit).\n"
+                    f"The omitted rows were NOT examined. Do not describe this as the "
+                    f"full set. Narrow it: count_only=True for totals and field names, "
+                    f"a smaller pageSize, or a filter."
+                )
+                return text, notice
+            if len(kept) == 1:
+                break
+
+    return body_text[:limit], (
+        f"\n\n⚠ TRUNCATED at {limit:,} of {len(body_text):,} chars — this is a hard cut "
+        f"and the JSON above is incomplete. Re-run with count_only=True or a narrower "
+        f"query."
+    )
+
+
 @mcp.tool()
 def r1_field_notes(group: str = "") -> str:
     """
@@ -233,6 +350,93 @@ def r1_field_notes(group: str = "") -> str:
     return "".join(parts)
 
 
+# Anything not obviously still running is treated as terminal, so an unknown
+# status ends the poll rather than looping until timeout.
+_PENDING_STATES = {"INPROGRESS", "IN_PROGRESS", "PENDING", "STARTED", "RUNNING", "QUEUED"}
+
+
+def _activity_report(activity: dict, elapsed: float, polls: int) -> str:
+    status = str(activity.get("status", "UNKNOWN"))
+    lines = [
+        f"Activity {activity.get('requestId', '?')} — {status}",
+        f"useCase: {activity.get('useCase', '?')}"
+        f" | polled {polls}x over {elapsed:.0f}s",
+    ]
+    if activity.get("admin", {}).get("name"):
+        lines.append(f"actor: {activity['admin']['name']}")
+
+    stalled = []
+    for step in activity.get("steps", []) or []:
+        summary = step.get("progressSummary") or {}
+        detail = " ".join(f"{k}={v}" for k, v in summary.items() if v)
+        lines.append(f"  - {step.get('id', '?')}: {step.get('status', '?')}"
+                     + (f" ({detail})" if detail else ""))
+        if summary.get("offline") or summary.get("fail"):
+            stalled.append(step.get("id", "?"))
+
+    if stalled:
+        lines.append(
+            f"\n⚠ The cloud accepted this, but it did NOT reach every device — "
+            f"{', '.join(stalled)} reports offline or failed devices. Do not report "
+            f"this as fully applied."
+        )
+    if status.upper() in _PENDING_STATES:
+        lines.append(
+            f"\n⚠ STILL RUNNING at timeout — not a failure, just unfinished. "
+            f"Poll again; do not re-issue the original write."
+        )
+    return "\n".join(lines)
+
+
+@mcp.tool()
+def r1_wait_for_activity(
+    request_id: str,
+    timeout_seconds: float = 120.0,
+    target_tenant_id: str | None = None,
+) -> str:
+    """
+    Poll a RUCKUS One activity to completion and report what actually happened.
+
+    Mutating calls return 202 with a requestId, which IS an activity ID. A 202
+    means accepted, not applied — pass its requestId here before verifying state
+    or reporting success.
+
+    Args:
+        request_id: The requestId from a 202 response
+        timeout_seconds: Give up after this long (default 120)
+        target_tenant_id: For MSP operations — the customer tenant to poll in
+
+    Returns:
+        Terminal status, per-step progress, and a warning when a SUCCESS still
+        left devices offline or failed.
+    """
+    started = time.time()
+    delay, polls = 2.0, 0
+
+    while True:
+        polls += 1
+        raw = r1_call("GET", f"/activities/{request_id}",
+                      target_tenant_id=target_tenant_id, max_chars=20000)
+        if raw.startswith("ERROR"):
+            return f"{raw}\n\n(while polling activity {request_id})"
+
+        try:
+            activity = json.loads(raw.split("\n\n", 1)[1])
+        except Exception:
+            return f"Could not parse activity response:\n\n{raw}"
+
+        elapsed = time.time() - started
+        status = str(activity.get("status", "")).upper()
+        if status not in _PENDING_STATES:
+            return _activity_report(activity, elapsed, polls)
+
+        if elapsed + delay >= timeout_seconds:
+            return _activity_report(activity, elapsed, polls)
+
+        time.sleep(delay)
+        delay = min(delay * 1.5, 10.0)
+
+
 @mcp.tool()
 def r1_call(
     method: str,
@@ -240,6 +444,8 @@ def r1_call(
     query_params: dict | None = None,
     body: dict | None = None,
     target_tenant_id: str | None = None,
+    count_only: bool = False,
+    max_chars: int | None = None,
 ) -> str:
     """
     Make an authenticated API call to RUCKUS One and return the response.
@@ -252,9 +458,14 @@ def r1_call(
         body: Optional dict for the request body (POST/PUT/PATCH)
         target_tenant_id: For MSP operations — the customer tenant ID to operate on
                           (sets x-rks-tenantid header; R1_MSP_ID must also be set in .env)
+        count_only: Return row counts, declared totals and field names instead of
+                    the rows. Use this FIRST on any fleet-scale query — it is cheap
+                    and it reveals silent truncation.
+        max_chars: Cap the response body (default R1_MAX_RESPONSE_CHARS, 40000).
 
     Returns:
-        JSON response as a formatted string, or an error message.
+        JSON response as a formatted string, or an error message. Large list
+        responses are trimmed with an explicit notice — never silently.
     """
     method = method.upper()
     if method not in {"GET", "POST", "PUT", "PATCH", "DELETE"}:
@@ -281,7 +492,7 @@ def r1_call(
 
     url = BASE_URL + path
     try:
-        with httpx.Client(timeout=30) as client:
+        with httpx.Client(timeout=TIMEOUT) as client:
             response = client.request(
                 method=method,
                 url=url,
@@ -298,12 +509,34 @@ def r1_call(
         except Exception:
             body_text = response.text
 
-        return f"HTTP {status} {method} {url}\n\n{body_text}{_async_hint(status, data)}"
+        head = f"HTTP {status} {method} {url}"
+        notice = ""
+
+        if status >= 400:
+            body_text = _error_detail(status, data) or body_text
+        elif count_only:
+            body_text = _summarize(data)
+        else:
+            limit = max_chars if max_chars is not None else MAX_RESPONSE_CHARS
+            body_text, notice = _shrink(data, body_text, limit)
+            _, rows = _rows(data)
+            _, total = _declared_total(data)
+            if rows is not None and total is not None and total > len(rows) and not notice:
+                notice = (
+                    f"\n\n⚠ INCOMPLETE — {len(rows)} rows returned but the endpoint "
+                    f"reports {total}. The paging parameter was likely ignored; the "
+                    f"total is still accurate, so this looks complete but is not."
+                )
+
+        return f"{head}\n\n{body_text}{notice}{_async_hint(status, data)}"
 
     except httpx.ConnectError as e:
         return f"ERROR: Could not connect to {url}: {e}"
     except httpx.TimeoutException:
-        return f"ERROR: Request timed out after 30s — {method} {url}"
+        return (
+            f"ERROR: Request timed out after {TIMEOUT:g}s — {method} {url}\n"
+            f"Fleet-scale queries routinely need 60-90s; raise R1_TIMEOUT."
+        )
     except Exception as e:
         return f"ERROR: {type(e).__name__}: {e}"
 
