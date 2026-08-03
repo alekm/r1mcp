@@ -158,6 +158,9 @@ operationId: `queryIdentityClient`
 
 | Field | Type | Required | Description |
 |-------|------|:--------:|-------------|
+| `aliasFilter` | `string` |  | Filter clients by alias presence. ALL returns all clients, ALIAS returns only clients with alias, NON_ALIAS returns only clients without alias. |
+| `clientMacs` | `array` |  | A list of client MAC addresses used to filter specific clients. |
+| `groupId` | `string` |  | A group identifier used to filter clients by their identity group. |
 | `identityIds` | `array` |  | A list of identity identifiers used to filter and retrieve specific clients associated with those identities. |
 
 

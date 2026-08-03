@@ -101,6 +101,7 @@ operationId: `exportGroupsCSV`
 | `certificateTemplateId` | `string` |  | The filter to search by certificate template. |
 | `dpskPoolId` | `string` |  | The filter to search by DPSK pool. |
 | `groupIds` | `array` |  | The filter to search by identifiers. |
+| `hasDpskService` | `boolean` |  | When true, only return identity groups with a DPSK service associated. When false, only return identity groups without a DPSK service. |
 | `keyword` | `string` |  | The filter to search by keyword. |
 | `macRegistrationPoolId` | `string` |  | The filter to search by MAC registration list. |
 | `networkId` | `string` |  | The filter to search by network. |
@@ -139,6 +140,7 @@ operationId: `searchGroups`
 | `certificateTemplateId` | `string` |  | The filter to search by certificate template. |
 | `dpskPoolId` | `string` |  | The filter to search by DPSK pool. |
 | `groupIds` | `array` |  | The filter to search by identifiers. |
+| `hasDpskService` | `boolean` |  | When true, only return identity groups with a DPSK service associated. When false, only return identity groups without a DPSK service. |
 | `keyword` | `string` |  | The filter to search by keyword. |
 | `macRegistrationPoolId` | `string` |  | The filter to search by MAC registration list. |
 | `networkId` | `string` |  | The filter to search by network. |
@@ -537,6 +539,7 @@ operationId: `createIdentity`
 | Name | In | Required | Type | Description |
 |------|----|:--------:|------|-------------|
 | `groupId` | path | ✓ | `string` | Group id |
+| `autoDpskPassphraseCreation` | query |  | `boolean` | Automatically create DPSK passphrase for the identity upon creation. Defaults to true. |
 
 
 **Request Body:** `Identity_Management_Identity`
@@ -597,6 +600,7 @@ operationId: `importIdentities`
 | Name | In | Required | Type | Description |
 |------|----|:--------:|------|-------------|
 | `groupId` | path | ✓ | `string` |  |
+| `autoDpskPassphraseCreation` | query |  | `boolean` | Automatically create DPSK passphrase for the identities upon import. Defaults to true. |
 
 
 **Request Body:** Yes

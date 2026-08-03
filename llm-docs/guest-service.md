@@ -17,7 +17,7 @@
 
 **Delete Guest Users**
 
-Delete one or more guest users per their IDs as defined in the payload. This method will be removed no sooner than 06/30/2026.
+Delete one or more guest users per their IDs as defined in the payload. This method will be removed no sooner than 08/31/2026.
 
 operationId: `DeleteGuestUsersByIds`
 
@@ -43,7 +43,7 @@ operationId: `DeleteGuestUsersByIds`
 
 **Get Guest Users**
 
-Get user details for the list of provisioned guest users. This method will be removed no sooner than 06/30/2026.
+Get user details for the list of provisioned guest users. This method will be removed no sooner than 08/31/2026.
 
 operationId: `GetGuestUsers`
 
@@ -74,7 +74,7 @@ operationId: `GetGuestUsers`
 
 **Add Guest Users**
 
-Provision one or more guest users as defined in the payload. This method will be removed no sooner than 06/30/2026.
+Provision one or more guest users as defined in the payload. This method will be removed no sooner than 08/31/2026.
 
 operationId: `AddGuestUsers`
 
@@ -100,7 +100,7 @@ operationId: `AddGuestUsers`
 
 **Delete Guest User by ID**
 
-Delete a guest user. This method will be removed no sooner than 06/30/2026.
+Delete a guest user. This method will be removed no sooner than 08/31/2026.
 
 operationId: `DeleteGuestUserById`
 
@@ -130,7 +130,7 @@ operationId: `DeleteGuestUserById`
 
 **Get Guest User by ID**
 
-Get a guest user. This method will be removed no sooner than 06/30/2026.
+Get a guest user. This method will be removed no sooner than 08/31/2026.
 
 operationId: `GetGuestUserById`
 
@@ -160,7 +160,7 @@ operationId: `GetGuestUserById`
 
 **Update Guest User**
 
-Update guest user enable/disable status or create new password for the guest user. This method will be removed no sooner than 06/30/2026.
+Update guest user enable/disable status or create new password for the guest user. This method will be removed no sooner than 08/31/2026.
 
 operationId: `UpdateByGuestUserId`
 
@@ -198,7 +198,7 @@ operationId: `UpdateByGuestUserId`
 
 **Import Guest Users**
 
-Import one or more guest pass users from the payload's CSV file. This method will be removed no sooner than 06/30/2026.
+Import one or more guest pass users from the payload's CSV file. This method will be removed no sooner than 08/31/2026.
 
 operationId: `ImportGuestUsers`
 
@@ -448,7 +448,7 @@ operationId: `UpdateByGuestUserIdAndWifiNetworkId`
 
 **Remove Portal Service Profile**
 
-Remove portal service profile by ids. This method will be removed no sooner than 06/30/2026.
+Remove portal service profile by ids. This method will be removed no sooner than 08/31/2026.
 
 operationId: `DeletePortalServiceProfiles`
 
@@ -474,7 +474,7 @@ operationId: `DeletePortalServiceProfiles`
 
 **Get Portal Service Profiles**
 
-Get portal service profile for the list. This method will be removed no sooner than 06/30/2026.
+Get portal service profile for the list. This method will be removed no sooner than 08/31/2026.
 
 operationId: `GetPortalServiceProfiles`
 
@@ -542,7 +542,7 @@ operationId: `AddPortalServiceProfile_1_1`
 
 **Get Network Filter**
 
-Get network filter for portal service profile lists. This method will be removed no sooner than 06/30/2026.
+Get network filter for portal service profile lists. This method will be removed no sooner than 08/31/2026.
 
 operationId: `GetPortalServiceProfilesOfNetworkFilter`
 
@@ -565,7 +565,7 @@ operationId: `GetPortalServiceProfilesOfNetworkFilter`
 
 **Get Tags Filter**
 
-Get tags filter for portal service profile lists. This method will be removed no sooner than 06/30/2026.
+Get tags filter for portal service profile lists. This method will be removed no sooner than 08/31/2026.
 
 operationId: `GetPortalServiceProfilesOfTagsFilter`
 
@@ -855,7 +855,7 @@ operationId: `AddPortalServiceProfileTemplate`
 
 | Field | Type | Required | Description |
 |-------|------|:--------:|-------------|
-| `content` | `Guest_Service_PortalServiceProfileContentDto` |  | Content configuration for the portal profile. |
+| `content` | `Guest_Service_PortalServiceProfileContentDtoV1_1` |  | Content configuration for the portal profile. |
 | `id` | `string` |  | Unique identifier for the portal service profile. |
 | `name` | `string` |  | Name of the portal service. |
 
@@ -954,7 +954,7 @@ operationId: `updatePortalServiceProfileTemplateV1_1`
 
 | Field | Type | Required | Description |
 |-------|------|:--------:|-------------|
-| `content` | `Guest_Service_PortalServiceProfileContentDto` |  | Content configuration for the portal profile. |
+| `content` | `Guest_Service_PortalServiceProfileContentDtoV1_1` |  | Content configuration for the portal profile. |
 | `id` | `string` |  | Unique identifier for the portal service profile. |
 | `name` | `string` |  | Name of the portal service. |
 

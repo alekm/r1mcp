@@ -10,7 +10,7 @@
 *Manages the workflows, including create, update and delete.*
 
 
-*8 endpoints*
+*11 endpoints*
 
 
 ### `POST` `/workflows`
@@ -175,6 +175,43 @@ operationId: `updateWorkflow`
 
 ---
 
+### `POST` `/workflows/{workflowId}/referencedWorkflows/query`
+
+**Get Referencing Workflows**
+
+Retrieves workflows that reference the specified workflow as an external workflow reference.
+
+operationId: `queryForReferencingWorkflows`
+
+
+**Parameters:**
+
+| Name | In | Required | Type | Description |
+|------|----|:--------:|------|-------------|
+| `workflowId` | path | ✓ | `string` |  |
+| `excludeContent` | query |  | `boolean` |  |
+
+
+**Request Body:** `Workflow_Management_API_QueryData`
+
+| Field | Type | Required | Description |
+|-------|------|:--------:|-------------|
+| `filters` | `object` |  | The list of filters to apply. |
+| `page` | `integer` |  | The page number to return, paging starts with 0. |
+| `pageSize` | `integer` |  | The number of items requested on the page. |
+| `sortField` | `string` |  | The field to use to sort on. |
+| `sortOrder` | `string` |  | The sort order of the applied query. |
+
+
+**Responses:**
+
+- `200` Success → `Workflow_Management_API_PagedResponseResourceWorkflow_v1_0`
+- `400` Bad request, check query format. → `Workflow_Management_API_ErrorResource`
+- `404` Invalid id supplied. → `Workflow_Management_API_ErrorResource`
+
+
+---
+
 ### `POST` `/workflows/{workflowId}/steps/{stepId}/nextSteps/workflows/{referencedWorkflowId}`
 
 **Clone Workflow Steps Into Workflow**
@@ -190,6 +227,63 @@ operationId: `nestedCloneWorkflow`
 |------|----|:--------:|------|-------------|
 | `workflowId` | path | ✓ | `string` |  |
 | `stepId` | path | ✓ | `string` |  |
+| `referencedWorkflowId` | path | ✓ | `string` |  |
+
+
+**Responses:**
+
+- `202` Accepted → `Workflow_Management_API_AsyncRequestResponse`
+- `400` Bad request → `Workflow_Management_API_ErrorResource`
+- `404`  Workflow not found → `Workflow_Management_API_ErrorResource`
+- `409` Conflict → `Workflow_Management_API_ErrorResource`
+
+
+---
+
+### `PUT` `/workflows/{workflowId}/steps/{stepId}/nextSteps/workflows/{referencedWorkflowId}`
+
+**Reference Step to Another Workflow**
+
+Creates an external workflow reference step after the specified step in a workflow. The referenced workflow is linked by reference only; its steps are not copied into the parent workflow. The workflow cannot reference itself and the referenced workflow must exist, contain more than the default start/end steps, and must not have disconnected steps; only single level references are supported (the parent cannot already be referenced by another workflow, and the referenced workflow cannot contain it
+
+operationId: `referenceStepToWorkflow`
+
+
+**Parameters:**
+
+| Name | In | Required | Type | Description |
+|------|----|:--------:|------|-------------|
+| `workflowId` | path | ✓ | `string` |  |
+| `stepId` | path | ✓ | `string` |  |
+| `referencedWorkflowId` | path | ✓ | `string` |  |
+
+
+**Responses:**
+
+- `202` Accepted → `Workflow_Management_API_AsyncRequestResponse`
+- `400` Bad request → `Workflow_Management_API_ErrorResource`
+- `404`  Workflow not found → `Workflow_Management_API_ErrorResource`
+- `409` Conflict → `Workflow_Management_API_ErrorResource`
+
+
+---
+
+### `PUT` `/workflows/{workflowId}/steps/{stepId}/splitOptions/{optionId}/nextSteps/workflows/{referencedWorkflowId}`
+
+**Reference Split Option to Another Workflow**
+
+Creates an external workflow reference step after the specified split option in a workflow. This links a branch path to another workflow by reference without cloning its steps. The workflow cannot reference itself and the referenced workflow must exist, contain more than the default start/end steps, and must not have disconnected steps; only single level references are supported (the parent cannot already be referenced by another workflow, and the referenced workflow cannot contain its own refer
+
+operationId: `referenceSplitOptionToWorkflow`
+
+
+**Parameters:**
+
+| Name | In | Required | Type | Description |
+|------|----|:--------:|------|-------------|
+| `workflowId` | path | ✓ | `string` |  |
+| `stepId` | path | ✓ | `string` |  |
+| `optionId` | path | ✓ | `string` |  |
 | `referencedWorkflowId` | path | ✓ | `string` |  |
 
 
@@ -272,7 +366,7 @@ operationId: `cloneWorkflow`
 *Manages the steps for the workflow.*
 
 
-*7 endpoints*
+*9 endpoints*
 
 
 ### `GET` `/workflows/{workflowId}/steps`
@@ -479,6 +573,80 @@ operationId: `attachSteps`
 |------|----|:--------:|------|-------------|
 | `workflowId` | path | ✓ | `string` | Workflow ID |
 | `stepId` | path | ✓ | `string` | The step ID under which the step will be attached. |
+| `detachedStepId` | path | ✓ | `string` | The step ID that will be attached below the step. |
+
+
+**Responses:**
+
+- `202` Accepted → `Workflow_Management_API_AsyncRequestResponse`
+- `400` Bad request. → `Workflow_Management_API_ErrorResource`
+- `404` Not Found. → `Workflow_Management_API_ErrorResource`
+- `409` Conflict. If either of the steps involved in attachment are of the wrong type or cannot be found. → `Workflow_Management_API_ErrorResource`
+
+
+---
+
+### `POST` `/workflows/{workflowId}/workflows/{referencedWorkflowId}/endSteps/{refWorkflowEndStep}/nextSteps`
+
+**Create Step To Referenced Workflow**
+
+Creates a new step that continues the flow after the end step of a referenced workflow within a parent workflow. Use workflowId to identify the parent workflow being edited and referencedWorkflowId to identify the nested referenced workflow whose branch is being extended. The refWorkflowEndStep must be an end step that belongs to the referenced workflow; only end steps of a referenced workflow may have following steps. The request body defines the new step type and action definition, which must
+
+operationId: `createChildStepToReferencedWorkflow`
+
+
+**Parameters:**
+
+| Name | In | Required | Type | Description |
+|------|----|:--------:|------|-------------|
+| `workflowId` | path | ✓ | `string` |  |
+| `referencedWorkflowId` | path | ✓ | `string` |  |
+| `refWorkflowEndStep` | path | ✓ | `string` |  |
+
+
+**Request Body:** `Workflow_Management_API_AbstractActionStepDto`
+
+| Field | Type | Required | Description |
+|-------|------|:--------:|-------------|
+| `_links` | `Workflow_Management_API_Links` |  |  |
+| `actionDefinitionId` | `string` |  | The action definition ID for this step. This is a read only attribute for steps, and will be determined by the provided enrollment action on the create. For split steps this will determine the type of options that can be added to the step. |
+| `actionType` | `string` |  | The action type assigned to this step. |
+| `enrollmentActionId` | `string` | ✓ | The ID of the enrollment action to be followed in this step. |
+| `id` | `string` |  | The unique ID for this step. |
+| `label` | `string` |  | The label for this step. This is an optional field. If provided, it must not be empty and cannot exceed 32 characters. |
+| `priorStepId` | `string` |  | The prior step in the workflow. This is a read only attribute. |
+| `splitOptionId` | `string` |  | If this step is referenced by an option, rather then the step, this is the ID. Either split option or  the prior step will be provided but not both. |
+| `status` | `string` |  | The validation status of the step. |
+| `statusReasons` | `array` |  | The set of reasons for an invalid status. This will be empty if the step is valid. |
+| `type` | `string` | ✓ |  |
+
+
+**Responses:**
+
+- `202` Accepted → `Workflow_Management_API_AsyncRequestResponse`
+- `400` Bad request. → `Workflow_Management_API_ErrorResource`
+- `404` Not Found. → `Workflow_Management_API_ErrorResource`
+- `409` Conflict. If the action requested cannot be found, or if the action type does not match the type of step created. → `Workflow_Management_API_ErrorResource`
+
+
+---
+
+### `PUT` `/workflows/{workflowId}/workflows/{referencedWorkflowId}/endSteps/{refWorkflowEndStep}/nextSteps/{detachedStepId}`
+
+**Attach Step To Referenced Workflow**
+
+Attach an existing detached step after the end step of a referenced workflow. Use workflowId for the parent workflow, referencedWorkflowId for the nested referenced workflow, refWorkflowEndStep for the referenced workflow end step anchor, and detachedStepId for the step to connect. The detached step must not already have a prior step, cannot be a start or end step, and cannot create circular dependencies. The refWorkflowEndStep must belong to the referenced workflow.  This operation is asynchron
+
+operationId: `attachStepsToReferenceWorkflow`
+
+
+**Parameters:**
+
+| Name | In | Required | Type | Description |
+|------|----|:--------:|------|-------------|
+| `workflowId` | path | ✓ | `string` | Referenced workflow ID |
+| `referencedWorkflowId` | path | ✓ | `string` | The referenced workflow ID that this attached step belongs to. |
+| `refWorkflowEndStep` | path | ✓ | `string` | The end step ID of referenced workflow under which the step will be attached. |
 | `detachedStepId` | path | ✓ | `string` | The step ID that will be attached below the step. |
 
 

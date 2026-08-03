@@ -8,7 +8,7 @@ The server exposes three tools that follow a deliberate discovery flow:
 
 | Tool | Purpose |
 |------|---------|
-| `r1_list_groups` | Returns the full API surface (30 groups, 1592 endpoints) from a local index — no network call |
+| `r1_list_groups` | Returns the full API surface (31 groups, 1616 endpoints) from a local index — no network call |
 | `r1_get_docs(group)` | Returns full endpoint documentation for a group (parameters, request/response schemas) |
 | `r1_call(method, path, ...)` | Makes an authenticated live API call and returns the JSON response |
 
@@ -81,7 +81,7 @@ List all switches in venue xyz and show their port status
 
 ## API docs
 
-The `llm-docs/` directory contains pre-generated markdown reference files for all 30 API groups (1592 endpoints, from the June 2026 spec). They are produced mechanically from the RUCKUS One Consolidated OpenAPI specification, which RUCKUS makes available to platform customers — if you have a newer spec, you can regenerate them with any OpenAPI-to-Markdown converter that emits one file per tag group plus an `INDEX.md`.
+The `llm-docs/` directory contains pre-generated markdown reference files for all 31 API groups (1616 endpoints, from the August 2026 spec). They are produced mechanically from the RUCKUS One Consolidated OpenAPI specification, which RUCKUS makes available to platform customers — if you have a newer spec, you can regenerate them with any OpenAPI-to-Markdown converter that emits one file per tag group plus an `INDEX.md`.
 
 These files are third-party content and are **not** covered by this repository's MIT license. See [llm-docs/NOTICE](llm-docs/NOTICE).
 

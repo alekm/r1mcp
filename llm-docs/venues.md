@@ -169,7 +169,7 @@ operationId: `updateVenueTemplate`
 
 Delete venues by list.
 Warning: note that all network devices under these venues will be removed as well.
-This method will be removed no sooner than 06/30/2026.
+This method will be removed no sooner than 08/31/2026.
 
 operationId: `DeleteVenues`
 
@@ -195,7 +195,7 @@ operationId: `DeleteVenues`
 **Access Venues**
 
 Get venue list.
-This method will be removed no sooner than 06/30/2026.
+This method will be removed no sooner than 08/31/2026.
 
 operationId: `GetVenues`
 

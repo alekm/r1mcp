@@ -964,7 +964,7 @@ operationId: `activateL3AclPolicyOnAccessControlProfile`
 
 **Delete Layer 3 ACL Policies.**
 
-Perform a batch deletion of multiple layer 3 ACL policies by providing a list of their unique identifiers. This operation permanently removes all specified policies and their associated configurations. This method will be removed no sooner than 06/30/2026. The following URL /l3AclPolicies/{l3AclPolicyId} can be used for this content.
+Perform a batch deletion of multiple layer 3 ACL policies by providing a list of their unique identifiers. This operation permanently removes all specified policies and their associated configurations. This method will be removed no sooner than 08/31/2026. The following URL /l3AclPolicies/{l3AclPolicyId} can be used for this content.
 
 operationId: `deleteBulkL3AclPolicies`
 
@@ -987,7 +987,7 @@ operationId: `deleteBulkL3AclPolicies`
 
 **Get Layer 3 ACL Policies.**
 
-Retrieve a complete list of all layer 3 ACL policies in the system including name, description, rules, and default access actions. This method will be removed no sooner than 06/30/2026. The following URL /l3AclPolicies/query can be used for this content.
+Retrieve a complete list of all layer 3 ACL policies in the system including name, description, rules, and default access actions. This method will be removed no sooner than 08/31/2026. The following URL /l3AclPolicies/query can be used for this content.
 
 operationId: `getAllL3AclPolicies`
 
@@ -1006,7 +1006,7 @@ operationId: `getAllL3AclPolicies`
 
 **Add Layer 3 ACL**
 
-Create a layer 3 ACL policy to control network access based on IP addresses, ports, and protocols for access control profiles or Wi-Fi networks. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Create a layer 3 ACL policy to control network access based on IP addresses, ports, and protocols for access control profiles or Wi-Fi networks. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `addL3AclPolicy`
 
@@ -1091,7 +1091,7 @@ operationId: `getL3AclPolicy`
 
 **Update Layer 3 ACL**
 
-Update an existing layer 3 ACL policy by its unique identifier, updating rules, default access actions, and other policy settings. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Update an existing layer 3 ACL policy by its unique identifier, updating rules, default access actions, and other policy settings. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `updateL3AclPolicy`
 
@@ -1819,7 +1819,7 @@ operationId: `activateRadiusServerProfileOnHotspot20IdentityProvider`
 
 **Delete RADIUS Profiles**
 
-Perform a batch deletion of multiple RADIUS server profiles by providing a list of their unique identifiers. This operation permanently removes all specified profiles and their associated configurations. This method will be removed no sooner than 06/30/2026. The following URL /radiusServerProfiles/{radiusId} can be used for this content.
+Perform a batch deletion of multiple RADIUS server profiles by providing a list of their unique identifiers. This operation permanently removes all specified profiles and their associated configurations. This method will be removed no sooner than 08/31/2026. The following URL /radiusServerProfiles/{radiusId} can be used for this content.
 
 operationId: `deleteRadiuses`
 
@@ -1842,7 +1842,7 @@ operationId: `deleteRadiuses`
 
 **List RADIUS Profiles**
 
-Retrieve a complete list of all RADIUS server profiles configured in the system. This method will be removed no sooner than 06/30/2026. The following URL /radiusServerProfiles/query can be used for this content.
+Retrieve a complete list of all RADIUS server profiles configured in the system. This method will be removed no sooner than 08/31/2026. The following URL /radiusServerProfiles/query can be used for this content.
 
 operationId: `getRadiuses`
 
@@ -1921,7 +1921,7 @@ operationId: `deleteRadius`
 
 **Get RADIUS Profile**
 
-Retrieve detailed information about a RADIUS server profile including primary and secondary servers, server types, and shared secrets. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026.
+Retrieve detailed information about a RADIUS server profile including primary and secondary servers, server types, and shared secrets. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026.
 
 operationId: `getRadius`
 
@@ -2873,7 +2873,7 @@ operationId: `updateL2AclPolicyTemplate`
 
 **Delete Network Activation**
 
-Perform a batch deletion of multiple network venue activations by providing a list of activation identifiers. This operation permanently removes all specified activations and their associated configurations. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/wifiNetworks/{wifiNetworkId} can be used for this content.
+Perform a batch deletion of multiple network venue activations by providing a list of activation identifiers. This operation permanently removes all specified activations and their associated configurations. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/wifiNetworks/{wifiNetworkId} can be used for this content.
 
 operationId: `deleteNetworkVenuesBulk`
 
@@ -2896,7 +2896,7 @@ operationId: `deleteNetworkVenuesBulk`
 
 **Create Network Activation**
 
-Create a network venue activation to associate a Wi-Fi network with a venue, configuring AP groups, VLAN settings, and scheduling rules. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/wifiNetworks/{wifiNetworkId} can be used for this content.
+Create a network venue activation to associate a Wi-Fi network with a venue, configuring AP groups, VLAN settings, and scheduling rules. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/wifiNetworks/{wifiNetworkId} can be used for this content.
 
 operationId: `createNetworkVenue`
 
@@ -2936,7 +2936,7 @@ operationId: `createNetworkVenue`
 
 **Create Network Activation Mappings**
 
-Create multiple network venue activations in a single operation to associate Wi-Fi networks with venues with AP groups and VLAN settings. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/wifiNetworks/{wifiNetworkId} can be used for this content.
+Create multiple network venue activations in a single operation to associate Wi-Fi networks with venues with AP groups and VLAN settings. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/wifiNetworks/{wifiNetworkId} can be used for this content.
 
 operationId: `createNetworkVenueMappings`
 
@@ -2959,7 +2959,7 @@ operationId: `createNetworkVenueMappings`
 
 **Get Network Activations by Query Filter**
 
-Retrieve a filtered list of network venue activations based on query criteria including configuration settings, AP groups, VLAN settings, and scheduling rules. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026.
+Retrieve a filtered list of network venue activations based on query criteria including configuration settings, AP groups, VLAN settings, and scheduling rules. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026.
 
 operationId: `getNetworkActivationsByQuery`
 
@@ -2989,7 +2989,7 @@ operationId: `getNetworkActivationsByQuery`
 
 **Delete Network Activation**
 
-Remove a network venue activation by its unique identifier. This operation permanently deletes the activation and its associated configurations. Ensure the activation is not actively in use before deletion. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/wifiNetworks/{wifiNetworkId} can be used for this content.
+Remove a network venue activation by its unique identifier. This operation permanently deletes the activation and its associated configurations. Ensure the activation is not actively in use before deletion. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/wifiNetworks/{wifiNetworkId} can be used for this content.
 
 operationId: `deleteNetworkVenue`
 
@@ -3016,7 +3016,7 @@ operationId: `deleteNetworkVenue`
 
 **Get Network Activation**
 
-Retrieve detailed information about a specific network venue activation by its unique identifier. The response includes all configuration settings, AP groups, VLAN settings, and scheduling rules associated with the activation. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/wifiNetworks/{wifiNetworkId}/settings can be used for this content.
+Retrieve detailed information about a specific network venue activation by its unique identifier. The response includes all configuration settings, AP groups, VLAN settings, and scheduling rules associated with the activation. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/wifiNetworks/{wifiNetworkId}/settings can be used for this content.
 
 operationId: `getNetworkVenue`
 
@@ -3042,7 +3042,7 @@ operationId: `getNetworkVenue`
 
 **Update Network Activation**
 
-Update an existing network venue activation by its unique identifier, updating AP groups, VLAN settings, and scheduling rules. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/wifiNetworks/{wifiNetworkId}/settings can be used for this content.
+Update an existing network venue activation by its unique identifier, updating AP groups, VLAN settings, and scheduling rules. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/wifiNetworks/{wifiNetworkId}/settings can be used for this content.
 
 operationId: `updateNetworkVenue`
 
@@ -3347,7 +3347,7 @@ operationId: `activateVlanPoolProfileTemplateOnWifiNetworkTemplate`
 
 **Delete AP SNMP Agent Profiles**
 
-Perform a batch deletion of multiple AP SNMP agent profiles by providing a list of profile identifiers. This operation permanently removes all specified profiles and their associated configurations. This method will be removed no sooner than 06/30/2026. The following URL /snmpAgentProfiles/{snmpAgentProfileId} can be used for this content.
+Perform a batch deletion of multiple AP SNMP agent profiles by providing a list of profile identifiers. This operation permanently removes all specified profiles and their associated configurations. This method will be removed no sooner than 08/31/2026. The following URL /snmpAgentProfiles/{snmpAgentProfileId} can be used for this content.
 
 operationId: `deleteApSnmpAgentProfilesBulk`
 
@@ -3370,7 +3370,7 @@ operationId: `deleteApSnmpAgentProfilesBulk`
 
 **Get AP SNMP Agent Profiles**
 
-Retrieve a complete list of all AP SNMP agent profiles configured in the system. This method will be removed no sooner than 06/30/2026. The following URL /snmpAgentProfiles/query can be used for this content.
+Retrieve a complete list of all AP SNMP agent profiles configured in the system. This method will be removed no sooner than 08/31/2026. The following URL /snmpAgentProfiles/query can be used for this content.
 
 operationId: `getApSnmpAgentProfiles`
 
@@ -3389,7 +3389,7 @@ operationId: `getApSnmpAgentProfiles`
 
 **Create AP SNMP Agent Profile**
 
-Create an AP SNMP agent profile with SNMPv2 or SNMPv3 settings that can be applied to APs for SNMP monitoring. This method will be removed no sooner than 06/30/2026. The following URL /snmpAgentProfiles can be used for this content.
+Create an AP SNMP agent profile with SNMPv2 or SNMPv3 settings that can be applied to APs for SNMP monitoring. This method will be removed no sooner than 08/31/2026. The following URL /snmpAgentProfiles can be used for this content.
 
 operationId: `createApSnmpAgentProfile`
 
@@ -3420,7 +3420,7 @@ operationId: `createApSnmpAgentProfile`
 
 **Delete AP SNMP Agent Profile**
 
-Delete an AP SNMP agent profile by its unique identifier, permanently deleting the profile and its configurations. This method will be removed no sooner than 06/30/2026. The following URL /snmpAgentProfiles/{snmpAgentProfileId} can be used for this content.
+Delete an AP SNMP agent profile by its unique identifier, permanently deleting the profile and its configurations. This method will be removed no sooner than 08/31/2026. The following URL /snmpAgentProfiles/{snmpAgentProfileId} can be used for this content.
 
 operationId: `deleteApSnmpAgentProfile`
 
@@ -3447,7 +3447,7 @@ operationId: `deleteApSnmpAgentProfile`
 
 **Get AP SNMP Profile**
 
-Retrieve detailed information about a specific AP SNMP agent profile by its unique identifier including SNMPv2 and SNMPv3 configurations. This method will be removed no sooner than 06/30/2026. The following URL /snmpAgentProfiles/{snmpAgentProfileId} can be used for this content.
+Retrieve detailed information about a specific AP SNMP agent profile by its unique identifier including SNMPv2 and SNMPv3 configurations. This method will be removed no sooner than 08/31/2026. The following URL /snmpAgentProfiles/{snmpAgentProfileId} can be used for this content.
 
 operationId: `getApSnmpAgentProfile`
 
@@ -3473,7 +3473,7 @@ operationId: `getApSnmpAgentProfile`
 
 **Update AP SNMP Agent Profile**
 
-Update an existing AP SNMP agent profile by its unique identifier, updating SNMPv2 and SNMPv3 agent settings. This method will be removed no sooner than 06/30/2026. The following URL /snmpAgentProfiles/{snmpAgentProfileId} can be used for this content.
+Update an existing AP SNMP agent profile by its unique identifier, updating SNMPv2 and SNMPv3 agent settings. This method will be removed no sooner than 08/31/2026. The following URL /snmpAgentProfiles/{snmpAgentProfileId} can be used for this content.
 
 operationId: `updateApSnmpAgentProfile`
 
@@ -3511,7 +3511,7 @@ operationId: `updateApSnmpAgentProfile`
 
 **Get AP SNMP Agent Profile AP Usage**
 
-Query access points that are associated with a specific AP SNMP agent profile. The response includes a paginated list of APs using the profile, along with their venue information. This method will be removed no sooner than 06/30/2026. The following URL /snmpAgentProfiles/query can be used for this content.
+Query access points that are associated with a specific AP SNMP agent profile. The response includes a paginated list of APs using the profile, along with their venue information. This method will be removed no sooner than 08/31/2026. The following URL /snmpAgentProfiles/query can be used for this content.
 
 operationId: `getApSnmpAgentProfileApUsage`
 
@@ -3944,7 +3944,7 @@ operationId: `networkCompatibilitiesQuery`
 
 **Create SNMP Agent Profile**
 
-Create a new SNMP agent profile with SNMPv2 or SNMPv3 agent settings for monitoring and management. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
+Create a new SNMP agent profile with SNMPv2 or SNMPv3 agent settings for monitoring and management. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
 
 operationId: `createSnmpAgentProfile`
 
@@ -4001,7 +4001,7 @@ operationId: `deleteSnmpAgentProfile`
 
 **Get SNMP Agent Profile**
 
-Retrieve detailed information about a specific SNMP agent profile by its unique identifier. The response includes all configuration settings, SNMP version settings, and agent configurations associated with the profile. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
+Retrieve detailed information about a specific SNMP agent profile by its unique identifier. The response includes all configuration settings, SNMP version settings, and agent configurations associated with the profile. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
 
 operationId: `getSnmpAgentProfile`
 
@@ -4027,7 +4027,7 @@ operationId: `getSnmpAgentProfile`
 
 **Update SNMP Agent Profile**
 
-Update an existing SNMP agent profile including SNMP version settings and agent configurations. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
+Update an existing SNMP agent profile including SNMP version settings and agent configurations. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
 
 operationId: `updateSnmpAgentProfile`
 
@@ -4750,7 +4750,7 @@ operationId: `updateL3AclPolicyTemplate`
 
 **Delete AP Groups**
 
-Perform a batch deletion of multiple AP groups by providing a list of group identifiers. This operation permanently removes all specified groups and their associated configurations. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apGroups/{apGroupId} can be used for this content.
+Perform a batch deletion of multiple AP groups by providing a list of group identifiers. This operation permanently removes all specified groups and their associated configurations. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apGroups/{apGroupId} can be used for this content.
 
 operationId: `deleteAPGroupsBulk`
 
@@ -4773,7 +4773,7 @@ operationId: `deleteAPGroupsBulk`
 
 **Get AP Groups**
 
-Retrieve a complete list of all AP groups configured in the system. The response includes general AP group information, configuration settings, and associated AP serial numbers for each group. This method will be removed no sooner than 06/30/2026. The following URL /venues/apGroups/query can be used for this content.
+Retrieve a complete list of all AP groups configured in the system. The response includes general AP group information, configuration settings, and associated AP serial numbers for each group. This method will be removed no sooner than 08/31/2026. The following URL /venues/apGroups/query can be used for this content.
 
 operationId: `getApGroups`
 
@@ -4792,7 +4792,7 @@ operationId: `getApGroups`
 
 **Delete AP Group**
 
-Delete an AP group by its unique identifier, permanently deleting the group and its configurations. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apGroups/{apGroupId} can be used for this content.
+Delete an AP group by its unique identifier, permanently deleting the group and its configurations. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apGroups/{apGroupId} can be used for this content.
 
 operationId: `deleteAPGroup`
 
@@ -4819,7 +4819,7 @@ operationId: `deleteAPGroup`
 
 **Get AP Group**
 
-Retrieve detailed information about a specific AP group by its unique identifier. The response includes all configuration settings, associated AP serial numbers, and policies associated with the group. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apGroups/{apGroupId} can be used for this content.
+Retrieve detailed information about a specific AP group by its unique identifier. The response includes all configuration settings, associated AP serial numbers, and policies associated with the group. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apGroups/{apGroupId} can be used for this content.
 
 operationId: `getAPGroup`
 
@@ -4845,7 +4845,7 @@ operationId: `getAPGroup`
 
 **Update AP Group**
 
-Update an existing AP group by its unique identifier, updating AP associations, settings, and policies. APs can be moved between venues using the update AP endpoint. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apGroups/{apGroupId} can be used for this content.
+Update an existing AP group by its unique identifier, updating AP associations, settings, and policies. APs can be moved between venues using the update AP endpoint. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apGroups/{apGroupId} can be used for this content.
 
 operationId: `updateAPGroup`
 
@@ -4884,7 +4884,7 @@ operationId: `updateAPGroup`
 
 **Get AP Groups by Venue**
 
-Retrieve a list of AP groups for a specific venue including configuration settings and associated AP serial numbers. This method will be removed no sooner than 06/30/2026. The following URL /venues/apGroups/query can be used for this content.
+Retrieve a list of AP groups for a specific venue including configuration settings and associated AP serial numbers. This method will be removed no sooner than 08/31/2026. The following URL /venues/apGroups/query can be used for this content.
 
 operationId: `getAPGroupsByVenue`
 
@@ -5557,7 +5557,7 @@ operationId: `updateApGroupSettingsOnWifiNetwork`
 
 **Delete Multiple Access Control Profiles**
 
-Perform a batch deletion of multiple access control profiles by providing a list of profile identifiers. This operation permanently removes all specified profiles and their associated configurations. This method will be removed no sooner than 06/30/2026. The following URL /accessControlProfiles/{accessControlProfileId} can be used for this content.
+Perform a batch deletion of multiple access control profiles by providing a list of profile identifiers. This operation permanently removes all specified profiles and their associated configurations. This method will be removed no sooner than 08/31/2026. The following URL /accessControlProfiles/{accessControlProfileId} can be used for this content.
 
 operationId: `deleteBulkAccessControlProfiles`
 
@@ -5580,7 +5580,7 @@ operationId: `deleteBulkAccessControlProfiles`
 
 **Get All Access Control Profiles**
 
-Retrieve a complete list of all access control profiles configured in the system. This method will be removed no sooner than 06/30/2026. The following URL /accessControlProfiles/query can be used for this content.
+Retrieve a complete list of all access control profiles configured in the system. This method will be removed no sooner than 08/31/2026. The following URL /accessControlProfiles/query can be used for this content.
 
 operationId: `getAllAccessControlProfiles`
 
@@ -5599,7 +5599,7 @@ operationId: `getAllAccessControlProfiles`
 
 **Add Access Control Profile**
 
-Create an access control profile to manage network access permissions with rules and policies that can be applied to Wi-Fi networks. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Create an access control profile to manage network access permissions with rules and policies that can be applied to Wi-Fi networks. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `addAccessControlProfile`
 
@@ -5661,7 +5661,7 @@ operationId: `deleteAccessControlProfile`
 
 **Get Access Control Profile**
 
-Retrieve detailed information about a specific access control profile by its unique identifier. The response includes all configuration settings, rules, and policies associated with the profile. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Retrieve detailed information about a specific access control profile by its unique identifier. The response includes all configuration settings, rules, and policies associated with the profile. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `getAccessControlProfile`
 
@@ -5687,7 +5687,7 @@ operationId: `getAccessControlProfile`
 
 **Update Access Control Profile**
 
-Update an existing access control profile by its unique identifier, updating rules, policies, and settings while maintaining network associations. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Update an existing access control profile by its unique identifier, updating rules, policies, and settings while maintaining network associations. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `updateAccessControlProfile`
 
@@ -6388,7 +6388,7 @@ operationId: `updateApLanPortOverwriteSettings`
 
 **Get Application Policies Applications**
 
-List supported application signatures for AVC policies. This method will be removed no sooner than 06/30/2026. The following URL /applicationLibraries/{applicationLibraryId}/categories/{categoryId}/applications can be used for this content.
+List supported application signatures for AVC policies. This method will be removed no sooner than 08/31/2026. The following URL /applicationLibraries/{applicationLibraryId}/categories/{categoryId}/applications can be used for this content.
 
 operationId: `getAvcApplications`
 
@@ -6407,7 +6407,7 @@ operationId: `getAvcApplications`
 
 **Get Application Policies Categories**
 
-List supported application categories for AVC policies. This method will be removed no sooner than 06/30/2026. The following URL /applicationLibraries/{applicationLibraryId}/categories can be used for this content.
+List supported application categories for AVC policies. This method will be removed no sooner than 08/31/2026. The following URL /applicationLibraries/{applicationLibraryId}/categories can be used for this content.
 
 operationId: `getAvcCategories`
 
@@ -6426,7 +6426,7 @@ operationId: `getAvcCategories`
 
 **Get Recovery PSK**
 
-Retrieve the pre-shared key (PSK) configured for the recovery network. The recovery network provides a fallback Wi-Fi network for administrative access when the primary network is unavailable. This method will be removed no sooner than 06/30/2026. The following URL /wifiNetworks/recoveryPassphraseSettings can be used for this content.
+Retrieve the pre-shared key (PSK) configured for the recovery network. The recovery network provides a fallback Wi-Fi network for administrative access when the primary network is unavailable. This method will be removed no sooner than 08/31/2026. The following URL /wifiNetworks/recoveryPassphraseSettings can be used for this content.
 
 operationId: `getRecoveryPsk`
 
@@ -6445,7 +6445,7 @@ operationId: `getRecoveryPsk`
 
 **Update Recovery PSK**
 
-Update the PSK for the recovery network used for administrative access. This method will be removed no sooner than 06/30/2026. The following URL /wifiNetworks/recoveryPassphraseSettings can be used for this content.
+Update the PSK for the recovery network used for administrative access. This method will be removed no sooner than 08/31/2026. The following URL /wifiNetworks/recoveryPassphraseSettings can be used for this content.
 
 operationId: `updateRecoveryPsk`
 
@@ -6474,7 +6474,7 @@ operationId: `updateRecoveryPsk`
 
 **Get Capabilities**
 
-List access point capability metadata supported by the system. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/capabilities can be used for this content.
+List access point capability metadata supported by the system. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/capabilities can be used for this content.
 
 operationId: `getCapabilities`
 
@@ -6503,7 +6503,7 @@ operationId: `getCapabilities`
 
 **Get APs by AP Group**
 
-Retrieve a list of access points associated with a specific AP group. The response includes general AP information, configuration settings, and operational status for each access point in the group. This method will be removed no sooner than 06/30/2026. The following URL /venues/aps/query can be used for this content.
+Retrieve a list of access points associated with a specific AP group. The response includes general AP information, configuration settings, and operational status for each access point in the group. This method will be removed no sooner than 08/31/2026. The following URL /venues/aps/query can be used for this content.
 
 operationId: `getApsByAPGroup`
 
@@ -6529,7 +6529,7 @@ operationId: `getApsByAPGroup`
 
 **Delete APs**
 
-Perform a batch deletion of multiple access points by providing a list of serial numbers. This operation permanently removes all specified APs and their associated configurations from the system. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber} can be used for this content.
+Perform a batch deletion of multiple access points by providing a list of serial numbers. This operation permanently removes all specified APs and their associated configurations from the system. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber} can be used for this content.
 
 operationId: `deleteApsBulk`
 
@@ -6559,7 +6559,7 @@ operationId: `deleteApsBulk`
 
 **Get APs**
 
-Retrieve a complete list of all access points configured in the system. The response includes general AP information, configuration settings, and operational status for each access point. This method will be removed no sooner than 06/30/2026. The following URL /venues/aps/query can be used for this content.
+Retrieve a complete list of all access points configured in the system. The response includes general AP information, configuration settings, and operational status for each access point. This method will be removed no sooner than 08/31/2026. The following URL /venues/aps/query can be used for this content.
 
 operationId: `getAps`
 
@@ -6585,7 +6585,7 @@ operationId: `getAps`
 
 **Import APs**
 
-Create one or more access points in the system, registering and associating them with venues for management and configuration. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps can be used for this content.
+Create one or more access points in the system, registering and associating them with venues for management and configuration. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps can be used for this content.
 
 operationId: `addAps`
 
@@ -6635,7 +6635,7 @@ operationId: `importBulkApsCsv`
 
 **Get Result for Import APs from CSV File**
 
-Retrieve the import operation results and status for access points imported from CSV files including success and error details. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/importResults can be used for this content.
+Retrieve the import operation results and status for access points imported from CSV files including success and error details. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/importResults can be used for this content.
 
 operationId: `getImportApsResults`
 
@@ -6662,7 +6662,7 @@ operationId: `getImportApsResults`
 
 **Delete AP**
 
-Delete an AP by its serial number, permanently deleting the AP and its configurations from the system. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber} can be used for this content.
+Delete an AP by its serial number, permanently deleting the AP and its configurations from the system. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber} can be used for this content.
 
 operationId: `deleteAP`
 
@@ -6690,7 +6690,7 @@ operationId: `deleteAP`
 
 **Get AP**
 
-Retrieve detailed operational and configuration data for a specific access point by its serial number. The response includes general AP information, configuration settings, and operational status. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber} can be used for this content.
+Retrieve detailed operational and configuration data for a specific access point by its serial number. The response includes general AP information, configuration settings, and operational status. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber} can be used for this content.
 
 operationId: `getAP`
 
@@ -6717,7 +6717,7 @@ operationId: `getAP`
 
 **Trigger AP Action**
 
-Trigger an action on this access point. This operation executes administrative commands such as reboot, reset, ping, or traceroute on the AP. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/systemCommands can be used for this content.
+Trigger an action on this access point. This operation executes administrative commands such as reboot, reset, ping, or traceroute on the AP. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/systemCommands can be used for this content.
 
 operationId: `TriggerApAction`
 
@@ -6794,7 +6794,7 @@ operationId: `updateAP`
 
 **Get AP Basic Service Set Coloring Settings**
 
-Retrieve basic service set coloring settings configured for this access point. The response includes BSS color configuration used to improve spatial reuse and reduce interference in Wi-Fi 6 networks. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/bssColoringSettings can be used for this content.
+Retrieve basic service set coloring settings configured for this access point. The response includes BSS color configuration used to improve spatial reuse and reduce interference in Wi-Fi 6 networks. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/bssColoringSettings can be used for this content.
 
 operationId: `getApBssColoringSettings`
 
@@ -6820,7 +6820,7 @@ operationId: `getApBssColoringSettings`
 
 **Update AP Basic Service Set Coloring Settings**
 
-Update BSS coloring settings for this AP to improve spatial reuse and reduce interference in Wi-Fi 6 networks. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/bssColoringSettings can be used for this content.
+Update BSS coloring settings for this AP to improve spatial reuse and reduce interference in Wi-Fi 6 networks. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/bssColoringSettings can be used for this content.
 
 operationId: `updateApBssColoringSettings`
 
@@ -6855,7 +6855,7 @@ operationId: `updateApBssColoringSettings`
 
 **Get AP Capabilities**
 
-Retrieve capability information for this access point. The response includes detailed feature support information and hardware capabilities of the AP. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/capabilities can be used for this content.
+Retrieve capability information for this access point. The response includes detailed feature support information and hardware capabilities of the AP. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/capabilities can be used for this content.
 
 operationId: `getApCapabilities`
 
@@ -6881,7 +6881,7 @@ operationId: `getApCapabilities`
 
 **Get AP Default Regulatory Channels**
 
-Retrieve available Wi-Fi channels for this access point based on regulatory domain and country settings. The response includes all supported channels across different frequency bands. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/wifiAvailableChannels can be used for this content.
+Retrieve available Wi-Fi channels for this access point based on regulatory domain and country settings. The response includes all supported channels across different frequency bands. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/wifiAvailableChannels can be used for this content.
 
 operationId: `getValidChannelsBySerialNumber`
 
@@ -6907,7 +6907,7 @@ operationId: `getValidChannelsBySerialNumber`
 
 **Reset AP Client Admission Control Settings**
 
-Reset client admission control settings for this access point to default values. This operation removes AP specific admission control configurations and restores system default settings. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apGroups/{apGroupId}/apClientAdmissionControlSettings can be used for this content.
+Reset client admission control settings for this access point to default values. This operation removes AP specific admission control configurations and restores system default settings. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apGroups/{apGroupId}/apClientAdmissionControlSettings can be used for this content.
 
 operationId: `resetApClientAdmissionControlSettings`
 
@@ -6934,7 +6934,7 @@ operationId: `resetApClientAdmissionControlSettings`
 
 **Get AP Client Admission Control Settings**
 
-Retrieve client admission control settings configured for this access point. The response includes thresholds and policies that control when new clients are allowed to connect to the AP. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
+Retrieve client admission control settings configured for this access point. The response includes thresholds and policies that control when new clients are allowed to connect to the AP. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
 
 operationId: `getApClientAdmissionControlSettings`
 
@@ -6960,7 +6960,7 @@ operationId: `getApClientAdmissionControlSettings`
 
 **Update AP Client Admission Control Settings**
 
-Update client admission control settings for this access point. This operation allows you to update thresholds and policies that control when new clients are allowed to connect to the AP. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apGroups/{apGroupId}/apClientAdmissionControlSettings can be used for this content. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2
+Update client admission control settings for this access point. This operation allows you to update thresholds and policies that control when new clients are allowed to connect to the AP. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apGroups/{apGroupId}/apClientAdmissionControlSettings can be used for this content. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2
 
 operationId: `updateApClientAdmissionControlSettings`
 
@@ -7002,7 +7002,7 @@ operationId: `updateApClientAdmissionControlSettings`
 
 **Get DHCP Lease Times**
 
-Retrieve DHCP lease time information for this access point. The response includes active DHCP client leases with IP addresses, MAC addresses, and lease expiration times. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/wifiDhcpClientLeases can be used for this content.
+Retrieve DHCP lease time information for this access point. The response includes active DHCP client leases with IP addresses, MAC addresses, and lease expiration times. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/wifiDhcpClientLeases can be used for this content.
 
 operationId: `getDhcpLeaseTimes`
 
@@ -7028,7 +7028,7 @@ operationId: `getDhcpLeaseTimes`
 
 **Get DHCP Pool Usages**
 
-Retrieve DHCP pool usage information for this access point. The response includes IP address allocation statistics and pool utilization data for DHCP services. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/wifiDhcpPoolUsages can be used for this content.
+Retrieve DHCP pool usage information for this access point. The response includes IP address allocation statistics and pool utilization data for DHCP services. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/wifiDhcpPoolUsages can be used for this content.
 
 operationId: `getDhcpPoolUsages`
 
@@ -7054,7 +7054,7 @@ operationId: `getDhcpPoolUsages`
 
 **Reset AP Directed Multicast Settings**
 
-Reset directed multicast settings for this access point to default values. This operation removes AP specific multicast configurations and restores system default settings. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/directedMulticastSettings can be used for this content.
+Reset directed multicast settings for this access point to default values. This operation removes AP specific multicast configurations and restores system default settings. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/directedMulticastSettings can be used for this content.
 
 operationId: `resetApDirectedMulticast`
 
@@ -7081,7 +7081,7 @@ operationId: `resetApDirectedMulticast`
 
 **Get AP Directed Multicast Settings**
 
-Retrieve directed multicast settings configured for this access point. The response includes multicast optimization configurations that improve efficiency for multicast traffic delivery to clients. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/directedMulticastSettings can be used for this content.
+Retrieve directed multicast settings configured for this access point. The response includes multicast optimization configurations that improve efficiency for multicast traffic delivery to clients. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/directedMulticastSettings can be used for this content.
 
 operationId: `getApDirectedMulticast`
 
@@ -7107,7 +7107,7 @@ operationId: `getApDirectedMulticast`
 
 **Update AP Directed Multicast Settings**
 
-Update directed multicast settings for this access point. This operation allows you to update multicast optimization configurations that improve efficiency for multicast traffic delivery to clients. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/directedMulticastSettings can be used for this content.
+Update directed multicast settings for this access point. This operation allows you to update multicast optimization configurations that improve efficiency for multicast traffic delivery to clients. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/directedMulticastSettings can be used for this content.
 
 operationId: `updateApDirectedMulticast`
 
@@ -7144,7 +7144,7 @@ operationId: `updateApDirectedMulticast`
 
 **Update AP Position**
 
-Update the floor plan position of this AP by updating the physical location coordinates for visualization and management. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/floorplans/{floorplanId}/aps/{serialNumber}/floorPositions can be used for this content.
+Update the floor plan position of this AP by updating the physical location coordinates for visualization and management. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/floorplans/{floorplanId}/aps/{serialNumber}/floorPositions can be used for this content.
 
 operationId: `updateAPPosition`
 
@@ -7180,7 +7180,7 @@ operationId: `updateAPPosition`
 
 **Reset AP LAN ports**
 
-Reset LAN port settings for this access point to default values. This operation removes AP specific port configurations and restores system default settings. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/lanPorts/{portId}/settings can be used for this content.
+Reset LAN port settings for this access point to default values. This operation removes AP specific port configurations and restores system default settings. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/lanPorts/{portId}/settings can be used for this content.
 
 operationId: `resetAPLanPorts`
 
@@ -7207,7 +7207,7 @@ operationId: `resetAPLanPorts`
 
 **Get AP LAN ports**
 
-Retrieve LAN port settings configured for this access point. The response includes Ethernet port configurations including VLAN assignments and port types. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/lanPorts/{portId}/settings can be used for this content.
+Retrieve LAN port settings configured for this access point. The response includes Ethernet port configurations including VLAN assignments and port types. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/lanPorts/{portId}/settings can be used for this content.
 
 operationId: `getAPLanPorts`
 
@@ -7233,7 +7233,7 @@ operationId: `getAPLanPorts`
 
 **Update AP LAN ports**
 
-Update LAN port settings for this access point. This operation allows you to update Ethernet port configurations including VLAN assignments and port types. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/lanPorts/{portId}/settings can be used for this content.
+Update LAN port settings for this access point. This operation allows you to update Ethernet port configurations including VLAN assignments and port types. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/lanPorts/{portId}/settings can be used for this content.
 
 operationId: `updateAPLanPorts`
 
@@ -7269,7 +7269,7 @@ operationId: `updateAPLanPorts`
 
 **Reset AP LED**
 
-Reset LED indicator settings for this access point to default values. This operation removes AP specific LED configurations and restores system default settings. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/ledSettings can be used for this content.
+Reset LED indicator settings for this access point to default values. This operation removes AP specific LED configurations and restores system default settings. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/ledSettings can be used for this content.
 
 operationId: `resetAPLED`
 
@@ -7296,7 +7296,7 @@ operationId: `resetAPLED`
 
 **Get AP LED**
 
-Retrieve LED indicator settings configured for this access point. The response includes LED behavior and status indicator configurations. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/ledSettings can be used for this content.
+Retrieve LED indicator settings configured for this access point. The response includes LED behavior and status indicator configurations. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/ledSettings can be used for this content.
 
 operationId: `getAPLed`
 
@@ -7322,7 +7322,7 @@ operationId: `getAPLed`
 
 **Update AP LED**
 
-Update LED indicator settings for this access point. This operation allows you to update LED behavior and status indicator configurations. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/ledSettings can be used for this content.
+Update LED indicator settings for this access point. This operation allows you to update LED behavior and status indicator configurations. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/ledSettings can be used for this content.
 
 operationId: `updateAPLED`
 
@@ -7357,7 +7357,7 @@ operationId: `updateAPLED`
 
 **Download AP Log**
 
-Download log files from this access point. The response includes system logs, event logs, and diagnostic information generated by the AP. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/logs can be used for this content.
+Download log files from this access point. The response includes system logs, event logs, and diagnostic information generated by the AP. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/logs can be used for this content.
 
 operationId: `downloadAPLog`
 
@@ -7383,7 +7383,7 @@ operationId: `downloadAPLog`
 
 **Get AP Mesh Settings**
 
-Retrieve mesh network settings configured for this access point. The response includes mesh enablement status and configuration parameters for AP mesh networking. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/meshSettings can be used for this content.
+Retrieve mesh network settings configured for this access point. The response includes mesh enablement status and configuration parameters for AP mesh networking. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/meshSettings can be used for this content.
 
 operationId: `getApMeshOptions`
 
@@ -7409,7 +7409,7 @@ operationId: `getApMeshOptions`
 
 **Update AP Mesh Settings**
 
-Update mesh network settings for this access point. This operation allows you to enable or disable mesh networking and configure mesh parameters for the AP. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/meshSettings can be used for this content.
+Update mesh network settings for this access point. This operation allows you to enable or disable mesh networking and configure mesh parameters for the AP. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/meshSettings can be used for this content.
 
 operationId: `UpdateApMeshOptions`
 
@@ -7446,7 +7446,7 @@ operationId: `UpdateApMeshOptions`
 
 **Reset AP Network Settings**
 
-Reset network settings for this access point to default values. This operation removes AP specific network configurations and restores system default settings. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/networkSettings can be used for this content.
+Reset network settings for this access point to default values. This operation removes AP specific network configurations and restores system default settings. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/networkSettings can be used for this content.
 
 operationId: `resetApNetworkSettings`
 
@@ -7473,7 +7473,7 @@ operationId: `resetApNetworkSettings`
 
 **Get AP Network Settings**
 
-Retrieve network settings configured for this access point. The response includes IP configuration, network interface settings, and connectivity parameters. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/networkSettings can be used for this content.
+Retrieve network settings configured for this access point. The response includes IP configuration, network interface settings, and connectivity parameters. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/networkSettings can be used for this content.
 
 operationId: `getApNetworkSettings`
 
@@ -7538,7 +7538,7 @@ operationId: `updateApNetworkSettings`
 
 **Stop Packet Capture**
 
-Stop packet capture for this access point. This operation terminates active network packet capture sessions. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/packets can be used for this content.
+Stop packet capture for this access point. This operation terminates active network packet capture sessions. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/packets can be used for this content.
 
 operationId: `stopPacketCapture`
 
@@ -7572,7 +7572,7 @@ operationId: `stopPacketCapture`
 
 **Get Packet Capture State**
 
-Retrieve packet capture state for this access point. The response includes the current status of packet capture sessions including active capture information and session details. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/packets can be used for this content.
+Retrieve packet capture state for this access point. The response includes the current status of packet capture sessions including active capture information and session details. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/packets can be used for this content.
 
 operationId: `getPacketCaptureState`
 
@@ -7598,7 +7598,7 @@ operationId: `getPacketCaptureState`
 
 **Start Packet Capture**
 
-Start packet capture for this access point. This operation initiates network packet capture sessions for network analysis and troubleshooting. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/packets can be used for this content.
+Start packet capture for this access point. This operation initiates network packet capture sessions for network analysis and troubleshooting. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/packets can be used for this content.
 
 operationId: `startPacketCapture`
 
@@ -7635,7 +7635,7 @@ operationId: `startPacketCapture`
 
 **Delete AP Picture**
 
-Delete the existing picture image for the AP removing visual identification information from the system. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/pictures can be used for this content.
+Delete the existing picture image for the AP removing visual identification information from the system. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/pictures can be used for this content.
 
 operationId: `DeleteApPicture`
 
@@ -7662,7 +7662,7 @@ operationId: `DeleteApPicture`
 
 **Get AP Picture**
 
-Retrieve the AP picture image file for visual identification and reference in the management interface. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/pictures can be used for this content.
+Retrieve the AP picture image file for visual identification and reference in the management interface. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/pictures can be used for this content.
 
 operationId: `getApPicture`
 
@@ -7688,7 +7688,7 @@ operationId: `getApPicture`
 
 **Upload AP Picture**
 
-Upload a new picture image for the AP to enable visual identification in the management interface. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/pictures can be used for this content.
+Upload a new picture image for the AP to enable visual identification in the management interface. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/pictures can be used for this content.
 
 operationId: `UploadApPicture`
 
@@ -7722,7 +7722,7 @@ operationId: `UploadApPicture`
 
 **Reset AP Radio Customization**
 
-Reset radio settings for this access point to default values. This operation removes AP specific radio customizations and restores system default configurations. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/radioSettings can be used for this content.
+Reset radio settings for this access point to default values. This operation removes AP specific radio customizations and restores system default configurations. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/radioSettings can be used for this content.
 
 operationId: `resetAPRadio`
 
@@ -7749,7 +7749,7 @@ operationId: `resetAPRadio`
 
 **Get AP Radio**
 
-Retrieve radio settings configured for this access point. The response includes channel selection, power levels, and frequency band configurations for the AP radios. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/radioSettings can be used for this content.
+Retrieve radio settings configured for this access point. The response includes channel selection, power levels, and frequency band configurations for the AP radios. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/radioSettings can be used for this content.
 
 operationId: `getAPRadio`
 
@@ -7775,7 +7775,7 @@ operationId: `getAPRadio`
 
 **Update AP Radio**
 
-Update radio settings for this access point. This operation allows you to update channel selection, power levels, and frequency band configurations for the AP radios. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/radioSettings can be used for this content.
+Update radio settings for this access point. This operation allows you to update channel selection, power levels, and frequency band configurations for the AP radios. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/radioSettings can be used for this content.
 
 operationId: `updateAPRadio`
 
@@ -7816,7 +7816,7 @@ operationId: `updateAPRadio`
 
 **Reset AP SNMP Agent Settings**
 
-Reset SNMP agent settings for this access point to default values. This operation removes AP specific SNMP configurations and restores system default settings. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/snmpAgentProfileSettings can be used for this content.
+Reset SNMP agent settings for this access point to default values. This operation removes AP specific SNMP configurations and restores system default settings. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/snmpAgentProfileSettings can be used for this content.
 
 operationId: `resetApSnmpAgent`
 
@@ -7843,7 +7843,7 @@ operationId: `resetApSnmpAgent`
 
 **Get AP SNMP Agent Settings**
 
-Retrieve SNMP agent settings configured for this access point. The response includes SNMP configuration parameters used for network management and monitoring. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/snmpAgentProfileSettings can be used for this content.
+Retrieve SNMP agent settings configured for this access point. The response includes SNMP configuration parameters used for network management and monitoring. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/snmpAgentProfileSettings can be used for this content.
 
 operationId: `getApSnmpAgent`
 
@@ -7869,7 +7869,7 @@ operationId: `getApSnmpAgent`
 
 **Update AP SNMP Agent Settings**
 
-Update SNMP agent settings for this access point. This operation allows you to update SNMP configuration parameters used for network management and monitoring. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/snmpAgentProfileSettings can be used for this content.
+Update SNMP agent settings for this access point. This operation allows you to update SNMP configuration parameters used for network management and monitoring. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/snmpAgentProfileSettings can be used for this content.
 
 operationId: `updateApSnmpAgent`
 
@@ -7905,7 +7905,7 @@ operationId: `updateApSnmpAgent`
 
 **Reset AP Customization**
 
-Reset customization settings for this access point to default values. This operation removes AP specific customizations and restores venue default settings. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/meshSettings can be used for this content.
+Reset customization settings for this access point to default values. This operation removes AP specific customizations and restores venue default settings. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/meshSettings can be used for this content.
 
 operationId: `resetApCustomization`
 
@@ -7932,7 +7932,7 @@ operationId: `resetApCustomization`
 
 **Get AP Customization**
 
-Retrieve customization details configured for this access point. The response includes AP model specific settings and configurations that override default venue settings. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/meshSettings can be used for this content.
+Retrieve customization details configured for this access point. The response includes AP model specific settings and configurations that override default venue settings. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/meshSettings can be used for this content.
 
 operationId: `getApCustomization`
 
@@ -7958,7 +7958,7 @@ operationId: `getApCustomization`
 
 **Update AP Customization**
 
-Update customization settings for this access point. This operation allows you to update AP model specific settings and configurations that override default venue settings. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/meshSettings can be used for this content.
+Update customization settings for this access point. This operation allows you to update AP model specific settings and configurations that override default venue settings. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/meshSettings can be used for this content.
 
 operationId: `updateApCustomization`
 
@@ -8163,7 +8163,7 @@ operationId: `replaceAp`
 
 **Delete AP**
 
-Delete an AP by serial number, permanently deleting the AP and its configurations from the system after ensuring it is not actively in use. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber} can be used for this content.
+Delete an AP by serial number, permanently deleting the AP and its configurations from the system after ensuring it is not actively in use. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber} can be used for this content.
 
 operationId: `deleteAp`
 
@@ -8192,7 +8192,7 @@ operationId: `deleteAp`
 
 **Get AP**
 
-Retrieve detailed information about a specific AP by its serial number, including general AP information, configuration settings, and operational status for management decisions. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber} can be used for this content.
+Retrieve detailed information about a specific AP by its serial number, including general AP information, configuration settings, and operational status for management decisions. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber} can be used for this content.
 
 operationId: `getAp`
 
@@ -8259,7 +8259,7 @@ operationId: `updateAp`
 
 **Get AP Antenna Type**
 
-Retrieve antenna type settings configured for this access point. The response includes antenna configuration used for radio transmissions. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/antennaTypeSettings can be used for this content. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Retrieve antenna type settings configured for this access point. The response includes antenna configuration used for radio transmissions. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/antennaTypeSettings can be used for this content. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `getAPAntennaType`
 
@@ -8286,7 +8286,7 @@ operationId: `getAPAntennaType`
 
 **Update AP Antenna Type**
 
-Update antenna type settings for this access point. This operation allows you to update antenna configuration used for radio transmissions. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/antennaTypeSettings can be used for this content. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Update antenna type settings for this access point. This operation allows you to update antenna configuration used for radio transmissions. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/antennaTypeSettings can be used for this content. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `updateAPAntennaType`
 
@@ -8321,7 +8321,7 @@ operationId: `updateAPAntennaType`
 
 **Get AP Band Mode**
 
-Retrieve band mode settings configured for this access point. The response includes radio frequency band configurations that control available Wi-Fi bands for the AP. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/bandModeSettings can be used for this content. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Retrieve band mode settings configured for this access point. The response includes radio frequency band configurations that control available Wi-Fi bands for the AP. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/bandModeSettings can be used for this content. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `getAPBandMode`
 
@@ -8348,7 +8348,7 @@ operationId: `getAPBandMode`
 
 **Update AP Band Mode**
 
-Update band mode settings for this access point. This operation allows you to update radio frequency band configurations that control available Wi-Fi bands for the AP. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/bandModeSettings can be used for this content. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Update band mode settings for this access point. This operation allows you to update radio frequency band configurations that control available Wi-Fi bands for the AP. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/bandModeSettings can be used for this content. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `updateAPBandMode`
 
@@ -8384,7 +8384,7 @@ operationId: `updateAPBandMode`
 
 **Get AP Basic Service Set Coloring Settings**
 
-Retrieve basic service set coloring settings configured for this access point. The response includes BSS color configuration used to improve spatial reuse and reduce interference in Wi-Fi 6 networks. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/bssColoringSettings can be used for this content.
+Retrieve basic service set coloring settings configured for this access point. The response includes BSS color configuration used to improve spatial reuse and reduce interference in Wi-Fi 6 networks. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/bssColoringSettings can be used for this content.
 
 operationId: `GetApBssColoringSettings`
 
@@ -8411,7 +8411,7 @@ operationId: `GetApBssColoringSettings`
 
 **Update AP Basic Service Set Coloring Settings**
 
-Update BSS coloring settings for this AP to improve spatial reuse and reduce interference in Wi-Fi 6 networks. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/bssColoringSettings can be used for this content.
+Update BSS coloring settings for this AP to improve spatial reuse and reduce interference in Wi-Fi 6 networks. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/bssColoringSettings can be used for this content.
 
 operationId: `UpdateApBssColoringSettings`
 
@@ -8447,7 +8447,7 @@ operationId: `UpdateApBssColoringSettings`
 
 **Get AP Capabilities**
 
-Retrieve capability information for this access point. The response includes detailed feature support information and hardware capabilities of the AP. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/capabilities can be used for this content.
+Retrieve capability information for this access point. The response includes detailed feature support information and hardware capabilities of the AP. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/capabilities can be used for this content.
 
 operationId: `getApCapabilitiesV1`
 
@@ -8474,7 +8474,7 @@ operationId: `getApCapabilitiesV1`
 
 **Get AP Client Admission Control Settings**
 
-Retrieve client admission control settings configured for this access point. The response includes thresholds and policies that control when new clients are allowed to connect to the AP. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
+Retrieve client admission control settings configured for this access point. The response includes thresholds and policies that control when new clients are allowed to connect to the AP. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
 
 operationId: `GetApClientAdmissionControlSettings`
 
@@ -8501,7 +8501,7 @@ operationId: `GetApClientAdmissionControlSettings`
 
 **Update AP Client Admission Control Settings**
 
-Update client admission control settings for this access point. This operation allows you to update thresholds and policies that control when new clients are allowed to connect to the AP. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apGroups/{apGroupId}/apClientAdmissionControlSettings can be used for this content. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2
+Update client admission control settings for this access point. This operation allows you to update thresholds and policies that control when new clients are allowed to connect to the AP. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apGroups/{apGroupId}/apClientAdmissionControlSettings can be used for this content. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2
 
 operationId: `UpdateApClientAdmissionControlSettings`
 
@@ -8672,7 +8672,7 @@ operationId: `updateApDirectedMulticastSettings`
 
 **Get AP External Antenna Settings**
 
-Retrieve external antenna settings configured for this access point. The response includes external antenna configurations for radio transmissions. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/externalAntennaSettings can be used for this content. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Retrieve external antenna settings configured for this access point. The response includes external antenna configurations for radio transmissions. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/externalAntennaSettings can be used for this content. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `getApExternalAntennaSettingsV1`
 
@@ -8699,7 +8699,7 @@ operationId: `getApExternalAntennaSettingsV1`
 
 **Update AP External Antenna Settings**
 
-Update external antenna settings for this access point. This operation allows you to update external antenna configurations for radio transmissions. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/externalAntennaSettings can be used for this content. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Update external antenna settings for this access point. This operation allows you to update external antenna configurations for radio transmissions. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/externalAntennaSettings can be used for this content. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `updateApExternalAntennaSettingsV1`
 
@@ -8797,7 +8797,7 @@ operationId: `UpdateApIotSettings`
 
 **Get AP LAN ports**
 
-Retrieve LAN port settings configured for this access point. The response includes Ethernet port configurations including VLAN assignments and port types. This method will be removed no sooner than 06/30/2026. The following URL /ethernetPortProfiles/query can be used for this content.
+Retrieve LAN port settings configured for this access point. The response includes Ethernet port configurations including VLAN assignments and port types. This method will be removed no sooner than 08/31/2026. The following URL /ethernetPortProfiles/query can be used for this content.
 
 operationId: `getApLanPortSettings`
 
@@ -8825,7 +8825,7 @@ operationId: `getApLanPortSettings`
 
 **Update AP LAN ports**
 
-Update LAN port settings for this access point. This operation allows you to update Ethernet port configurations including VLAN assignments and port types. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/lanPorts/{portId}/ethernetPortProfiles/{ethernetPortProfileId} can be used for this content.
+Update LAN port settings for this access point. This operation allows you to update Ethernet port configurations including VLAN assignments and port types. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/lanPorts/{portId}/ethernetPortProfiles/{ethernetPortProfileId} can be used for this content.
 
 operationId: `updateApLanPortSettings`
 
@@ -9155,7 +9155,7 @@ operationId: `queryApNeighbors`
 
 **Get AP Network Settings**
 
-Retrieve network settings configured for this access point. The response includes IP configuration, network interface settings, and connectivity parameters. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/networkSettings can be used for this content.
+Retrieve network settings configured for this access point. The response includes IP configuration, network interface settings, and connectivity parameters. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/networkSettings can be used for this content.
 
 operationId: `GetApNetworkSettings`
 
@@ -9406,7 +9406,7 @@ operationId: `updateApPictures`
 
 **Get AP Radio**
 
-Retrieve radio settings configured for this access point. The response includes channel selection, power levels, and frequency band configurations for the AP radios. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/radioSettings can be used for this content. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Retrieve radio settings configured for this access point. The response includes channel selection, power levels, and frequency band configurations for the AP radios. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/radioSettings can be used for this content. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `getApRadio`
 
@@ -9433,7 +9433,7 @@ operationId: `getApRadio`
 
 **Update AP Radio**
 
-Update radio settings for this access point. This operation allows you to update channel selection, power levels, and frequency band configurations for the AP radios. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/radioSettings can be used for this content. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Update radio settings for this access point. This operation allows you to update channel selection, power levels, and frequency band configurations for the AP radios. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/radioSettings can be used for this content. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `updateApRadio`
 
@@ -9784,7 +9784,7 @@ operationId: `updateApUsbPortSettings`
 
 **Get AP Available Channels**
 
-Retrieve available Wi-Fi channels for this access point based on regulatory domain and country settings. The response includes all supported channels across different frequency bands. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
+Retrieve available Wi-Fi channels for this access point based on regulatory domain and country settings. The response includes all supported channels across different frequency bands. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
 
 operationId: `getWifiAvailableChannelsOfAp`
 
@@ -10486,14 +10486,14 @@ operationId: `activateVlanPoolProfileOnWifiNetwork`
 *Manage Wi-Fi calling service profiles.*
 
 
-*8 endpoints*
+*9 endpoints*
 
 
 ### `DELETE` `/wifiCallingServiceProfiles`
 
 **Delete Wi-Fi Calling Service Profiles**
 
-Delete a list of Wi-Fi calling service profiles. Use DELETE /wifiCallingServiceProfiles/{wifiCallingServiceProfileId} instead. This method will be removed no sooner than 06/30/2026. The following URL /wifiCallingServiceProfiles/{wifiCallingServiceProfileId} can be used for this content.
+Delete a list of Wi-Fi calling service profiles. Use DELETE /wifiCallingServiceProfiles/{wifiCallingServiceProfileId} instead. This method will be removed no sooner than 08/31/2026. The following URL /wifiCallingServiceProfiles/{wifiCallingServiceProfileId} can be used for this content.
 
 operationId: `deleteWifiCallingServiceProfilesBulk`
 
@@ -10516,7 +10516,7 @@ operationId: `deleteWifiCallingServiceProfilesBulk`
 
 **Get Wi-Fi Calling Service Profiles**
 
-Get the Wi-Fi calling service profiles. This method will be removed no sooner than 06/30/2026. The following URL /wifiCallingServiceProfiles/query can be used for this content.
+Get the Wi-Fi calling service profiles. This method will be removed no sooner than 08/31/2026. The following URL /wifiCallingServiceProfiles/query can be used for this content.
 
 operationId: `getWiFiCallingServiceProfiles`
 
@@ -10535,7 +10535,7 @@ operationId: `getWiFiCallingServiceProfiles`
 
 **Create Wi-Fi Calling Service Profile**
 
-Create a new Wi-Fi calling service profile. Content-Type: "application/vnd.ruckus.v1+json" will be deprecated on 2024/09/01. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Create a new Wi-Fi calling service profile. Content-Type: "application/vnd.ruckus.v1+json" will be deprecated on 2024/09/01. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `createWifiCallingServiceProfile`
 
@@ -10559,6 +10559,25 @@ operationId: `createWifiCallingServiceProfile`
 - `400` Bad Request → `Wi-Fi_Services_ErrorResponse`
 - `404` Not Found → `Wi-Fi_Services_ErrorResponse`
 - `422` Unprocessable Content → `Wi-Fi_Services_ErrorResponse`
+- `500` Internal Server Error → `Wi-Fi_Services_ErrorResponse`
+
+
+---
+
+### `GET` `/wifiCallingServiceProfiles/predefinedEpdgs`
+
+**Get Predefined Wi-Fi Calling ePDG**
+
+Retrieve all predefined Wi-Fi calling ePDG available for reuse.
+
+operationId: `getPredefinedWifiCallingEpdgs`
+
+
+**Responses:**
+
+- `200` OK
+- `400` Bad Request → `Wi-Fi_Services_ErrorResponse`
+- `404` Not Found → `Wi-Fi_Services_ErrorResponse`
 - `500` Internal Server Error → `Wi-Fi_Services_ErrorResponse`
 
 
@@ -10595,7 +10614,7 @@ operationId: `deleteWifiCallingServiceProfile`
 
 **Get Wi-Fi Calling Service Profile**
 
-Get the Wi-Fi calling service profile details. Content-Type: "application/vnd.ruckus.v1+json" will be deprecated on 2024/09/01. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Get the Wi-Fi calling service profile details. Content-Type: "application/vnd.ruckus.v1+json" will be deprecated on 2024/09/01. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `getWiFiCallingServiceProfile`
 
@@ -10621,7 +10640,7 @@ operationId: `getWiFiCallingServiceProfile`
 
 **Update Wi-Fi Calling Service Profile**
 
-Update a Wi-Fi calling service profile. Content-Type: "application/vnd.ruckus.v1+json" will be deprecated on 2024/09/01. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Update a Wi-Fi calling service profile. Content-Type: "application/vnd.ruckus.v1+json" will be deprecated on 2024/09/01. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `updateWifiCallingServiceProfile`
 
@@ -12507,7 +12526,7 @@ operationId: `activateWifiCallingServiceProfileTemplateOnWifiNetworkTemplate`
 
 **Delete Networks**
 
-Perform a batch deletion of multiple Wi-Fi networks by providing a list of network identifiers. This operation permanently removes all specified networks and their associated configurations. This method will be removed no sooner than 06/30/2026. The following URL /wifiNetworks/{wifiNetworkId} can be used for this content.
+Perform a batch deletion of multiple Wi-Fi networks by providing a list of network identifiers. This operation permanently removes all specified networks and their associated configurations. This method will be removed no sooner than 08/31/2026. The following URL /wifiNetworks/{wifiNetworkId} can be used for this content.
 
 operationId: `deleteNetworksBulk`
 
@@ -12530,7 +12549,7 @@ operationId: `deleteNetworksBulk`
 
 **Get Networks**
 
-Retrieve a complete list of all Wi-Fi networks configured in the system. The response includes general network information, SSID details, and configuration settings for each network. This method will be removed no sooner than 06/30/2026. The following URL /wifiNetworks/query can be used for this content.
+Retrieve a complete list of all Wi-Fi networks configured in the system. The response includes general network information, SSID details, and configuration settings for each network. This method will be removed no sooner than 08/31/2026. The following URL /wifiNetworks/query can be used for this content.
 
 operationId: `getNetworks`
 
@@ -12549,7 +12568,7 @@ operationId: `getNetworks`
 
 **Create Network**
 
-Create a Wi-Fi network profile with SSID, security settings, authentication methods, QoS policies, and access control rules for venues. This method will be removed no sooner than 06/30/2026. The following URL /wifiNetworks can be used for this content.
+Create a Wi-Fi network profile with SSID, security settings, authentication methods, QoS policies, and access control rules for venues. This method will be removed no sooner than 08/31/2026. The following URL /wifiNetworks can be used for this content.
 
 operationId: `createNetwork`
 
@@ -12572,7 +12591,7 @@ operationId: `createNetwork`
 
 **Get Default Rules for QoS Map Set**
 
-Retrieve default QoS map set rules available for Wi-Fi networks. The response includes predefined QoS mapping rules and configuration options for quality of service management. This method will be removed no sooner than 06/30/2026. The following URL /wifiNetworks/qosMapSetOptions can be used for this content.
+Retrieve default QoS map set rules available for Wi-Fi networks. The response includes predefined QoS mapping rules and configuration options for quality of service management. This method will be removed no sooner than 08/31/2026. The following URL /wifiNetworks/qosMapSetOptions can be used for this content.
 
 operationId: `getDefaultQosMapSets`
 
@@ -12591,7 +12610,7 @@ operationId: `getDefaultQosMapSets`
 
 **Get External WISPr Providers**
 
-Retrieve a list of external WISPr providers available for captive portal networks. These providers have integrated their service with the RUCKUS cloud. This method will be removed no sooner than 06/30/2026. The following URL /wifiNetworks/wisprProviders can be used for this content.
+Retrieve a list of external WISPr providers available for captive portal networks. These providers have integrated their service with the RUCKUS cloud. This method will be removed no sooner than 08/31/2026. The following URL /wifiNetworks/wisprProviders can be used for this content.
 
 operationId: `getExternalProviders`
 
@@ -12610,7 +12629,7 @@ operationId: `getExternalProviders`
 
 **Delete Network**
 
-Delete a Wi-Fi network by its unique identifier, permanently deleting the network profile and its configurations. This method will be removed no sooner than 06/30/2026. The following URL /wifiNetworks/{wifiNetworkId} can be used for this content.
+Delete a Wi-Fi network by its unique identifier, permanently deleting the network profile and its configurations. This method will be removed no sooner than 08/31/2026. The following URL /wifiNetworks/{wifiNetworkId} can be used for this content.
 
 operationId: `deleteNetwork`
 
@@ -12637,7 +12656,7 @@ operationId: `deleteNetwork`
 
 **Get Network**
 
-Retrieve detailed information about a specific Wi-Fi network by its unique identifier. The response includes all configuration settings, security parameters, SSID details, and advanced customization options. This method will be removed no sooner than 06/30/2026. The following URL /wifiNetworks/{wifiNetworkId} can be used for this content.
+Retrieve detailed information about a specific Wi-Fi network by its unique identifier. The response includes all configuration settings, security parameters, SSID details, and advanced customization options. This method will be removed no sooner than 08/31/2026. The following URL /wifiNetworks/{wifiNetworkId} can be used for this content.
 
 operationId: `getNetwork`
 
@@ -12664,7 +12683,7 @@ operationId: `getNetwork`
 
 **Update Network**
 
-Update an existing Wi-Fi network by its unique identifier, updating SSID, security settings, advanced configurations, and all associated policies. This method will be removed no sooner than 06/30/2026. The following URL /wifiNetworks/{wifiNetworkId} can be used for this content.
+Update an existing Wi-Fi network by its unique identifier, updating SSID, security settings, advanced configurations, and all associated policies. This method will be removed no sooner than 08/31/2026. The following URL /wifiNetworks/{wifiNetworkId} can be used for this content.
 
 operationId: `updateNetwork`
 
@@ -13090,7 +13109,7 @@ operationId: `updateWifiNetwork`
 
 **Delete Syslog Server Profiles**
 
-Perform a batch deletion of multiple syslog server profiles by providing a list of their unique identifiers. This operation permanently removes all specified profiles and their associated configurations. This method will be removed no sooner than 06/30/2026. The following URL /syslogServerProfiles/{syslogServerProfileId} can be used for this content.
+Perform a batch deletion of multiple syslog server profiles by providing a list of their unique identifiers. This operation permanently removes all specified profiles and their associated configurations. This method will be removed no sooner than 08/31/2026. The following URL /syslogServerProfiles/{syslogServerProfileId} can be used for this content.
 
 operationId: `deleteSyslogServerProfileBulk`
 
@@ -13113,7 +13132,7 @@ operationId: `deleteSyslogServerProfileBulk`
 
 **Get Syslog Server Profiles**
 
-Retrieve a complete list of all syslog server profiles including name, servers, facility, priority, and flow level. This method will be removed no sooner than 06/30/2026. The following URL /syslogServerProfiles/query can be used for this content.
+Retrieve a complete list of all syslog server profiles including name, servers, facility, priority, and flow level. This method will be removed no sooner than 08/31/2026. The following URL /syslogServerProfiles/query can be used for this content.
 
 operationId: `getSyslogServerProfiles`
 
@@ -13132,7 +13151,7 @@ operationId: `getSyslogServerProfiles`
 
 **Create Syslog Server Profile**
 
-Create a new syslog server profile with syslog servers, facility, priority, and flow level settings. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Create a new syslog server profile with syslog servers, facility, priority, and flow level settings. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `createSyslogServerProfile`
 
@@ -13194,7 +13213,7 @@ operationId: `deleteSyslogServerProfile`
 
 **Get Syslog Server Profile**
 
-Retrieve detailed information about a syslog server profile including syslog servers, facility, priority, and flow level. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Retrieve detailed information about a syslog server profile including syslog servers, facility, priority, and flow level. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `getSyslogServerProfile`
 
@@ -13220,7 +13239,7 @@ operationId: `getSyslogServerProfile`
 
 **Update Syslog Server Profile**
 
-Update an existing syslog server profile including syslog servers, facility, priority, and flow level settings. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Update an existing syslog server profile including syslog servers, facility, priority, and flow level settings. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `updateSyslogServerProfile`
 
@@ -13452,7 +13471,7 @@ operationId: `activateApplicationPolicyOnAccessControlProfile`
 
 **Delete Application Policies**
 
-Perform a batch deletion of multiple application policies by providing a list of policy identifiers. This operation permanently removes all specified policies and their associated configurations. This method will be removed no sooner than 06/30/2026. The following URL /applicationPolicies/{applicationPolicyId} can be used for this content.
+Perform a batch deletion of multiple application policies by providing a list of policy identifiers. This operation permanently removes all specified policies and their associated configurations. This method will be removed no sooner than 08/31/2026. The following URL /applicationPolicies/{applicationPolicyId} can be used for this content.
 
 operationId: `deleteApplicationPolicies`
 
@@ -13475,7 +13494,7 @@ operationId: `deleteApplicationPolicies`
 
 **Get Application Policies**
 
-Retrieve a complete list of all application policies configured in the system. This method will be removed no sooner than 06/30/2026. The following URL /applicationPolicies/query can be used for this content.
+Retrieve a complete list of all application policies configured in the system. This method will be removed no sooner than 08/31/2026. The following URL /applicationPolicies/query can be used for this content.
 
 operationId: `getApplicationPolicies`
 
@@ -13494,7 +13513,7 @@ operationId: `getApplicationPolicies`
 
 **Add Application Policy**
 
-Create an application policy with traffic control and QoS rules that can be applied to Wi-Fi networks or access control profiles. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Create an application policy with traffic control and QoS rules that can be applied to Wi-Fi networks or access control profiles. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `addApplicationPolicy`
 
@@ -13553,7 +13572,7 @@ operationId: `deleteApplicationPolicy`
 
 **Get Application Policy**
 
-Retrieve detailed information about a specific application policy by its unique identifier. The response includes all configuration settings, rules, and policies associated with the policy. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Retrieve detailed information about a specific application policy by its unique identifier. The response includes all configuration settings, rules, and policies associated with the policy. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `getApplicationPolicy`
 
@@ -13579,7 +13598,7 @@ operationId: `getApplicationPolicy`
 
 **Update Application Policy**
 
-Update an existing application policy by its unique identifier, updating rules, policies, and settings. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Update an existing application policy by its unique identifier, updating rules, policies, and settings. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `updateApplicationPolicy`
 
@@ -13684,7 +13703,7 @@ operationId: `activateApplicationPolicyOnWifiNetwork`
 
 **Clients Control**
 
-Perform control actions on multiple clients across different access points. This operation allows you to disconnect clients by specifying their MAC addresses and associated AP serial numbers. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{serialNumber}/clients/{clientMacAddress} can be used for this content.
+Perform control actions on multiple clients across different access points. This operation allows you to disconnect clients by specifying their MAC addresses and associated AP serial numbers. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{serialNumber}/clients/{clientMacAddress} can be used for this content.
 
 operationId: `clientControl`
 
@@ -13814,7 +13833,7 @@ operationId: `activateL2AclPolicyOnAccessControlProfile`
 
 **Delete Layer 2 ACL Policies.**
 
-Perform a batch deletion of multiple layer 2 ACL policies by providing a list of their unique identifiers. This operation permanently removes all specified policies and their associated configurations. This method will be removed no sooner than 06/30/2026. The following URL /l2AclPolicies/{l2AclPolicyId} can be used for this content.
+Perform a batch deletion of multiple layer 2 ACL policies by providing a list of their unique identifiers. This operation permanently removes all specified policies and their associated configurations. This method will be removed no sooner than 08/31/2026. The following URL /l2AclPolicies/{l2AclPolicyId} can be used for this content.
 
 operationId: `deleteBulkL2AclPolicies`
 
@@ -13837,7 +13856,7 @@ operationId: `deleteBulkL2AclPolicies`
 
 **Get Layer 2 ACL Policies.**
 
-Retrieve a complete list of all layer 2 ACL policies in the system including name, description, MAC addresses, and access actions. This method will be removed no sooner than 06/30/2026. The following URL /l2AclPolicies/query can be used for this content.
+Retrieve a complete list of all layer 2 ACL policies in the system including name, description, MAC addresses, and access actions. This method will be removed no sooner than 08/31/2026. The following URL /l2AclPolicies/query can be used for this content.
 
 operationId: `getAllL2AclPolicies`
 
@@ -13856,7 +13875,7 @@ operationId: `getAllL2AclPolicies`
 
 **Add Layer 2 ACL**
 
-Create a layer 2 ACL policy to control network access based on MAC addresses for access control profiles or Wi-Fi networks. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Create a layer 2 ACL policy to control network access based on MAC addresses for access control profiles or Wi-Fi networks. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `addL2AclPolicy`
 
@@ -13941,7 +13960,7 @@ operationId: `getL2AclPolicy`
 
 **Update Layer 2 ACL**
 
-Update an existing layer 2 ACL policy by its unique identifier, updating MAC addresses and access actions. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Update an existing layer 2 ACL policy by its unique identifier, updating MAC addresses and access actions. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `updateL2AclPolicy`
 
@@ -14046,7 +14065,7 @@ operationId: `activateL2AclPolicyOnWifiNetwork`
 
 **Delete DHCP Configuration Service Profiles**
 
-Perform a batch deletion of multiple DHCP configuration service profiles by providing a list of profile identifiers. This operation permanently removes all specified profiles and their associated configurations. This method will be removed no sooner than 06/30/2026. The following URL /dhcpConfigServiceProfiles/{dhcpConfigServiceProfileId} can be used for this content.
+Perform a batch deletion of multiple DHCP configuration service profiles by providing a list of profile identifiers. This operation permanently removes all specified profiles and their associated configurations. This method will be removed no sooner than 08/31/2026. The following URL /dhcpConfigServiceProfiles/{dhcpConfigServiceProfileId} can be used for this content.
 
 operationId: `deleteDhcpConfigServiceProfileBulk`
 
@@ -14069,7 +14088,7 @@ operationId: `deleteDhcpConfigServiceProfileBulk`
 
 **Get DHCP Configuration Service Profiles**
 
-Retrieve a complete list of all DHCP configuration service profiles configured in the system. The response includes all profiles that define DHCP server functionality and IP address assignment configurations. This method will be removed no sooner than 06/30/2026. The following URL /dhcpConfigServiceProfiles/query can be used for this content.
+Retrieve a complete list of all DHCP configuration service profiles configured in the system. The response includes all profiles that define DHCP server functionality and IP address assignment configurations. This method will be removed no sooner than 08/31/2026. The following URL /dhcpConfigServiceProfiles/query can be used for this content.
 
 operationId: `getDhcpConfigServiceProfiles`
 
@@ -14088,7 +14107,7 @@ operationId: `getDhcpConfigServiceProfiles`
 
 **Create DHCP Configuration Service Profile**
 
-Create a DHCP configuration service profile to manage DHCP server functionality and IP address assignment for venues. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Create a DHCP configuration service profile to manage DHCP server functionality and IP address assignment for venues. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `createDhcpConfigServiceProfile`
 
@@ -14148,7 +14167,7 @@ operationId: `deleteDhcpConfigServiceProfile`
 
 **Get DHCP Configuration Service Profile**
 
-Retrieve detailed information about a DHCP configuration service profile by its unique identifier including pools, lease times, and DNS settings. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Retrieve detailed information about a DHCP configuration service profile by its unique identifier including pools, lease times, and DNS settings. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `getDhcpConfigServiceProfile`
 
@@ -14174,7 +14193,7 @@ operationId: `getDhcpConfigServiceProfile`
 
 **Update DHCP Configuration Service Profile**
 
-Update an existing DHCP configuration service profile by its unique identifier, updating DHCP pools, lease times, and DNS settings. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Update an existing DHCP configuration service profile by its unique identifier, updating DHCP pools, lease times, and DNS settings. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `updateDhcpConfigServiceProfile`
 
@@ -15041,7 +15060,7 @@ operationId: `getApModelCapabilities`
 
 **Get Available LTE Bands**
 
-Retrieve a list of available LTE bands for each region. The response includes all supported LTE frequency bands that can be configured for cellular connectivity on access points. This method will be removed no sooner than 06/30/2026. The following URL /venues/apAvailableLteBands can be used for this content.
+Retrieve a list of available LTE bands for each region. The response includes all supported LTE frequency bands that can be configured for cellular connectivity on access points. This method will be removed no sooner than 08/31/2026. The following URL /venues/apAvailableLteBands can be used for this content.
 
 operationId: `getAvailableLteBands`
 
@@ -15060,7 +15079,7 @@ operationId: `getAvailableLteBands`
 
 **Get Venues Wi-Fi Settings**
 
-Retrieve a paginated list of all venues with their Wi-Fi configuration details. The response includes venue settings, radio configurations, and network parameters for each venue. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apRadioSettings can be used for this content.
+Retrieve a paginated list of all venues with their Wi-Fi configuration details. The response includes venue settings, radio configurations, and network parameters for each venue. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apRadioSettings can be used for this content.
 
 operationId: `getVenuesWifiSettings`
 
@@ -15522,7 +15541,7 @@ operationId: `updateVenueApManagementVlanSettings`
 
 **Get Mesh Settings**
 
-Retrieve mesh network settings configured for this venue. The response includes mesh enablement status and configuration parameters for access point mesh networking. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
+Retrieve mesh network settings configured for this venue. The response includes mesh enablement status and configuration parameters for access point mesh networking. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
 
 operationId: `getVenueApMeshSettings`
 
@@ -15548,7 +15567,7 @@ operationId: `getVenueApMeshSettings`
 
 **Update Mesh**
 
-Update mesh network settings for this venue. This operation allows you to enable or disable mesh networking and configure mesh parameters for access points. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
+Update mesh network settings for this venue. This operation allows you to enable or disable mesh networking and configure mesh parameters for access points. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
 
 operationId: `updateVenueApMeshSettings`
 
@@ -15779,7 +15798,7 @@ operationId: `updateVenueApModelExternalAntennaSettings`
 
 **Get Venue LAN ports**
 
-Retrieve venue LAN port settings configured for access points. The settings are defined per AP model and control Ethernet port configurations including VLAN assignments and port types. This method will be removed no sooner than 06/30/2026. The following URL /ethernetPortProfiles/query can be used for this content.
+Retrieve venue LAN port settings configured for access points. The settings are defined per AP model and control Ethernet port configurations including VLAN assignments and port types. This method will be removed no sooner than 08/31/2026. The following URL /ethernetPortProfiles/query can be used for this content.
 
 operationId: `getVenueApModelLanPortSettings`
 
@@ -15806,7 +15825,7 @@ operationId: `getVenueApModelLanPortSettings`
 
 **Update Venue LAN ports**
 
-Update venue LAN port settings for access points. The settings are defined per AP model and control Ethernet port configurations including VLAN assignments and port types. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apModels/{apModel}/lanPorts/{portId}/ethernetPortProfiles/{ethernetPortProfileId} can be used for this content.
+Update venue LAN port settings for access points. The settings are defined per AP model and control Ethernet port configurations including VLAN assignments and port types. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apModels/{apModel}/lanPorts/{portId}/ethernetPortProfiles/{ethernetPortProfileId} can be used for this content.
 
 operationId: `updateVenueApModelLanPortSettings`
 
@@ -16009,7 +16028,7 @@ operationId: `updateVenueApMulticastDnsFencingSettings`
 
 **Get Venue Radio**
 
-Retrieve radio settings configured for this venue. The response includes channel selection, power levels, and frequency band configurations for access point radios. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
+Retrieve radio settings configured for this venue. The response includes channel selection, power levels, and frequency band configurations for access point radios. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
 
 operationId: `getVenueApRadioSettings`
 
@@ -16036,7 +16055,7 @@ operationId: `getVenueApRadioSettings`
 
 **Update Venue Radio**
 
-Update radio settings for this venue. This operation allows you to update channel selection, power levels, and frequency band configurations for access point radios. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
+Update radio settings for this venue. This operation allows you to update channel selection, power levels, and frequency band configurations for access point radios. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
 
 operationId: `updateVenueApRadioSettings`
 
@@ -16324,7 +16343,7 @@ operationId: `updateVenueApTlsKeyEnhancedModeSettings`
 
 **Get Venue AP model Capabilities**
 
-Retrieve AP model capabilities information for this venue. The response includes detailed feature support information for each AP model configured in the venue. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apModelCapabilities can be used for this content.
+Retrieve AP model capabilities information for this venue. The response includes detailed feature support information for each AP model configured in the venue. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apModelCapabilities can be used for this content.
 
 operationId: `getVenueApModelCapabilities`
 
@@ -16350,7 +16369,7 @@ operationId: `getVenueApModelCapabilities`
 
 **Get Venue Basic Service Set Coloring Settings**
 
-Retrieve basic service set coloring settings configured for this venue. The response includes BSS color configuration used to improve spatial reuse and reduce interference in Wi-Fi 6 networks. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apBssColoringSettings can be used for this content.
+Retrieve basic service set coloring settings configured for this venue. The response includes BSS color configuration used to improve spatial reuse and reduce interference in Wi-Fi 6 networks. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apBssColoringSettings can be used for this content.
 
 operationId: `getVenueBssColoringSettings`
 
@@ -16376,7 +16395,7 @@ operationId: `getVenueBssColoringSettings`
 
 **Update Venue Basic Service Set Coloring Settings**
 
-Update basic service set coloring settings for this venue. This operation allows you to update BSS color configuration used to improve spatial reuse and reduce interference in Wi-Fi 6 networks. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apBssColoringSettings can be used for this content.
+Update basic service set coloring settings for this venue. This operation allows you to update BSS color configuration used to improve spatial reuse and reduce interference in Wi-Fi 6 networks. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apBssColoringSettings can be used for this content.
 
 operationId: `updateVenueBssColoringSettings`
 
@@ -16410,7 +16429,7 @@ operationId: `updateVenueBssColoringSettings`
 
 **Get Venue AP model Cellular**
 
-Retrieve AP model cellular settings and LTE band lock channels configured for this venue. The response includes cellular connectivity configurations and locked LTE frequency bands for access points. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apCellularSettings can be used for this content.
+Retrieve AP model cellular settings and LTE band lock channels configured for this venue. The response includes cellular connectivity configurations and locked LTE frequency bands for access points. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apCellularSettings can be used for this content.
 
 operationId: `getVenueApModelCellular`
 
@@ -16436,7 +16455,7 @@ operationId: `getVenueApModelCellular`
 
 **Update Venue AP model Cellular**
 
-Update AP model cellular settings and LTE band lock channels for this venue, updating cellular connectivity configurations for access points. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apCellularSettings can be used for this content.
+Update AP model cellular settings and LTE band lock channels for this venue, updating cellular connectivity configurations for access points. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apCellularSettings can be used for this content.
 
 operationId: `updateVenueApModelCellular`
 
@@ -16474,7 +16493,7 @@ operationId: `updateVenueApModelCellular`
 
 **Get Venue Default Regulatory Channels**
 
-Retrieve default regulatory channels available for this venue based on regulatory domain and country settings. The response includes all supported channels across different frequency bands. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/wifiAvailableChannels can be used for this content.
+Retrieve default regulatory channels available for this venue based on regulatory domain and country settings. The response includes all supported channels across different frequency bands. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/wifiAvailableChannels can be used for this content.
 
 operationId: `getVenueDefaultRegulatoryChannels`
 
@@ -16500,7 +16519,7 @@ operationId: `getVenueDefaultRegulatoryChannels`
 
 **Get Venue Client Admission Control Settings**
 
-Retrieve client admission control settings configured for this venue. The response includes thresholds and policies that control when new clients are allowed to connect to access points. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apClientAdmissionControlSettings can be used for this content.
+Retrieve client admission control settings configured for this venue. The response includes thresholds and policies that control when new clients are allowed to connect to access points. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apClientAdmissionControlSettings can be used for this content.
 
 operationId: `getVenueClientAdmissionControlSettings`
 
@@ -16526,7 +16545,7 @@ operationId: `getVenueClientAdmissionControlSettings`
 
 **Update Venue Client Admission Control Settings**
 
-Update client admission control settings for this venue. This operation allows you to update thresholds and policies that control when new clients are allowed to connect to access points. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apClientAdmissionControlSettings can be used for this content.
+Update client admission control settings for this venue. This operation allows you to update thresholds and policies that control when new clients are allowed to connect to access points. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apClientAdmissionControlSettings can be used for this content.
 
 operationId: `updateVenueClientAdmissionControlSettings`
 
@@ -16567,7 +16586,7 @@ operationId: `updateVenueClientAdmissionControlSettings`
 
 **Get DHCP Service Profile Settings of This Venue**
 
-Retrieve DHCP service profile settings configured for this venue. The response includes DHCP service profile associations and IP address pool configurations. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/dhcpConfigServiceProfiles/{dhcpConfigServiceProfileId} can be used for this content.
+Retrieve DHCP service profile settings configured for this venue. The response includes DHCP service profile associations and IP address pool configurations. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/dhcpConfigServiceProfiles/{dhcpConfigServiceProfileId} can be used for this content.
 
 operationId: `getVenueDhcpConfigServiceProfileSetting`
 
@@ -16593,7 +16612,7 @@ operationId: `getVenueDhcpConfigServiceProfileSetting`
 
 **Update DHCP Service Profile Settings of This Venue**
 
-Update DHCP service profile settings for this venue. This operation allows you to update DHCP service profile associations and IP address pool configurations. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/dhcpConfigServiceProfiles/{dhcpConfigServiceProfileId} can be used for this content.
+Update DHCP service profile settings for this venue. This operation allows you to update DHCP service profile associations and IP address pool configurations. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/dhcpConfigServiceProfiles/{dhcpConfigServiceProfileId} can be used for this content.
 
 operationId: `updateVenueDhcpConfigServiceProfileSetting`
 
@@ -16632,7 +16651,7 @@ operationId: `updateVenueDhcpConfigServiceProfileSetting`
 
 **Get Venue DHCP Leases**
 
-Retrieve a list of active DHCP leases for this venue. The response includes lease information including IP addresses, MAC addresses, and lease expiration times. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/wifiDhcpClientLeases can be used for this content.
+Retrieve a list of active DHCP leases for this venue. The response includes lease information including IP addresses, MAC addresses, and lease expiration times. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/wifiDhcpClientLeases can be used for this content.
 
 operationId: `getDhcpConfigLeaseByVenue`
 
@@ -16658,7 +16677,7 @@ operationId: `getDhcpConfigLeaseByVenue`
 
 **Get DHCP Pools Usage in Venue**
 
-Retrieve DHCP pool data and usage information for this venue. The response includes pool utilization statistics and allocation details for each configured DHCP pool. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/wifiDhcpPoolUsages can be used for this content.
+Retrieve DHCP pool data and usage information for this venue. The response includes pool utilization statistics and allocation details for each configured DHCP pool. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/wifiDhcpPoolUsages can be used for this content.
 
 operationId: `getVenueDhcpPoolUsage`
 
@@ -16684,7 +16703,7 @@ operationId: `getVenueDhcpPoolUsage`
 
 **Deactivate DHCP Pools in Venue**
 
-Deactivate a DHCP pool for this venue. This operation disables the specified DHCP pool from providing IP address allocation services, allowing it to be reused with other venues. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/dhcpConfigServiceProfiles/{dhcpConfigServiceProfileId} can be used for this content.
+Deactivate a DHCP pool for this venue. This operation disables the specified DHCP pool from providing IP address allocation services, allowing it to be reused with other venues. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/dhcpConfigServiceProfiles/{dhcpConfigServiceProfileId} can be used for this content.
 
 operationId: `deactivateVenueDhcpPool`
 
@@ -16712,7 +16731,7 @@ operationId: `deactivateVenueDhcpPool`
 
 **Activate DHCP Pools in Venue**
 
-Activate a DHCP pool for this venue. This operation enables the specified DHCP pool to provide IP address allocation services to clients in the venue. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/dhcpConfigServiceProfiles/{dhcpConfigServiceProfileId} can be used for this content.
+Activate a DHCP pool for this venue. This operation enables the specified DHCP pool to provide IP address allocation services to clients in the venue. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/dhcpConfigServiceProfiles/{dhcpConfigServiceProfileId} can be used for this content.
 
 operationId: `activateVenueDhcpPool`
 
@@ -16740,7 +16759,7 @@ operationId: `activateVenueDhcpPool`
 
 **Get Venue Directed Multicast Settings**
 
-Retrieve directed multicast settings configured for this venue. The response includes multicast optimization configurations that improve efficiency for multicast traffic delivery to clients. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apDirectedMulticastSettings can be used for this content.
+Retrieve directed multicast settings configured for this venue. The response includes multicast optimization configurations that improve efficiency for multicast traffic delivery to clients. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apDirectedMulticastSettings can be used for this content.
 
 operationId: `getVenueDirectedMulticast`
 
@@ -16766,7 +16785,7 @@ operationId: `getVenueDirectedMulticast`
 
 **Update Venue Directed Multicast Settings**
 
-Update directed multicast settings for this venue. This operation allows you to update multicast optimization configurations that improve efficiency for multicast traffic delivery to clients. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apDirectedMulticastSettings can be used for this content.
+Update directed multicast settings for this venue. This operation allows you to update multicast optimization configurations that improve efficiency for multicast traffic delivery to clients. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apDirectedMulticastSettings can be used for this content.
 
 operationId: `updateVenueDirectedMulticast`
 
@@ -16802,7 +16821,7 @@ operationId: `updateVenueDirectedMulticast`
 
 **Get Venue DoS Protection**
 
-Retrieve DoS protection settings configured for this venue. The response includes denial-of-service protection configurations and thresholds for access points. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apDosProtectionSettings can be used for this content.
+Retrieve DoS protection settings configured for this venue. The response includes denial-of-service protection configurations and thresholds for access points. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apDosProtectionSettings can be used for this content.
 
 operationId: `getDenialOfServiceProtection`
 
@@ -16828,7 +16847,7 @@ operationId: `getDenialOfServiceProtection`
 
 **Update Venue DoS Protection**
 
-Update DoS protection settings for this venue. This operation allows you to update denial-of-service protection configurations and thresholds for access points. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apDosProtectionSettings can be used for this content.
+Update DoS protection settings for this venue. This operation allows you to update denial-of-service protection configurations and thresholds for access points. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apDosProtectionSettings can be used for this content.
 
 operationId: `updateDenialOfServiceProtection`
 
@@ -16865,7 +16884,7 @@ operationId: `updateDenialOfServiceProtection`
 
 **Get Venue External Antenna**
 
-Retrieve venue external antenna settings configured for access points. The settings are defined per AP model and specify external antenna configurations for radio transmissions. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apModelExternalAntennaSettings can be used for this content.
+Retrieve venue external antenna settings configured for access points. The settings are defined per AP model and specify external antenna configurations for radio transmissions. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apModelExternalAntennaSettings can be used for this content.
 
 operationId: `getVenueExternalAntenna`
 
@@ -16891,7 +16910,7 @@ operationId: `getVenueExternalAntenna`
 
 **Update Venue External Antenna**
 
-Update venue external antenna settings for access points. The settings are defined per AP model and specify external antenna configurations for radio transmissions. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apModelExternalAntennaSettings can be used for this content.
+Update venue external antenna settings for access points. The settings are defined per AP model and specify external antenna configurations for radio transmissions. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apModelExternalAntennaSettings can be used for this content.
 
 operationId: `updateVenueExternalAntenna`
 
@@ -16921,7 +16940,7 @@ operationId: `updateVenueExternalAntenna`
 
 **Get Venue Client Isolation Allowlists**
 
-Query client isolation allowlists associated with this venue. The response includes a paginated list of allowlists that control client-to-client communication restrictions. This method will be removed no sooner than 06/30/2026. The following URL /clientIsolationProfiles/query can be used for this content.
+Query client isolation allowlists associated with this venue. The response includes a paginated list of allowlists that control client-to-client communication restrictions. This method will be removed no sooner than 08/31/2026. The following URL /clientIsolationProfiles/query can be used for this content.
 
 operationId: `GetClientIsolationAllowlistUsageByVenue`
 
@@ -16958,7 +16977,7 @@ operationId: `GetClientIsolationAllowlistUsageByVenue`
 
 **Get Venue LAN ports**
 
-Retrieve venue LAN port settings configured for access points. The settings are defined per AP model and control Ethernet port configurations including VLAN assignments and port types. This method will be removed no sooner than 06/30/2026. The following URL /ethernetPortProfiles/query can be used for this content.
+Retrieve venue LAN port settings configured for access points. The settings are defined per AP model and control Ethernet port configurations including VLAN assignments and port types. This method will be removed no sooner than 08/31/2026. The following URL /ethernetPortProfiles/query can be used for this content.
 
 operationId: `getVenueLanPorts`
 
@@ -16984,7 +17003,7 @@ operationId: `getVenueLanPorts`
 
 **Update Venue LAN ports**
 
-Update venue LAN port settings for access points. The settings are defined per AP model and control Ethernet port configurations including VLAN assignments and port types. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apModels/{apModel}/lanPorts/{portId}/ethernetPortProfiles/{ethernetPortProfileId} can be used for this content.
+Update venue LAN port settings for access points. The settings are defined per AP model and control Ethernet port configurations including VLAN assignments and port types. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apModels/{apModel}/lanPorts/{portId}/ethernetPortProfiles/{ethernetPortProfileId} can be used for this content.
 
 operationId: `updateVenueLanPorts`
 
@@ -17014,7 +17033,7 @@ operationId: `updateVenueLanPorts`
 
 **Get Venue LED**
 
-Retrieve venue LED indicator settings configured for access points. The settings are defined per AP model and control LED behavior and status indicators. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apModelLedSettings can be used for this content.
+Retrieve venue LED indicator settings configured for access points. The settings are defined per AP model and control LED behavior and status indicators. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apModelLedSettings can be used for this content.
 
 operationId: `getVenueLed`
 
@@ -17040,7 +17059,7 @@ operationId: `getVenueLed`
 
 **Update Venue LED**
 
-Update venue LED indicator settings for access points. The settings are defined per AP model and control LED behavior and status indicators. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apModelLedSettings can be used for this content.
+Update venue LED indicator settings for access points. The settings are defined per AP model and control LED behavior and status indicators. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apModelLedSettings can be used for this content.
 
 operationId: `updateVenueLed`
 
@@ -17070,7 +17089,7 @@ operationId: `updateVenueLed`
 
 **Get Venue Load Balancing Settings**
 
-Retrieve load balancing settings configured for this venue. The response includes client distribution configurations that optimize client connections across access points. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apLoadBalancingSettings can be used for this content.
+Retrieve load balancing settings configured for this venue. The response includes client distribution configurations that optimize client connections across access points. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apLoadBalancingSettings can be used for this content.
 
 operationId: `getVenueLoadBalancing`
 
@@ -17096,7 +17115,7 @@ operationId: `getVenueLoadBalancing`
 
 **Update Venue Load Balancing Settings**
 
-Update load balancing settings for this venue. This operation allows you to update client distribution configurations that optimize client connections across access points. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apLoadBalancingSettings can be used for this content.
+Update load balancing settings for this venue. This operation allows you to update client distribution configurations that optimize client connections across access points. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apLoadBalancingSettings can be used for this content.
 
 operationId: `updateVenueLoadBalancing`
 
@@ -17137,7 +17156,7 @@ operationId: `updateVenueLoadBalancing`
 
 **Get Multicast DNS Fencing Settings**
 
-Retrieve multicast DNS fencing settings configured for access points in this venue. The response includes mDNS isolation configurations that control service discovery across network segments. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apMulticastDnsFencingSettings can be used for this content.
+Retrieve multicast DNS fencing settings configured for access points in this venue. The response includes mDNS isolation configurations that control service discovery across network segments. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apMulticastDnsFencingSettings can be used for this content.
 
 operationId: `getVenueMulticastDnsFencing`
 
@@ -17163,7 +17182,7 @@ operationId: `getVenueMulticastDnsFencing`
 
 **Update Multicast DNS Fencing Settings**
 
-Update multicast DNS fencing settings for access points in this venue. This operation allows you to update mDNS isolation configurations that control service discovery across network segments. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apMulticastDnsFencingSettings can be used for this content.
+Update multicast DNS fencing settings for access points in this venue. This operation allows you to update mDNS isolation configurations that control service discovery across network segments. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apMulticastDnsFencingSettings can be used for this content.
 
 operationId: `updateVenueMulticastDnsFencing`
 
@@ -17198,7 +17217,7 @@ operationId: `updateVenueMulticastDnsFencing`
 
 **Update Mesh**
 
-Update mesh network settings for this venue. This operation allows you to enable or disable mesh networking and configure mesh parameters for access points. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apMeshSettings can be used for this content.
+Update mesh network settings for this venue. This operation allows you to enable or disable mesh networking and configure mesh parameters for access points. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apMeshSettings can be used for this content.
 
 operationId: `updateMesh`
 
@@ -17235,7 +17254,7 @@ operationId: `updateMesh`
 
 **Reset Venue Radio**
 
-Reset venue radio settings to their default values. This operation restores all radio configurations including channel selection, power levels, and frequency band settings to system defaults. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apRadioSettings can be used for this content.
+Reset venue radio settings to their default values. This operation restores all radio configurations including channel selection, power levels, and frequency band settings to system defaults. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apRadioSettings can be used for this content.
 
 operationId: `resetVenueRadio`
 
@@ -17262,7 +17281,7 @@ operationId: `resetVenueRadio`
 
 **Get Venue Radio**
 
-Retrieve radio settings configured for this venue. The response includes channel selection, power levels, and frequency band configurations for access point radios. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apRadioSettings can be used for this content.
+Retrieve radio settings configured for this venue. The response includes channel selection, power levels, and frequency band configurations for access point radios. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apRadioSettings can be used for this content.
 
 operationId: `getVenueRadio`
 
@@ -17289,7 +17308,7 @@ operationId: `getVenueRadio`
 
 **Update Venue Radio**
 
-Update radio settings for this venue. This operation allows you to update channel selection, power levels, and frequency band configurations for access point radios. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apRadioSettings can be used for this content.
+Update radio settings for this venue. This operation allows you to update channel selection, power levels, and frequency band configurations for access point radios. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apRadioSettings can be used for this content.
 
 operationId: `updateVenueRadio`
 
@@ -17326,7 +17345,7 @@ operationId: `updateVenueRadio`
 
 **Get Venue RADIUS Options Settings**
 
-Retrieve RADIUS options settings configured for this venue. The response includes RADIUS authentication and accounting configuration parameters for access points. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apRadiusOptions can be used for this content.
+Retrieve RADIUS options settings configured for this venue. The response includes RADIUS authentication and accounting configuration parameters for access points. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apRadiusOptions can be used for this content.
 
 operationId: `getVenueRadiusOptions`
 
@@ -17352,7 +17371,7 @@ operationId: `getVenueRadiusOptions`
 
 **Update Venue RADIUS Options Settings**
 
-Update RADIUS options settings for this venue. This operation allows you to update RADIUS authentication and accounting configuration parameters for access points. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apRadiusOptions can be used for this content.
+Update RADIUS options settings for this venue. This operation allows you to update RADIUS authentication and accounting configuration parameters for access points. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apRadiusOptions can be used for this content.
 
 operationId: `updateVenueRadiusOptions`
 
@@ -17394,7 +17413,7 @@ operationId: `updateVenueRadiusOptions`
 
 **Get Venue Rogue AP**
 
-Retrieve rogue access point detection settings configured for this venue. Use GET /venues/{venueId}/roguePolicySettings instead. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/roguePolicySettings can be used for this content.
+Retrieve rogue access point detection settings configured for this venue. Use GET /venues/{venueId}/roguePolicySettings instead. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/roguePolicySettings can be used for this content.
 
 operationId: `getVenueRogueAp`
 
@@ -17420,7 +17439,7 @@ operationId: `getVenueRogueAp`
 
 **Update Venue Rogue AP**
 
-Update rogue access point detection settings for this venue. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/roguePolicySettings can be used for this content.
+Update rogue access point detection settings for this venue. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/roguePolicySettings can be used for this content.
 
 operationId: `updateVenueRogueAp`
 
@@ -17456,7 +17475,7 @@ operationId: `updateVenueRogueAp`
 
 **Get Venue AP SNMP Agent Settings**
 
-Retrieve AP SNMP agent settings configured for this venue. The response includes SNMP monitoring and management configurations for access points. This method will be removed no sooner than 06/30/2026. The following URL /snmpAgentProfiles/query can be used for this content.
+Retrieve AP SNMP agent settings configured for this venue. The response includes SNMP monitoring and management configurations for access points. This method will be removed no sooner than 08/31/2026. The following URL /snmpAgentProfiles/query can be used for this content.
 
 operationId: `getVenueApSnmpAgent`
 
@@ -17517,7 +17536,7 @@ operationId: `updateVenueApSnmpAgent`
 
 **Get Venue Syslog Server Profile Settings**
 
-Retrieve syslog server profile settings configured for this venue. The response includes syslog server profile associations and logging configurations for access points. This method will be removed no sooner than 06/30/2026. The following URL /venues/query can be used for this content.
+Retrieve syslog server profile settings configured for this venue. The response includes syslog server profile associations and logging configurations for access points. This method will be removed no sooner than 08/31/2026. The following URL /venues/query can be used for this content.
 
 operationId: `getVenueSyslogServerProfileSettings`
 
@@ -17543,7 +17562,7 @@ operationId: `getVenueSyslogServerProfileSettings`
 
 **Update Venue Syslog Server Profile Settings**
 
-Update syslog server profile settings for this venue. This operation allows you to update syslog server profile associations and logging configurations for access points. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/syslogServerProfiles/{syslogServerProfileId} can be used for this content.
+Update syslog server profile settings for this venue. This operation allows you to update syslog server profile associations and logging configurations for access points. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/syslogServerProfiles/{syslogServerProfileId} can be used for this content.
 
 operationId: `updateVenueSyslogServerProfileSettings`
 
@@ -17578,7 +17597,7 @@ operationId: `updateVenueSyslogServerProfileSettings`
 
 **Reset Venue Syslog**
 
-Reset venue syslog settings to their default values. This operation restores all syslog server configurations and logging parameters to system defaults. This method will be removed no sooner than 06/30/2026. The following URL /syslogServerProfiles/{syslogServerProfileId} can be used for this content.
+Reset venue syslog settings to their default values. This operation restores all syslog server configurations and logging parameters to system defaults. This method will be removed no sooner than 08/31/2026. The following URL /syslogServerProfiles/{syslogServerProfileId} can be used for this content.
 
 operationId: `resetVenueSyslog`
 
@@ -17605,7 +17624,7 @@ operationId: `resetVenueSyslog`
 
 **Get Venue Syslog**
 
-Retrieve syslog server settings configured for this venue. The response includes syslog server configurations and logging parameters for access points. This method will be removed no sooner than 06/30/2026. The following URL /syslogServerProfiles/query can be used for this content.
+Retrieve syslog server settings configured for this venue. The response includes syslog server configurations and logging parameters for access points. This method will be removed no sooner than 08/31/2026. The following URL /syslogServerProfiles/query can be used for this content.
 
 operationId: `getVenueSyslog`
 
@@ -17631,7 +17650,7 @@ operationId: `getVenueSyslog`
 
 **Update Venue Syslog**
 
-Update syslog server settings for this venue. This operation allows you to update syslog server configurations and logging parameters for access points. This method will be removed no sooner than 06/30/2026. The following URL /syslogServerProfiles/{syslogServerProfileId} can be used for this content.
+Update syslog server settings for this venue. This operation allows you to update syslog server configurations and logging parameters for access points. This method will be removed no sooner than 08/31/2026. The following URL /syslogServerProfiles/{syslogServerProfileId} can be used for this content.
 
 operationId: `updateVenueSyslog`
 
@@ -17674,7 +17693,7 @@ operationId: `updateVenueSyslog`
 
 **Get Venue Available Channels**
 
-Retrieve available Wi-Fi channels for this venue based on regulatory domain and country settings. The response includes all supported channels across different frequency bands. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
+Retrieve available Wi-Fi channels for this venue based on regulatory domain and country settings. The response includes all supported channels across different frequency bands. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. Both application/json and application/vnd.ruckus.v1.1+json are now available.
 
 operationId: `getWifiAvailableChannelsOfVenue`
 
@@ -17700,7 +17719,7 @@ operationId: `getWifiAvailableChannelsOfVenue`
 
 **Get Venue Wi-Fi Settings**
 
-Retrieve detailed Wi-Fi configuration information for a specific venue. The response includes all venue settings, radio configurations, and network parameters. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/apRadioSettings can be used for this content.
+Retrieve detailed Wi-Fi configuration information for a specific venue. The response includes all venue settings, radio configurations, and network parameters. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/apRadioSettings can be used for this content.
 
 operationId: `getVenueWifiSettings`
 
@@ -18325,7 +18344,7 @@ operationId: `activateDevicePolicyOnAccessControlProfile`
 
 **Delete Device Policies**
 
-Perform a batch deletion of multiple device policies by providing a list of policy identifiers. This operation permanently removes all specified policies and their associated configurations. This method will be removed no sooner than 06/30/2026. The following URL /devicePolicies/{devicePolicyId} can be used for this content.
+Perform a batch deletion of multiple device policies by providing a list of policy identifiers. This operation permanently removes all specified policies and their associated configurations. This method will be removed no sooner than 08/31/2026. The following URL /devicePolicies/{devicePolicyId} can be used for this content.
 
 operationId: `deleteDevicePoliciesBulk`
 
@@ -18348,7 +18367,7 @@ operationId: `deleteDevicePoliciesBulk`
 
 **Get All Device Policies**
 
-Retrieve a complete list of all device policies configured in the system. The response includes all policies that define device access control rules and network policies. This method will be removed no sooner than 06/30/2026. The following URL /devicePolicies/query can be used for this content.
+Retrieve a complete list of all device policies configured in the system. The response includes all policies that define device access control rules and network policies. This method will be removed no sooner than 08/31/2026. The following URL /devicePolicies/query can be used for this content.
 
 operationId: `getAllDevicePolicies`
 
@@ -18367,7 +18386,7 @@ operationId: `getAllDevicePolicies`
 
 **Create Device Policy**
 
-Create a device policy with rules based on device types and operating systems for access control. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Create a device policy with rules based on device types and operating systems for access control. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `addDevicePolicy`
 
@@ -18427,7 +18446,7 @@ operationId: `deleteDevicePolicy`
 
 **Get Device Policy**
 
-Retrieve detailed information about a specific device policy by its unique identifier. The response includes all configuration settings, rules, and policies associated with the policy. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Retrieve detailed information about a specific device policy by its unique identifier. The response includes all configuration settings, rules, and policies associated with the policy. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `getDevicePolicy`
 
@@ -18453,7 +18472,7 @@ operationId: `getDevicePolicy`
 
 **Update Device Policy**
 
-Update an existing device policy by its unique identifier, updating rules, policies, and settings. The application/vnd.ruckus.v1+json will be removed no sooner than 06/30/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 06/30/2026.
+Update an existing device policy by its unique identifier, updating rules, policies, and settings. The application/vnd.ruckus.v1+json will be removed no sooner than 08/31/2026. The application/json is currently tied to application/vnd.ruckus.v1+json and will be moved to application/vnd.ruckus.v1.1+json on 08/31/2026.
 
 operationId: `updateDevicePolicy`
 
@@ -18559,7 +18578,7 @@ operationId: `activateDevicePolicyOnWifiNetwork`
 
 **Delete Multicast DNS Proxy Service Profiles**
 
-Perform a batch deletion of multiple multicast DNS proxy service profiles by providing a list of profile identifiers. This operation permanently removes all specified profiles and their associated configurations. This method will be removed no sooner than 06/30/2026. The following URL /multicastDnsProxyProfiles/{multicastDnsProxyProfileId} can be used for this content.
+Perform a batch deletion of multiple multicast DNS proxy service profiles by providing a list of profile identifiers. This operation permanently removes all specified profiles and their associated configurations. This method will be removed no sooner than 08/31/2026. The following URL /multicastDnsProxyProfiles/{multicastDnsProxyProfileId} can be used for this content.
 
 operationId: `deleteMulticastDnsProxyServiceProfilesBulk`
 
@@ -18582,7 +18601,7 @@ operationId: `deleteMulticastDnsProxyServiceProfilesBulk`
 
 **Get Multicast DNS Proxy Service Profiles**
 
-Retrieve a complete list of all multicast DNS proxy service profiles configured in the system. The response includes general profile information and configuration settings for each profile. This method will be removed no sooner than 06/30/2026. The following URL /multicastDnsProxyProfiles/query can be used for this content.
+Retrieve a complete list of all multicast DNS proxy service profiles configured in the system. The response includes general profile information and configuration settings for each profile. This method will be removed no sooner than 08/31/2026. The following URL /multicastDnsProxyProfiles/query can be used for this content.
 
 operationId: `getMulticastDnsProxyServiceProfiles`
 
@@ -18601,7 +18620,7 @@ operationId: `getMulticastDnsProxyServiceProfiles`
 
 **Create Multicast DNS Proxy Service Profile**
 
-Create a multicast DNS proxy service profile to manage mDNS traffic across different VLANs with specific rules to allow or deny mDNS service discovery. This method will be removed no sooner than 06/30/2026. The following URL /multicastDnsProxyProfiles can be used for this content.
+Create a multicast DNS proxy service profile to manage mDNS traffic across different VLANs with specific rules to allow or deny mDNS service discovery. This method will be removed no sooner than 08/31/2026. The following URL /multicastDnsProxyProfiles can be used for this content.
 
 operationId: `createMulticastDnsProxyServiceProfile`
 
@@ -18631,7 +18650,7 @@ operationId: `createMulticastDnsProxyServiceProfile`
 
 **Delete Multicast DNS Proxy Service Profile**
 
-Delete a multicast DNS proxy service profile by its unique identifier, permanently deleting the profile and its configurations. This method will be removed no sooner than 06/30/2026. The following URL /multicastDnsProxyProfiles/{multicastDnsProxyProfileId} can be used for this content.
+Delete a multicast DNS proxy service profile by its unique identifier, permanently deleting the profile and its configurations. This method will be removed no sooner than 08/31/2026. The following URL /multicastDnsProxyProfiles/{multicastDnsProxyProfileId} can be used for this content.
 
 operationId: `deleteMulticastDnsProxyServiceProfile`
 
@@ -18658,7 +18677,7 @@ operationId: `deleteMulticastDnsProxyServiceProfile`
 
 **Get Multicast DNS Proxy Service Profile**
 
-Retrieve detailed information about a specific multicast DNS proxy service profile by its unique identifier. The response includes all configured rules and settings for proxying mDNS traffic. This method will be removed no sooner than 06/30/2026. The following URL /multicastDnsProxyProfiles/{multicastDnsProxyProfileId} can be used for this content.
+Retrieve detailed information about a specific multicast DNS proxy service profile by its unique identifier. The response includes all configured rules and settings for proxying mDNS traffic. This method will be removed no sooner than 08/31/2026. The following URL /multicastDnsProxyProfiles/{multicastDnsProxyProfileId} can be used for this content.
 
 operationId: `getMulticastDnsProxyServiceProfile`
 
@@ -18684,7 +18703,7 @@ operationId: `getMulticastDnsProxyServiceProfile`
 
 **Update Multicast DNS Proxy Service Profile**
 
-Update the configuration of an existing multicast DNS proxy service profile by its unique identifier. This operation allows you to update rules and settings while maintaining the profile identity. This method will be removed no sooner than 06/30/2026. The following URL /multicastDnsProxyProfiles/{multicastDnsProxyProfileId} can be used for this content.
+Update the configuration of an existing multicast DNS proxy service profile by its unique identifier. This operation allows you to update rules and settings while maintaining the profile identity. This method will be removed no sooner than 08/31/2026. The following URL /multicastDnsProxyProfiles/{multicastDnsProxyProfileId} can be used for this content.
 
 operationId: `updateMulticastDnsProxyServiceProfile`
 
@@ -18721,7 +18740,7 @@ operationId: `updateMulticastDnsProxyServiceProfile`
 
 **Deactivate Multicast DNS Proxy Service Profile for APs**
 
-Deactivate a multicast DNS proxy service profile on multiple access points without deleting the profile. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{apSerialNumber}/multicastDnsProxyProfiles/{multicastDnsProxyProfileId} can be used for this content.
+Deactivate a multicast DNS proxy service profile on multiple access points without deleting the profile. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{apSerialNumber}/multicastDnsProxyProfiles/{multicastDnsProxyProfileId} can be used for this content.
 
 operationId: `deactivateMulticastDnsProxyServiceProfileAp`
 
@@ -18751,7 +18770,7 @@ operationId: `deactivateMulticastDnsProxyServiceProfileAp`
 
 **Activate Multicast DNS Proxy Service Profile for APs**
 
-Activate a multicast DNS proxy service profile on multiple access points to enable mDNS traffic proxying and service discovery for clients. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aps/{apSerialNumber}/multicastDnsProxyProfiles/{multicastDnsProxyProfileId} can be used for this content.
+Activate a multicast DNS proxy service profile on multiple access points to enable mDNS traffic proxying and service discovery for clients. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aps/{apSerialNumber}/multicastDnsProxyProfiles/{multicastDnsProxyProfileId} can be used for this content.
 
 operationId: `activateMulticastDnsProxyServiceProfileAp`
 
@@ -18957,7 +18976,7 @@ operationId: `activateMulticastDnsProxyProfile`
 
 **Get Multicast DNS Proxy Service Profile APs by Venue**
 
-Retrieve multicast DNS proxy service profile activation details for access points within a venue including their mDNS proxy configurations. This method will be removed no sooner than 06/30/2026. The following URL /multicastDnsProxyProfiles/query can be used for this content.
+Retrieve multicast DNS proxy service profile activation details for access points within a venue including their mDNS proxy configurations. This method will be removed no sooner than 08/31/2026. The following URL /multicastDnsProxyProfiles/query can be used for this content.
 
 operationId: `getMulticastDnsProxyServiceProfileApByVenue`
 
@@ -19489,7 +19508,7 @@ operationId: `updateTunnelServiceProfileTemplate`
 
 **Delete Isolation Allowlists**
 
-Perform a batch deletion of multiple client isolation allowlists by providing a list of allowlist identifiers. This operation permanently removes all specified allowlists and their associated configurations. This method will be removed no sooner than 06/30/2026. The following URL /clientIsolationProfiles/{clientIsolationProfileId} can be used for this content.
+Perform a batch deletion of multiple client isolation allowlists by providing a list of allowlist identifiers. This operation permanently removes all specified allowlists and their associated configurations. This method will be removed no sooner than 08/31/2026. The following URL /clientIsolationProfiles/{clientIsolationProfileId} can be used for this content.
 
 operationId: `deleteClientIsolationAllowlistsBulk`
 
@@ -19512,7 +19531,7 @@ operationId: `deleteClientIsolationAllowlistsBulk`
 
 **Get Client Isolation Allowlists**
 
-Retrieve a paginated list of all client isolation allowlists configured in the system. This method will be removed no sooner than 06/30/2026. The following URL /clientIsolationProfiles/query can be used for this content.
+Retrieve a paginated list of all client isolation allowlists configured in the system. This method will be removed no sooner than 08/31/2026. The following URL /clientIsolationProfiles/query can be used for this content.
 
 operationId: `getClientIsolationAllowlists`
 
@@ -19531,7 +19550,7 @@ operationId: `getClientIsolationAllowlists`
 
 **Create Client Isolation Allowlist**
 
-Create a client isolation allowlist with MAC addresses that can be applied to Wi-Fi networks as isolation exceptions. This method will be removed no sooner than 06/30/2026. The following URL /clientIsolationProfiles can be used for this content.
+Create a client isolation allowlist with MAC addresses that can be applied to Wi-Fi networks as isolation exceptions. This method will be removed no sooner than 08/31/2026. The following URL /clientIsolationProfiles can be used for this content.
 
 operationId: `createClientIsolationAllowlist`
 
@@ -19562,7 +19581,7 @@ operationId: `createClientIsolationAllowlist`
 
 **Delete Client Isolation Allowlist**
 
-Delete a client isolation allowlist by its unique identifier, permanently deleting the allowlist and its configurations. This method will be removed no sooner than 06/30/2026. The following URL /clientIsolationProfiles/{clientIsolationProfileId} can be used for this content.
+Delete a client isolation allowlist by its unique identifier, permanently deleting the allowlist and its configurations. This method will be removed no sooner than 08/31/2026. The following URL /clientIsolationProfiles/{clientIsolationProfileId} can be used for this content.
 
 operationId: `deleteClientIsolationAllowlist`
 
@@ -19589,7 +19608,7 @@ operationId: `deleteClientIsolationAllowlist`
 
 **Get Client Isolation Allowlist**
 
-Retrieve detailed information about a specific client isolation allowlist by its unique identifier. The response includes all configuration settings and allowlist entries that define exceptions to client isolation behavior. This method will be removed no sooner than 06/30/2026. The following URL /clientIsolationProfiles/{clientIsolationProfileId} can be used for this content.
+Retrieve detailed information about a specific client isolation allowlist by its unique identifier. The response includes all configuration settings and allowlist entries that define exceptions to client isolation behavior. This method will be removed no sooner than 08/31/2026. The following URL /clientIsolationProfiles/{clientIsolationProfileId} can be used for this content.
 
 operationId: `getClientIsolationAllowlist`
 
@@ -19615,7 +19634,7 @@ operationId: `getClientIsolationAllowlist`
 
 **Update Client Isolation Allowlist**
 
-Update an existing client isolation allowlist by its unique identifier, updating allowlist entries and settings. This method will be removed no sooner than 06/30/2026. The following URL /clientIsolationProfiles/{clientIsolationProfileId} can be used for this content.
+Update an existing client isolation allowlist by its unique identifier, updating allowlist entries and settings. This method will be removed no sooner than 08/31/2026. The following URL /clientIsolationProfiles/{clientIsolationProfileId} can be used for this content.
 
 operationId: `updateClientIsolationAllowlist`
 
@@ -19653,7 +19672,7 @@ operationId: `updateClientIsolationAllowlist`
 
 **Get Venue Usage**
 
-Query venues associated with this client isolation allowlist. The response includes a paginated list of venues where the allowlist is configured, along with associated network information. This method will be removed no sooner than 06/30/2026. The following URL /clientIsolationProfiles/query can be used for this content.
+Query venues associated with this client isolation allowlist. The response includes a paginated list of venues where the allowlist is configured, along with associated network information. This method will be removed no sooner than 08/31/2026. The following URL /clientIsolationProfiles/query can be used for this content.
 
 operationId: `GetVenueUsage`
 
@@ -19701,7 +19720,7 @@ operationId: `GetVenueUsage`
 
 **Delete VLAN Pools**
 
-Perform a batch deletion of multiple VLAN pools by providing a list of pool identifiers. This operation permanently removes all specified pools and their associated configurations. This method will be removed no sooner than 06/30/2026. The following URL /vlanPoolProfiles/{vlanPoolProfileId} can be used for this content.
+Perform a batch deletion of multiple VLAN pools by providing a list of pool identifiers. This operation permanently removes all specified pools and their associated configurations. This method will be removed no sooner than 08/31/2026. The following URL /vlanPoolProfiles/{vlanPoolProfileId} can be used for this content.
 
 operationId: `deleteVlanPools`
 
@@ -19724,7 +19743,7 @@ operationId: `deleteVlanPools`
 
 **Get VLAN Pools**
 
-Retrieve a complete list of all VLAN pools configured in the system. This method will be removed no sooner than 06/30/2026. The following URL /vlanPoolProfiles/query can be used for this content.
+Retrieve a complete list of all VLAN pools configured in the system. This method will be removed no sooner than 08/31/2026. The following URL /vlanPoolProfiles/query can be used for this content.
 
 operationId: `getVlanPools`
 
@@ -19743,7 +19762,7 @@ operationId: `getVlanPools`
 
 **Add VLAN Pool**
 
-Create a new VLAN pool with specific VLAN ID ranges for managing VLAN assignments. This method will be removed no sooner than 06/30/2026. The following URL /vlanPoolProfiles can be used for this content.
+Create a new VLAN pool with specific VLAN ID ranges for managing VLAN assignments. This method will be removed no sooner than 08/31/2026. The following URL /vlanPoolProfiles can be used for this content.
 
 operationId: `addVlanPool`
 
@@ -19775,7 +19794,7 @@ operationId: `addVlanPool`
 
 **Query VLAN Pool**
 
-Query VLAN pools using filter criteria. The response includes all VLAN pools matching the specified query parameters. This method will be removed no sooner than 06/30/2026. The following URL /vlanPoolProfiles/query can be used for this content.
+Query VLAN pools using filter criteria. The response includes all VLAN pools matching the specified query parameters. This method will be removed no sooner than 08/31/2026. The following URL /vlanPoolProfiles/query can be used for this content.
 
 operationId: `getVlanPoolByQuery`
 
@@ -19808,7 +19827,7 @@ operationId: `getVlanPoolByQuery`
 
 **Delete VLAN Pool**
 
-Remove a VLAN pool and its associated configurations by its unique identifier, permanently deleting all settings. This method will be removed no sooner than 06/30/2026. The following URL /vlanPoolProfiles/{vlanPoolProfileId} can be used for this content.
+Remove a VLAN pool and its associated configurations by its unique identifier, permanently deleting all settings. This method will be removed no sooner than 08/31/2026. The following URL /vlanPoolProfiles/{vlanPoolProfileId} can be used for this content.
 
 operationId: `deleteVlanPool`
 
@@ -19835,7 +19854,7 @@ operationId: `deleteVlanPool`
 
 **Get VLAN Pool**
 
-Retrieve detailed information about a specific VLAN pool by its unique identifier. The response includes all configuration settings and VLAN ID ranges associated with the pool. This method will be removed no sooner than 06/30/2026. The following URL /vlanPoolProfiles/{vlanPoolProfileId} can be used for this content.
+Retrieve detailed information about a specific VLAN pool by its unique identifier. The response includes all configuration settings and VLAN ID ranges associated with the pool. This method will be removed no sooner than 08/31/2026. The following URL /vlanPoolProfiles/{vlanPoolProfileId} can be used for this content.
 
 operationId: `getVlanPool`
 
@@ -19861,7 +19880,7 @@ operationId: `getVlanPool`
 
 **Partial Update VLAN Pool**
 
-Perform a partial update on an existing VLAN pool by its unique identifier. This operation allows you to modify specific VLAN pool parameters without replacing the entire configuration. This method will be removed no sooner than 06/30/2026. The following URL /vlanPoolProfiles/{vlanPoolProfileId} can be used for this content.
+Perform a partial update on an existing VLAN pool by its unique identifier. This operation allows you to modify specific VLAN pool parameters without replacing the entire configuration. This method will be removed no sooner than 08/31/2026. The following URL /vlanPoolProfiles/{vlanPoolProfileId} can be used for this content.
 
 operationId: `patchVlanPool`
 
@@ -19900,7 +19919,7 @@ operationId: `patchVlanPool`
 
 **Update VLAN Pool**
 
-Update the configuration of an existing VLAN pool by its unique identifier. This operation allows you to update VLAN ID ranges and other settings while maintaining the pool identity. This method will be removed no sooner than 06/30/2026. The following URL /vlanPoolProfiles/{vlanPoolProfileId} can be used for this content.
+Update the configuration of an existing VLAN pool by its unique identifier. This operation allows you to update VLAN ID ranges and other settings while maintaining the pool identity. This method will be removed no sooner than 08/31/2026. The following URL /vlanPoolProfiles/{vlanPoolProfileId} can be used for this content.
 
 operationId: `updateVlanPool`
 
@@ -19939,7 +19958,7 @@ operationId: `updateVlanPool`
 
 **Get VLAN Pool Venues Activations**
 
-Query venue activations for VLAN pools using filter criteria. The response includes all venues where the specified VLAN pools are activated. This method will be removed no sooner than 06/30/2026. The following URL /vlanPoolProfiles/query can be used for this content.
+Query venue activations for VLAN pools using filter criteria. The response includes all venues where the specified VLAN pools are activated. This method will be removed no sooner than 08/31/2026. The following URL /vlanPoolProfiles/query can be used for this content.
 
 operationId: `getVlanPoolVenues`
 
@@ -20131,7 +20150,7 @@ operationId: `activateCertificateTemplateOnWifiNetwork`
 
 **Delete AP Detection Policies**
 
-Perform a batch deletion of multiple rogue AP detection policies, permanently deleting all specified policies and their configurations. This method will be removed no sooner than 06/30/2026. The following URL /roguePolicies/{roguePolicyId} can be used for this content.
+Perform a batch deletion of multiple rogue AP detection policies, permanently deleting all specified policies and their configurations. This method will be removed no sooner than 08/31/2026. The following URL /roguePolicies/{roguePolicyId} can be used for this content.
 
 operationId: `deleteRogueApPolicyProfiles`
 
@@ -20154,7 +20173,7 @@ operationId: `deleteRogueApPolicyProfiles`
 
 **Get Rogue AP Detection Policies**
 
-Retrieve a complete list of all rogue AP detection policies configured in the system. Use POST /roguePolicies/query instead. This method will be removed no sooner than 06/30/2026. The following URL /roguePolicies/query can be used for this content.
+Retrieve a complete list of all rogue AP detection policies configured in the system. Use POST /roguePolicies/query instead. This method will be removed no sooner than 08/31/2026. The following URL /roguePolicies/query can be used for this content.
 
 operationId: `getRogueApPolicyProfiles`
 
@@ -20173,7 +20192,7 @@ operationId: `getRogueApPolicyProfiles`
 
 **Create Rogue AP Detection Policy**
 
-Create a new rogue AP detection policy with detection rules and policies for automatically classifying unknown APs. This method will be removed no sooner than 06/30/2026. The following URL /roguePolicies can be used for this content.
+Create a new rogue AP detection policy with detection rules and policies for automatically classifying unknown APs. This method will be removed no sooner than 08/31/2026. The following URL /roguePolicies can be used for this content.
 
 operationId: `addRogueApPolicyProfile`
 
@@ -20205,7 +20224,7 @@ operationId: `addRogueApPolicyProfile`
 
 **Delete Rogue AP Detection Policy**
 
-Remove a rogue AP detection policy and its associated configurations by its unique identifier, permanently deleting all settings. This method will be removed no sooner than 06/30/2026. The following URL /roguePolicies/{roguePolicyId} can be used for this content.
+Remove a rogue AP detection policy and its associated configurations by its unique identifier, permanently deleting all settings. This method will be removed no sooner than 08/31/2026. The following URL /roguePolicies/{roguePolicyId} can be used for this content.
 
 operationId: `deleteRogueApPolicyProfile`
 
@@ -20232,7 +20251,7 @@ operationId: `deleteRogueApPolicyProfile`
 
 **Get Rogue AP Detection Policy**
 
-Retrieve detailed information about a rogue AP detection policy including configuration settings, rules, and policies. This method will be removed no sooner than 06/30/2026. The following URL /roguePolicies/{roguePolicyId} can be used for this content.
+Retrieve detailed information about a rogue AP detection policy including configuration settings, rules, and policies. This method will be removed no sooner than 08/31/2026. The following URL /roguePolicies/{roguePolicyId} can be used for this content.
 
 operationId: `getRogueApPolicyProfile`
 
@@ -20258,7 +20277,7 @@ operationId: `getRogueApPolicyProfile`
 
 **Update Rogue AP Detection Policy**
 
-Update an existing rogue AP detection policy including detection rules, classification policies, and settings. This method will be removed no sooner than 06/30/2026. The following URL /roguePolicies/{roguePolicyId} can be used for this content.
+Update an existing rogue AP detection policy including detection rules, classification policies, and settings. This method will be removed no sooner than 08/31/2026. The following URL /roguePolicies/{roguePolicyId} can be used for this content.
 
 operationId: `updateRogueApPolicyProfile`
 
@@ -20297,7 +20316,7 @@ operationId: `updateRogueApPolicyProfile`
 
 **Unbind Rogue AP Detection Policy from Venues**
 
-Remove the associations between a rogue AP detection policy and multiple venues. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/roguePolicies/{roguePolicyId} can be used for this content.
+Remove the associations between a rogue AP detection policy and multiple venues. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/roguePolicies/{roguePolicyId} can be used for this content.
 
 operationId: `unbindRogueApPolicyProfileFromVenues`
 
@@ -20327,7 +20346,7 @@ operationId: `unbindRogueApPolicyProfileFromVenues`
 
 **Create Rogue AP Detection Policy Venue Bindings**
 
-Associate a rogue AP detection policy with multiple venues to enable automatic rogue AP classification. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/roguePolicies/{roguePolicyId} can be used for this content.
+Associate a rogue AP detection policy with multiple venues to enable automatic rogue AP classification. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/roguePolicies/{roguePolicyId} can be used for this content.
 
 operationId: `bindRogueApPolicyProfileToVenues`
 

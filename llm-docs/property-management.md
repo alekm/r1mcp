@@ -188,6 +188,7 @@ operationId: `addUnit`
 | `venueId` | path | ✓ | `string` | Venue Id |
 | `bulk` | query | ✓ | `boolean` | Flag to indicate bulk operation |
 | `venueId` | query |  | `string` | Venue Id |
+| `category` | query |  | `string` | Category applied to every imported unit. |
 
 
 **Request Body:** `Property_Management_Unit`
@@ -195,6 +196,7 @@ operationId: `addUnit`
 | Field | Type | Required | Description |
 |-------|------|:--------:|-------------|
 | `accessPoint` | `Property_Management_UnitAp` |  | Access point configuration for the unit. |
+| `category` | `string` |  | Category of the unit. |
 | `dpsks` | `array` |  | List of DPSK passphrase configurations. |
 | `guestPersonaId` | `string` |  | Unique identifier of the guest persona. |
 | `id` | `string` |  | Unique identifier of the unit. |
@@ -361,6 +363,7 @@ operationId: `editUnit`
 | Field | Type | Required | Description |
 |-------|------|:--------:|-------------|
 | `accessPoint` | `Property_Management_UnitAp` |  | Access point configuration for the unit. |
+| `category` | `string` |  | Category of the unit. |
 | `dpsks` | `array` |  | List of DPSK passphrase configurations. |
 | `guestPersonaId` | `string` |  | Unique identifier of the guest persona. |
 | `id` | `string` |  | Unique identifier of the unit. |

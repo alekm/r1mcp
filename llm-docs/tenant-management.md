@@ -15,11 +15,11 @@
 
 ### `DELETE` `/tenants/notificationRecipients`
 
-**Delete Notification Recipient**
+**Delete Notification Recipients**
 
-Delete notification recipient list.
+[DEPRECATED: Use deleteNotificationRecipientsV2 with Content-Type application/vnd.ruckus.v2+json and a list of recipient IDs.] Delete notification recipient list.
 
-operationId: `deleteNotificationRecipients`
+operationId: `deleteNotificationRecipientsV2`
 
 
 **Request Body:** Yes
@@ -706,7 +706,7 @@ operationId: `updateUser`
 *Manage tenant accounts and configurations.*
 
 
-*4 endpoints*
+*6 endpoints*
 
 
 ### `GET` `/tenants/betaFeatures`
@@ -805,6 +805,46 @@ operationId: `updateTenant`
 **Responses:**
 
 - `200` OK → `Tenant_Management_APICallInfo`
+
+
+---
+
+### `GET` `/tenants/subscriptionPreferences`
+
+**Get subscription preferences**
+
+Get tenant subscription display preferences from the tenant preferences column.
+
+operationId: `getSubscriptionPreferences`
+
+
+**Responses:**
+
+- `200` OK → `Tenant_Management_TenantSubscriptionPreferencesDTO`
+
+
+---
+
+### `PUT` `/tenants/subscriptionPreferences`
+
+**Update subscription preferences**
+
+Update tenant subscription display preferences in the tenant preferences column.
+
+operationId: `updateSubscriptionPreferences`
+
+
+**Request Body:** `Tenant_Management_TenantSubscriptionPreferencesDTO`
+
+| Field | Type | Required | Description |
+|-------|------|:--------:|-------------|
+| `subscription` | `Tenant_Management_SubscriptionPreferences` |  | Subscription visibility and messaging preferences. |
+
+
+**Responses:**
+
+- `204` No Content
+- `415` Unsupported Media Type
 
 
 ---

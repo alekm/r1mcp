@@ -17,7 +17,7 @@
 
 **Revoke Bulk Assignments**
 
-Revoke multiple license assignments for MSP. This method will be removed no sooner than 06/30/2026. The following endpoint '/tenants/{tenantId}/entitlements/assignments/query' can be used for this content.
+Revoke multiple license assignments for MSP. This method will be removed no sooner than 08/31/2026. The following endpoint '/tenants/{tenantId}/entitlements/assignments/query' can be used for this content.
 
 operationId: `revokeBulkAssignment`
 
@@ -36,7 +36,7 @@ operationId: `revokeBulkAssignment`
 
 **Get Assignment Summaries**
 
-Get summaries of MSP license assignments by device type and device subtype. This method will be removed no sooner than 06/30/2026. The following endpoint '/entitlements/utilizations/query' can be used for this content.
+Get summaries of MSP license assignments by device type and device subtype. This method will be removed no sooner than 08/31/2026. The following endpoint '/entitlements/utilizations/query' can be used for this content.
 
 operationId: `getAssignmentsSummary`
 
@@ -52,7 +52,7 @@ operationId: `getAssignmentsSummary`
 
 **Get Banners**
 
-Retrieves entitlement banner notifications for the authenticated tenant. This method will be removed no sooner than 06/30/2026. The following endpoint '/entitlements/banners/query' can be used for this content.
+Retrieves entitlement banner notifications for the authenticated tenant. This method will be removed no sooner than 08/31/2026. The following endpoint '/entitlements/banners/query' can be used for this content.
 
 operationId: `getBanners_1`
 
@@ -76,7 +76,7 @@ operationId: `getBanners_1`
 
 **Get Entitlements**
 
-Retrieves the list of device entitlements for the authenticated tenant. This method will be removed no sooner than 06/30/2026.  The following '/entitlements/query' can be used for this content.
+Retrieves the list of device entitlements for the authenticated tenant. This method will be removed no sooner than 08/31/2026.  The following '/entitlements/query' can be used for this content.
 
 operationId: `getEntitlements_1`
 
@@ -200,7 +200,7 @@ operationId: `licenseAvailabilityReports`
 
 **Get Entitlements Banners**
 
-Retrieve entitlement banner data for display in the user interface. Banners are visual notifications that alert administrators about critical license conditions requiring attention. They provide information about entitlements that are either near their expiry or have expired, helping prevent service disruptions. Version application/vnd.ruckus.v1+JSON will be removed no sooner than 06/30/2026. application/JSON and application/vnd.ruckus.v1.1+JSON are now available.
+Retrieve entitlement banner data for display in the user interface. Banners are visual notifications that alert administrators about critical license conditions requiring attention. They provide information about entitlements that are either near their expiry or have expired, helping prevent service disruptions. Version application/vnd.ruckus.v1+JSON will be removed no sooner than 08/31/2026. application/JSON and application/vnd.ruckus.v1.1+JSON are now available.
 
 operationId: `getBanners`
 
@@ -365,7 +365,7 @@ operationId: `getEntitlements`
 
 **Get Entitlement Summaries**
 
-Retrieves summarized entitlement utilization data for the authenticated tenant, providing an overview of license usage and availability. This method will be removed no sooner than 06/30/2026. The following endpoint '/entitlements/utilizations/query' can be used for this content.
+Retrieves summarized entitlement utilization data for the authenticated tenant, providing an overview of license usage and availability. This method will be removed no sooner than 08/31/2026. The following endpoint '/entitlements/utilizations/query' can be used for this content.
 
 operationId: `getSummary_1`
 
@@ -426,7 +426,7 @@ operationId: `getSummary`
 
 **Retrieve MSP bulk license pools**
 
-Retrieves all MSPs bulk entitlements for the authenticated tenant. MSP bulk entitlements are large license pools that MSPs purchase and can then allocate to their customer tenants through assignments. Each entitlement includes details such as device type, SKUs, quantity, effective date, expiration date, and trial status. The response returns a list of MspEntitlement objects containing all bulk licenses available to the MSP. This method will be removed no sooner than 06/30/2026. The following end
+Retrieves all MSPs bulk entitlements for the authenticated tenant. MSP bulk entitlements are large license pools that MSPs purchase and can then allocate to their customer tenants through assignments. Each entitlement includes details such as device type, SKUs, quantity, effective date, expiration date, and trial status. The response returns a list of MspEntitlement objects containing all bulk licenses available to the MSP. This method will be removed no sooner than 08/31/2026. The following end
 
 operationId: `getMspEntitlements`
 

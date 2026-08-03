@@ -18,7 +18,7 @@
 **Get Tenant Activation Status**
 
 Check whether a tenant account is currently activated or deactivated. 
-This method will be removed no sooner than 06/30/2026.
+This method will be removed no sooner than 08/31/2026.
 
 operationId: `getMspEcActivationStatus`
 
@@ -44,7 +44,7 @@ operationId: `getMspEcActivationStatus`
 **Disable Support Access**
 
 Revoke support team access to the tenant account. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL DELETE /tenantActivations/supportStatus/{tenantId} can be used for this content.
 
 operationId: `disableRuckusSupport`
@@ -71,7 +71,7 @@ operationId: `disableRuckusSupport`
 **Get Support Access Status**
 
 Check whether support team access is currently enabled or disabled for the tenant account. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL GET /tenantActivations/supportStatus/{tenantId} can be used for this content.
 
 operationId: `getRuckusSupportStatus_1`
@@ -98,7 +98,7 @@ operationId: `getRuckusSupportStatus_1`
 **Enable Support Access**
 
 Grant support team access to assist with tenant account issues. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL put /tenantActivations/supportStatus/{tenantId} can be used for this content.
 
 operationId: `enableRuckusSupport`
@@ -258,7 +258,7 @@ operationId: `reActivateTenant`
 
 **Get Delegations**
 
-Get the list of customer delegations. This method will be removed no sooner than 06/30/2026. The following URL POST /delegations/query can be used for this content.
+Get the list of customer delegations. This method will be removed no sooner than 08/31/2026. The following URL POST /delegations/query can be used for this content.
 
 operationId: `getDelegationsForViewLegacy`
 
@@ -303,7 +303,7 @@ operationId: `getDelegationsForViewLegacy`
 
 **Query Customer Data for MSP-EC**
 
-Retrieves customer details for managed service providers end customers. This method will be removed no sooner than 06/30/2026. The following URL POST /tenants/query can be used for this content.
+Retrieves customer details for managed service providers end customers. This method will be removed no sooner than 08/31/2026. The following URL POST /tenants/query can be used for this content.
 
 operationId: `queryMSPECs`
 
@@ -355,7 +355,7 @@ operationId: `queryMSPECs`
 
 **Query Inventory for MSP**
 
-View the list of networking devices installed in end customers venues. This method will be removed no sooner than 06/30/2026. The following URL POST /tenants/inventories/query can be used for this content.
+View the list of networking devices installed in end customers venues. This method will be removed no sooner than 08/31/2026. The following URL POST /tenants/inventories/query can be used for this content.
 
 operationId: `getDeviceInventory`
 
@@ -459,7 +459,7 @@ operationId: `exportDeviceInventory_MSP`
 
 **Query Technology Partners**
 
-Retrieves the list of managed service providers end customers for technology partners based on the provided query parameters. This method will be removed no sooner than 06/30/2026. The following URL POST /tenants/query can be used for this content.
+Retrieves the list of managed service providers end customers for technology partners based on the provided query parameters. This method will be removed no sooner than 08/31/2026. The following URL POST /tenants/query can be used for this content.
 
 operationId: `getMSPECs`
 
@@ -548,7 +548,7 @@ operationId: `setScheduleForFirmwareUpgrades`
 **Schedule Firmware Upgrade**
 
 Create or update firmware upgrade schedules with automatic or manual timing options. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL POST /firmwareUpgradeSchedules can be used for this content.
 
 operationId: `mspFirmwareUpgrade`
@@ -785,7 +785,7 @@ operationId: `queryCustomerOrTechPartnerDataV3`
 **Add Designated Tenant Accounts**
 
 Add or update MSP-EC account relationships with multiple integrator or installer accounts. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL PATCH /tenantDelegations can be used for this content.
 
 operationId: `assignMspEcToMultipleTechPartner`
@@ -812,7 +812,7 @@ operationId: `assignMspEcToMultipleTechPartner`
 **Retrieve Tenant Delegations**
 
 Retrieve active relationships between designated accounts and their managed tenant. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL GET /tenants/{tenantId}/tenantDelegations can be used for this content.
 
 operationId: `getMspEcListToIntegrator`
@@ -840,7 +840,7 @@ operationId: `getMspEcListToIntegrator`
 **Update Tenant Delegations**
 
 Update active relationships between designated accounts and their managed tenant. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL put /tenants/{tenantId}/tenantDelegations can be used for this content.
 
 operationId: `assignMspEcListToDelegated`
@@ -998,7 +998,7 @@ operationId: `patchAdminDelegations`
 **Assign Administrators**
 
 Add designated administrators to manage assigned tenants. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL PATCH /adminDelegations can be used for this content.
 
 operationId: `mspAdminAssociation`
@@ -1025,7 +1025,7 @@ operationId: `mspAdminAssociation`
 **List Tenant Administrators**
 
 Retrieve a list of all administrators assigned to the tenant account. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL GET /tenants/{tenantId}/admins can be used for this content.
 
 operationId: `getMspEcAdminList`
@@ -1052,7 +1052,7 @@ operationId: `getMspEcAdminList`
 **Remove Administrator**
 
 Remove an administrator's access from the tenant account. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL DELETE /tenants/{tenantId}/admins/{adminId}  can be used for this content.
 
 operationId: `deleteMspEcAdmin`
@@ -1079,7 +1079,7 @@ operationId: `deleteMspEcAdmin`
 **Get Administrator Details**
 
 Retrieve detailed information for a specific administrator. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL GET /tenants/{tenantId}/admins/{adminId} can be used for this content.
 
 operationId: `getMspEcAdmin`
@@ -1107,7 +1107,7 @@ operationId: `getMspEcAdmin`
 **Assign Administrator**
 
 Assign an administrator to the tenant account with specified roles and permissions. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL put /tenants/{tenantId}/admins/{adminId}  can be used for this content.
 
 operationId: `updateMspEcAdmin`
@@ -1146,7 +1146,7 @@ operationId: `updateMspEcAdmin`
 **Update Admin Delegations**
 
 Update active relationships between designated administrators and their managed tenant. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL put /tenants/{tenantId}/adminDelegations can be used for this content.
 
 operationId: `updateDelegatorAdmins`
@@ -1182,7 +1182,7 @@ operationId: `updateDelegatorAdmins`
 **Retrieve Admin Delegations**
 
 Retrieve active relationships between designated administrators and their assigned tenants. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL GET /tenants/{tenantId}/adminDelegations can be used for this content.
 
 operationId: `getMspDelegatedAdmins`
@@ -1209,7 +1209,7 @@ operationId: `getMspDelegatedAdmins`
 **Update Admin Delegations**
 
 Update active relationships between designated administrators and their managed tenant. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL put /tenants/{tenantId}/adminDelegations can be used for this content.
 
 operationId: `updateMspDelegatedAdmins`
@@ -1421,7 +1421,7 @@ operationId: `updateTenantAdmin`
 **List Managed Tenants**
 
 Retrieve a list of all managed tenant accounts. 
-This method will be removed no sooner than 06/30/2026.
+This method will be removed no sooner than 08/31/2026.
 The following URL POST /tenants/query can be used for this content.
 
 operationId: `getMspEcAccountList`
@@ -1441,7 +1441,7 @@ operationId: `getMspEcAccountList`
 **Create Managed Tenant**
 
 Create a new managed tenant account with specified configuration settings. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL POST /tenants  can be used for this content.
 
 operationId: `createMspEcAccountV3`
@@ -1488,7 +1488,7 @@ operationId: `createMspEcAccountV3`
 **Remove Managed Tenant**
 
 Delete a managed tenant account and all associated data. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL DELETE /tenants/{tenantId}  can be used for this content.
 
 operationId: `deleteMspEcAccount`
@@ -1514,7 +1514,7 @@ operationId: `deleteMspEcAccount`
 **Retrieve Managed Tenant**
 
 Retrieve detailed information for a specific managed tenant account. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL GET /tenants/{tenantId}  can be used for this content.
 
 operationId: `getMspEcAccount`
@@ -1543,7 +1543,7 @@ operationId: `getMspEcAccount`
 **Update Managed Tenant**
 
 Update configuration settings for an existing managed tenant account. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL put /tenants/{tenantId}  can be used for this content.
 
 operationId: `updateMspEcAccount`
@@ -1592,7 +1592,7 @@ operationId: `updateMspEcAccount`
 **Send Administrator Invitation**
 
 Send or resend an email invitation to an administrator to access the tenant account. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL put /tenants/{tenantId}/invitations can be used for this content.
 
 operationId: `sendInvitationEmail_1`
@@ -1628,7 +1628,7 @@ operationId: `sendInvitationEmail_1`
 **Retrieve Brand Logo URLs**
 
 Retrieve download URLs for brand logo image files associated with the tenant. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL GET /tenants/{tenantId}  can be used for this content.
 
 operationId: `getMspEcLogoURL`
@@ -2070,7 +2070,7 @@ operationId: `getBrandLogoFileDownloadUrl`
 **Retrieve Brand Details**
 
 Retrieve MSP account branding, contact information, and portal settings. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL GET /brandings can be used for this content.
 
 operationId: `getMspLabel`
@@ -2090,7 +2090,7 @@ operationId: `getMspLabel`
 **Add Brand Details**
 
 Create a new branding configuration.
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL POST /brandings can be used for this content.
 
 operationId: `addMspLabel`
@@ -2136,7 +2136,7 @@ operationId: `addMspLabel`
 **Update Brand Details**
 
 Update existing branding configuration.
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL put /brandings can be used for this content.
 
 operationId: `updateMspLabel`
@@ -2182,7 +2182,7 @@ operationId: `updateMspLabel`
 **Retrieve Brand Base URLs**
 
 Retrieve base URLs for brand resources and assets.
-This method will be removed no sooner than 06/30/2026.
+This method will be removed no sooner than 08/31/2026.
 The following URL GET /brandings can be used for this content.
 
 operationId: `getMspBaseURL`
@@ -2200,7 +2200,7 @@ operationId: `getMspBaseURL`
 
 **Check MSP Label**
 
-Check whether a specific MSP label is already in use before brand configuration.This method will be removed no sooner than 06/30/2026.The following URL POST /brandings can be used for this content.
+Check whether a specific MSP label is already in use before brand configuration.This method will be removed no sooner than 08/31/2026.The following URL POST /brandings can be used for this content.
 
 operationId: `checkMspLabel`
 
@@ -2417,7 +2417,7 @@ operationId: `batchOperation`
 
 **Get Delegations**
 
-Get the list of customer delegations. This method will be removed no sooner than 06/30/2026. The following URL POST /delegations/query can be used for this content.
+Get the list of customer delegations. This method will be removed no sooner than 08/31/2026. The following URL POST /delegations/query can be used for this content.
 
 operationId: `getDelegationsForViewLegacy`
 
@@ -2463,7 +2463,7 @@ operationId: `getDelegationsForViewLegacy`
 **List Managed Tenants**
 
 Retrieve a list of all managed tenant accounts. 
-This method will be removed no sooner than 06/30/2026.
+This method will be removed no sooner than 08/31/2026.
 The following URL POST /tenants/query can be used for this content.
 
 operationId: `getMspEcAccountList`
@@ -2483,7 +2483,7 @@ operationId: `getMspEcAccountList`
 **Create Managed Tenant**
 
 Create a new managed tenant account with specified configuration settings. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL POST /tenants  can be used for this content.
 
 operationId: `createMspEcAccountV3`
@@ -2530,7 +2530,7 @@ operationId: `createMspEcAccountV3`
 **Add Designated Tenant Accounts**
 
 Add or update MSP-EC account relationships with multiple integrator or installer accounts. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL PATCH /tenantDelegations can be used for this content.
 
 operationId: `assignMspEcToMultipleTechPartner`
@@ -2557,7 +2557,7 @@ operationId: `assignMspEcToMultipleTechPartner`
 **Assign Administrators**
 
 Add designated administrators to manage assigned tenants. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL PATCH /adminDelegations can be used for this content.
 
 operationId: `mspAdminAssociation`
@@ -2584,7 +2584,7 @@ operationId: `mspAdminAssociation`
 **Remove Managed Tenant**
 
 Delete a managed tenant account and all associated data. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL DELETE /tenants/{tenantId}  can be used for this content.
 
 operationId: `deleteMspEcAccount`
@@ -2610,7 +2610,7 @@ operationId: `deleteMspEcAccount`
 **Retrieve Managed Tenant**
 
 Retrieve detailed information for a specific managed tenant account. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL GET /tenants/{tenantId}  can be used for this content.
 
 operationId: `getMspEcAccount`
@@ -2639,7 +2639,7 @@ operationId: `getMspEcAccount`
 **Update Managed Tenant**
 
 Update configuration settings for an existing managed tenant account. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL put /tenants/{tenantId}  can be used for this content.
 
 operationId: `updateMspEcAccount`
@@ -2688,7 +2688,7 @@ operationId: `updateMspEcAccount`
 **Get Tenant Activation Status**
 
 Check whether a tenant account is currently activated or deactivated. 
-This method will be removed no sooner than 06/30/2026.
+This method will be removed no sooner than 08/31/2026.
 
 operationId: `getMspEcActivationStatus`
 
@@ -2714,7 +2714,7 @@ operationId: `getMspEcActivationStatus`
 **List Tenant Administrators**
 
 Retrieve a list of all administrators assigned to the tenant account. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL GET /tenants/{tenantId}/admins can be used for this content.
 
 operationId: `getMspEcAdminList`
@@ -2741,7 +2741,7 @@ operationId: `getMspEcAdminList`
 **Remove Administrator**
 
 Remove an administrator's access from the tenant account. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL DELETE /tenants/{tenantId}/admins/{adminId}  can be used for this content.
 
 operationId: `deleteMspEcAdmin`
@@ -2768,7 +2768,7 @@ operationId: `deleteMspEcAdmin`
 **Get Administrator Details**
 
 Retrieve detailed information for a specific administrator. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL GET /tenants/{tenantId}/admins/{adminId} can be used for this content.
 
 operationId: `getMspEcAdmin`
@@ -2796,7 +2796,7 @@ operationId: `getMspEcAdmin`
 **Assign Administrator**
 
 Assign an administrator to the tenant account with specified roles and permissions. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL put /tenants/{tenantId}/admins/{adminId}  can be used for this content.
 
 operationId: `updateMspEcAdmin`
@@ -2835,7 +2835,7 @@ operationId: `updateMspEcAdmin`
 **Disable Support Access**
 
 Revoke support team access to the tenant account. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL DELETE /tenantActivations/supportStatus/{tenantId} can be used for this content.
 
 operationId: `disableRuckusSupport`
@@ -2862,7 +2862,7 @@ operationId: `disableRuckusSupport`
 **Get Support Access Status**
 
 Check whether support team access is currently enabled or disabled for the tenant account. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL GET /tenantActivations/supportStatus/{tenantId} can be used for this content.
 
 operationId: `getRuckusSupportStatus_1`
@@ -2889,7 +2889,7 @@ operationId: `getRuckusSupportStatus_1`
 **Enable Support Access**
 
 Grant support team access to assist with tenant account issues. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL put /tenantActivations/supportStatus/{tenantId} can be used for this content.
 
 operationId: `enableRuckusSupport`
@@ -2915,7 +2915,7 @@ operationId: `enableRuckusSupport`
 **Update Admin Delegations**
 
 Update active relationships between designated administrators and their managed tenant. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL put /tenants/{tenantId}/adminDelegations can be used for this content.
 
 operationId: `updateDelegatorAdmins`
@@ -2951,7 +2951,7 @@ operationId: `updateDelegatorAdmins`
 **Send Administrator Invitation**
 
 Send or resend an email invitation to an administrator to access the tenant account. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL put /tenants/{tenantId}/invitations can be used for this content.
 
 operationId: `sendInvitationEmail_1`
@@ -2987,7 +2987,7 @@ operationId: `sendInvitationEmail_1`
 **Retrieve Brand Logo URLs**
 
 Retrieve download URLs for brand logo image files associated with the tenant. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL GET /tenants/{tenantId}  can be used for this content.
 
 operationId: `getMspEcLogoURL`
@@ -3014,7 +3014,7 @@ operationId: `getMspEcLogoURL`
 **Retrieve Admin Delegations**
 
 Retrieve active relationships between designated administrators and their assigned tenants. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL GET /tenants/{tenantId}/adminDelegations can be used for this content.
 
 operationId: `getMspDelegatedAdmins`
@@ -3041,7 +3041,7 @@ operationId: `getMspDelegatedAdmins`
 **Update Admin Delegations**
 
 Update active relationships between designated administrators and their managed tenant. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL put /tenants/{tenantId}/adminDelegations can be used for this content.
 
 operationId: `updateMspDelegatedAdmins`
@@ -3071,7 +3071,7 @@ operationId: `updateMspDelegatedAdmins`
 **Retrieve Tenant Delegations**
 
 Retrieve active relationships between designated accounts and their managed tenant. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL GET /tenants/{tenantId}/tenantDelegations can be used for this content.
 
 operationId: `getMspEcListToIntegrator`
@@ -3099,7 +3099,7 @@ operationId: `getMspEcListToIntegrator`
 **Update Tenant Delegations**
 
 Update active relationships between designated accounts and their managed tenant. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL put /tenants/{tenantId}/tenantDelegations can be used for this content.
 
 operationId: `assignMspEcListToDelegated`
@@ -3136,7 +3136,7 @@ operationId: `assignMspEcListToDelegated`
 **Retrieve Brand Details**
 
 Retrieve MSP account branding, contact information, and portal settings. 
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL GET /brandings can be used for this content.
 
 operationId: `getMspLabel`
@@ -3156,7 +3156,7 @@ operationId: `getMspLabel`
 **Add Brand Details**
 
 Create a new branding configuration.
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL POST /brandings can be used for this content.
 
 operationId: `addMspLabel`
@@ -3202,7 +3202,7 @@ operationId: `addMspLabel`
 **Update Brand Details**
 
 Update existing branding configuration.
-This method will be removed no sooner than 06/30/2026. 
+This method will be removed no sooner than 08/31/2026. 
 The following URL put /brandings can be used for this content.
 
 operationId: `updateMspLabel`
@@ -3248,7 +3248,7 @@ operationId: `updateMspLabel`
 **Retrieve Brand Base URLs**
 
 Retrieve base URLs for brand resources and assets.
-This method will be removed no sooner than 06/30/2026.
+This method will be removed no sooner than 08/31/2026.
 The following URL GET /brandings can be used for this content.
 
 operationId: `getMspBaseURL`
@@ -3266,7 +3266,7 @@ operationId: `getMspBaseURL`
 
 **Query Customer Data for MSP-EC**
 
-Retrieves customer details for managed service providers end customers. This method will be removed no sooner than 06/30/2026. The following URL POST /tenants/query can be used for this content.
+Retrieves customer details for managed service providers end customers. This method will be removed no sooner than 08/31/2026. The following URL POST /tenants/query can be used for this content.
 
 operationId: `queryMSPECs`
 
@@ -3318,7 +3318,7 @@ operationId: `queryMSPECs`
 
 **Query Inventory for MSP**
 
-View the list of networking devices installed in end customers venues. This method will be removed no sooner than 06/30/2026. The following URL POST /tenants/inventories/query can be used for this content.
+View the list of networking devices installed in end customers venues. This method will be removed no sooner than 08/31/2026. The following URL POST /tenants/inventories/query can be used for this content.
 
 operationId: `getDeviceInventory`
 
@@ -3370,7 +3370,7 @@ operationId: `getDeviceInventory`
 
 **Query Technology Partners**
 
-Retrieves the list of managed service providers end customers for technology partners based on the provided query parameters. This method will be removed no sooner than 06/30/2026. The following URL POST /tenants/query can be used for this content.
+Retrieves the list of managed service providers end customers for technology partners based on the provided query parameters. This method will be removed no sooner than 08/31/2026. The following URL POST /tenants/query can be used for this content.
 
 operationId: `getMSPECs`
 

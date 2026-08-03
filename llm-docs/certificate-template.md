@@ -10,7 +10,7 @@
 *APIs for server and client certificate management.*
 
 
-*10 endpoints*
+*19 endpoints*
 
 
 ### `POST` `/certificateAuthorities/{caId}/certificates`
@@ -19,7 +19,7 @@
 
 Creates a new server or client certificate.
 
-operationId: `createCert`
+operationId: `createCert_1`
 
 
 **Parameters:**
@@ -75,6 +75,99 @@ operationId: `createCert`
 
 Searches for certificates issued by a specific certificate authority.
 
+operationId: `getByCaId_1`
+
+
+**Parameters:**
+
+| Name | In | Required | Type | Description |
+|------|----|:--------:|------|-------------|
+| `caId` | path | ✓ | `string` | Certificate Authority id |
+
+
+**Request Body:** `Certificate_Template_CertQueryRequest`
+
+| Field | Type | Required | Description |
+|-------|------|:--------:|-------------|
+| `fields` | `array` |  | List of field names to include in the response. |
+| `filters` | `Certificate_Template_CertFilters` |  | Filters to apply when querying server certificates. |
+| `page` | `integer` |  |  |
+| `pageSize` | `integer` |  | Number of items per page for pagination. |
+| `searchString` | `string` |  | Search string to filter results. |
+| `searchTargetFields` | `array` |  | List of field names to search within. |
+| `sortField` | `string` |  | Field name to sort the results by. |
+| `sortOrder` | `string` |  | Sort order direction (ASC or DESC). |
+
+
+**Responses:**
+
+- `200` Server or Client Certificate → `Certificate_Template_CertQueryResponse`
+
+
+---
+
+### `POST` `/certificateAuthorities/{caId}/serverCertificates`
+
+**Create certificate**
+
+Creates a new server or client certificate.
+
+operationId: `createCert`
+
+
+**Parameters:**
+
+| Name | In | Required | Type | Description |
+|------|----|:--------:|------|-------------|
+| `caId` | path | ✓ | `string` | Certificate Authority id |
+
+
+**Request Body:** `Certificate_Template_CertificateDto`
+
+| Field | Type | Required | Description |
+|-------|------|:--------:|-------------|
+| `algorithm` | `Certificate_Template_AlgorithmEnum` | ✓ | SHA-256 - the SHA-2 hash using 256 bits. SHA-384 - the SHA-2 hash using 384 bits. SHA-512 - the SHA-2 hash using 512 bits. |
+| `certificateAuthorityName` | `string` |  | The name of the certificate authority that issued this certificate. |
+| `chain` | `string` |  | The chain of the certificate. |
+| `commonName` | `string` |  | The common name of the certificate. |
+| `country` | `string` |  | The country included in the certificate. |
+| `createDate` | `string` |  | The date that creates the certificate. |
+| `csrString` | `string` |  | The certificate signing request that should be signed by the CA. |
+| `description` | `string` |  | The description of the certificate. |
+| `details` | `string` |  | The details of the certificate. |
+| `email` | `string` |  | The email of the certificate. |
+| `extendedKeyUsages` | `array` |  | The extended key usage of the certificate. |
+| `id` | `string` |  | The unique for this certificate. |
+| `keyLength` | `integer` | ✓ | The length of the key. |
+| `keyUsages` | `array` |  | The key usages of the certificate. |
+| `locality` | `string` |  | The locality included in the certificate. |
+| `name` | `string` | ✓ | The name of the certificate. |
+| `notAfterDate` | `string` | ✓ | The expires date of the certificate. |
+| `notBeforeDate` | `string` | ✓ | The start date of the certificate. |
+| `organization` | `string` |  | The organization of the certificate. |
+| `organizationUnit` | `string` |  | The organization unit of the certificate. |
+| `privateKeyBase64` | `string` |  | The private key of the certificate. |
+| `publicKeyBase64` | `string` |  | The public key of the certificate. |
+| `revocationDate` | `string` |  | The date after which the certificate be revoked. |
+| `revocationReason` | `string` |  | Reason for revocation of certificate. |
+| `serialNumber` | `string` |  | The serial number of the certificate. |
+| *… 4 more fields* | | | |
+
+
+**Responses:**
+
+- `202` Certificate created → `Certificate_Template_OperationResponse`
+- `400` Invalid Certificate content → `Certificate_Template_ApiError`
+
+
+---
+
+### `POST` `/certificateAuthorities/{caId}/serverCertificates/query`
+
+**Search certificates by CA**
+
+Searches for certificates issued by a specific certificate authority.
+
 operationId: `getByCaId`
 
 
@@ -112,7 +205,7 @@ operationId: `getByCaId`
 
 Uploads a server or client certificate.
 
-operationId: `uploadCert`
+operationId: `uploadCert_1`
 
 
 **Request Body:** Yes
@@ -138,7 +231,7 @@ operationId: `uploadCert`
 
 Searches for server or client certificates matching the search criteria.
 
-operationId: `queryCerts`
+operationId: `queryCerts_1`
 
 
 **Request Body:** `Certificate_Template_CertQueryRequest`
@@ -168,7 +261,7 @@ operationId: `queryCerts`
 
 Deletes a server or client certificate.
 
-operationId: `deleteCert`
+operationId: `deleteCert_1`
 
 
 **Parameters:**
@@ -193,7 +286,7 @@ operationId: `deleteCert`
 
 Retrieves a specific server or client certificate by ID.
 
-operationId: `downloadCertPem`
+operationId: `downloadCertPem_1`
 
 
 **Parameters:**
@@ -217,7 +310,7 @@ operationId: `downloadCertPem`
 
 Updates a server or client certificate.
 
-operationId: `patchCert`
+operationId: `patchCert_1`
 
 
 **Parameters:**
@@ -250,7 +343,7 @@ operationId: `patchCert`
 
 Downloads the private key of a certificate.
 
-operationId: `downloadServerCertP12`
+operationId: `downloadServerCertP12_1`
 
 
 **Parameters:**
@@ -319,6 +412,198 @@ operationId: `getCertificatesByRadiusId`
 **Responses:**
 
 - `200` Certificate → `Certificate_Template_CertificateDto`
+
+
+---
+
+### `POST` `/serverCertificates`
+
+**Upload certificate**
+
+Uploads a server or client certificate.
+
+operationId: `uploadCert`
+
+
+**Request Body:** Yes
+
+| Field | Type | Required | Description |
+|-------|------|:--------:|-------------|
+| `certificateFile` | `string` | ✓ | The certificate in P12, DER or PEM format be uploaded. |
+| `name` | `string` | ✓ | The name for the certificate. |
+| `password` | `string` |  | If private key or key store is password-protected, specify the password. If not, leave the password blank. |
+| `privateKeyFile` | `string` |  | The private key in PEM format be uploaded. |
+
+
+**Responses:**
+
+- `202` The upload request has been accepted and is in progress. → `Certificate_Template_OperationResponse`
+
+
+---
+
+### `POST` `/serverCertificates/query`
+
+**Search certificates**
+
+Searches for server or client certificates matching the search criteria.
+
+operationId: `queryCerts`
+
+
+**Request Body:** `Certificate_Template_CertQueryRequest`
+
+| Field | Type | Required | Description |
+|-------|------|:--------:|-------------|
+| `fields` | `array` |  | List of field names to include in the response. |
+| `filters` | `Certificate_Template_CertFilters` |  | Filters to apply when querying server certificates. |
+| `page` | `integer` |  |  |
+| `pageSize` | `integer` |  | Number of items per page for pagination. |
+| `searchString` | `string` |  | Search string to filter results. |
+| `searchTargetFields` | `array` |  | List of field names to search within. |
+| `sortField` | `string` |  | Field name to sort the results by. |
+| `sortOrder` | `string` |  | Sort order direction (ASC or DESC). |
+
+
+**Responses:**
+
+- `200` Certificate → `Certificate_Template_CertQueryResponse`
+
+
+---
+
+### `DELETE` `/serverCertificates/{certId}`
+
+**Delete certificate**
+
+Deletes a server or client certificate.
+
+operationId: `deleteCert`
+
+
+**Parameters:**
+
+| Name | In | Required | Type | Description |
+|------|----|:--------:|------|-------------|
+| `certId` | path | ✓ | `string` | Certificate id |
+
+
+**Responses:**
+
+- `202` The delete request has been accepted and is in progress. → `Certificate_Template_OperationResponse`
+- `404` Certificate not found → `Certificate_Template_ApiError`
+- `409` Certificate cannot be deleted because it is currently in use → `Certificate_Template_ApiError`
+
+
+---
+
+### `GET` `/serverCertificates/{certId}`
+
+**Get certificate by ID**
+
+Retrieves a specific server or client certificate by ID.
+
+operationId: `downloadCertPem`
+
+
+**Parameters:**
+
+| Name | In | Required | Type | Description |
+|------|----|:--------:|------|-------------|
+| `certId` | path | ✓ | `string` | Certificate id |
+
+
+**Responses:**
+
+- `200` Certificate → `Certificate_Template_CertificateDto`
+- `404` Certificate not found → `Certificate_Template_ApiError`
+
+
+---
+
+### `PATCH` `/serverCertificates/{certId}`
+
+**Update certificate**
+
+Updates a server or client certificate.
+
+operationId: `patchCert`
+
+
+**Parameters:**
+
+| Name | In | Required | Type | Description |
+|------|----|:--------:|------|-------------|
+| `certId` | path | ✓ | `string` | Certificate id |
+
+
+**Request Body:** `Certificate_Template_UpdateServerCertificateDto`
+
+| Field | Type | Required | Description |
+|-------|------|:--------:|-------------|
+| `description` | `string` |  | The description of this certificate. |
+| `name` | `string` |  | The name for the certificate. |
+| `notAfterDate` | `string` |  | The expiration date for the renewed certificate. The start date for the validity period will also be set to today. |
+| `revocationReason` | `string` |  | The reason for revocation of passphrase. If not revoked, this field should be null. |
+
+
+**Responses:**
+
+- `202` The update request has been accepted and is in progress. → `Certificate_Template_OperationResponse`
+
+
+---
+
+### `POST` `/serverCertificates/{certId}`
+
+**Download certificate private key**
+
+Downloads the private key of a certificate.
+
+operationId: `downloadServerCertP12`
+
+
+**Parameters:**
+
+| Name | In | Required | Type | Description |
+|------|----|:--------:|------|-------------|
+| `certId` | path | ✓ | `string` | Certificate id |
+
+
+**Request Body:** `Certificate_Template_CertDownloadRequest`
+
+| Field | Type | Required | Description |
+|-------|------|:--------:|-------------|
+| `includeChain` | `boolean` |  | Whether to include the certificate chain in the download. |
+| `password` | `string` |  | The password to use to encrypt the private key. If encryption is not required, please leave it blank. |
+
+
+**Responses:**
+
+- `200` Downloaded private key of CA
+
+
+---
+
+### `GET` `/serverCertificates/{certId}/chains`
+
+**Download certificate chain**
+
+Downloads the certificate chain in PEM format.
+
+operationId: `downloadServerCertChainInPkcs7_1`
+
+
+**Parameters:**
+
+| Name | In | Required | Type | Description |
+|------|----|:--------:|------|-------------|
+| `certId` | path | ✓ | `string` | Certificate id |
+
+
+**Responses:**
+
+- `200` Downloaded certificate in chain.
 
 
 ---
@@ -431,7 +716,7 @@ operationId: `generateCert`
 
 Searches for certificates in a specific template matching the search criteria.
 
-operationId: `queryCerts_1`
+operationId: `queryCerts_2`
 
 
 **Parameters:**
@@ -493,7 +778,7 @@ operationId: `downloadCertDer`
 
 Updates a device certificate with the provided changes.
 
-operationId: `patchCert_1`
+operationId: `patchCert_2`
 
 
 **Parameters:**
@@ -1162,7 +1447,7 @@ operationId: `getCAsByRadiusId`
 *APIs for certificate template management.*
 
 
-*21 endpoints*
+*22 endpoints*
 
 
 ### `POST` `/certificateTemplates/query`
@@ -1803,6 +2088,94 @@ operationId: `patchScepKey`
 **Responses:**
 
 - `202` The update request has been accepted and is in progress. → `Certificate_Template_OperationResponse`
+
+
+---
+
+### `GET` `/wifiNetworks/{networkId}/certificateTemplates`
+
+**Get templates by network**
+
+Retrieves certificate templates associated with a network.
+
+operationId: `getTemplateByNetworkId`
+
+
+**Parameters:**
+
+| Name | In | Required | Type | Description |
+|------|----|:--------:|------|-------------|
+| `networkId` | path | ✓ | `string` | Wifi network id |
+| `pageable` | query | ✓ | `Certificate_Template_Pageable` | parameters for paging |
+
+
+**Responses:**
+
+- `200` Certificate Template → `Certificate_Template_CertificateTemplateDto`
+- `404` Certificate Template not found → `Certificate_Template_ApiError`
+
+
+---
+
+
+
+## system-controller
+
+*2 endpoints*
+
+
+### `GET` `/systems/certificateAuthorities`
+
+operationId: `queryDefaultCa`
+
+
+**Responses:**
+
+- `200` OK
+
+
+---
+
+### `POST` `/systems/certificates`
+
+operationId: `generateCertByDefaultCa`
+
+
+**Request Body:** `Certificate_Template_CertificateDto`
+
+| Field | Type | Required | Description |
+|-------|------|:--------:|-------------|
+| `algorithm` | `Certificate_Template_AlgorithmEnum` | ✓ | SHA-256 - the SHA-2 hash using 256 bits. SHA-384 - the SHA-2 hash using 384 bits. SHA-512 - the SHA-2 hash using 512 bits. |
+| `certificateAuthorityName` | `string` |  | The name of the certificate authority that issued this certificate. |
+| `chain` | `string` |  | The chain of the certificate. |
+| `commonName` | `string` |  | The common name of the certificate. |
+| `country` | `string` |  | The country included in the certificate. |
+| `createDate` | `string` |  | The date that creates the certificate. |
+| `csrString` | `string` |  | The certificate signing request that should be signed by the CA. |
+| `description` | `string` |  | The description of the certificate. |
+| `details` | `string` |  | The details of the certificate. |
+| `email` | `string` |  | The email of the certificate. |
+| `extendedKeyUsages` | `array` |  | The extended key usage of the certificate. |
+| `id` | `string` |  | The unique for this certificate. |
+| `keyLength` | `integer` | ✓ | The length of the key. |
+| `keyUsages` | `array` |  | The key usages of the certificate. |
+| `locality` | `string` |  | The locality included in the certificate. |
+| `name` | `string` | ✓ | The name of the certificate. |
+| `notAfterDate` | `string` | ✓ | The expires date of the certificate. |
+| `notBeforeDate` | `string` | ✓ | The start date of the certificate. |
+| `organization` | `string` |  | The organization of the certificate. |
+| `organizationUnit` | `string` |  | The organization unit of the certificate. |
+| `privateKeyBase64` | `string` |  | The private key of the certificate. |
+| `publicKeyBase64` | `string` |  | The public key of the certificate. |
+| `revocationDate` | `string` |  | The date after which the certificate be revoked. |
+| `revocationReason` | `string` |  | Reason for revocation of certificate. |
+| `serialNumber` | `string` |  | The serial number of the certificate. |
+| *… 4 more fields* | | | |
+
+
+**Responses:**
+
+- `200` OK
 
 
 ---

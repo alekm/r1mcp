@@ -1272,7 +1272,7 @@ operationId: `ActivateMdnsProxy`
 *Manage troubleshooting operations for the devices.*
 
 
-*1 endpoint*
+*3 endpoints*
 
 
 ### `PATCH` `/venues/{venueId}/edgeClusters/{clusterId}/edges/{serialNumber}/hostDetails`
@@ -1304,6 +1304,78 @@ operationId: `TriggerEdgeAction`
 **Responses:**
 
 - `200` OK → `RUCKUS_Edge_OperationResponseObject`
+- `400` Bad/malformed request → `RUCKUS_Edge_GeneralErrorResponse`
+- `401` Unauthorized → `RUCKUS_Edge_GeneralErrorResponse`
+- `403` Forbidden → `RUCKUS_Edge_GeneralErrorResponse`
+- `404` Requested resource or related entity not found → `RUCKUS_Edge_GeneralErrorResponse`
+- `422` Validation error → `RUCKUS_Edge_GeneralErrorResponse`
+- `500` Internal Server Error → `RUCKUS_Edge_GeneralErrorResponse`
+
+
+---
+
+### `GET` `/venues/{venueId}/edgeClusters/{clusterId}/edges/{serialNumber}/packets`
+
+**Get Packet Capture Status**
+
+Retrieves the packet capture status for a specific Edge device, including the session identifier, operation state, and download details when available.
+
+operationId: `getPackets`
+
+
+**Parameters:**
+
+| Name | In | Required | Type | Description |
+|------|----|:--------:|------|-------------|
+| `venueId` | path | ✓ | `string` |  |
+| `clusterId` | path | ✓ | `string` |  |
+| `serialNumber` | path | ✓ | `string` | The SN of the Edge device |
+
+
+**Responses:**
+
+- `200` OK → `RUCKUS_Edge_GetPacketsResponseDto`
+- `400` Bad/malformed request → `RUCKUS_Edge_GeneralErrorResponse`
+- `401` Unauthorized → `RUCKUS_Edge_GeneralErrorResponse`
+- `403` Forbidden → `RUCKUS_Edge_GeneralErrorResponse`
+- `404` Requested resource or related entity not found → `RUCKUS_Edge_GeneralErrorResponse`
+- `422` Validation error → `RUCKUS_Edge_GeneralErrorResponse`
+- `500` Internal Server Error → `RUCKUS_Edge_GeneralErrorResponse`
+
+
+---
+
+### `PATCH` `/venues/{venueId}/edgeClusters/{clusterId}/edges/{serialNumber}/packets`
+
+**Operate Packet Capture**
+
+Starts or stops packet capture on the Edge. To start, specify the capture interface and an optional MAC address filter. To stop, specify the active session identifier.
+
+operationId: `patchPackets`
+
+
+**Parameters:**
+
+| Name | In | Required | Type | Description |
+|------|----|:--------:|------|-------------|
+| `venueId` | path | ✓ | `string` |  |
+| `clusterId` | path | ✓ | `string` |  |
+| `serialNumber` | path | ✓ | `string` | The SN of the Edge device |
+
+
+**Request Body:** `RUCKUS_Edge_PacketCapturePatchRequestDto`
+
+| Field | Type | Required | Description |
+|-------|------|:--------:|-------------|
+| `action` | `string` | ✓ | Packet capture action to perform. Use START to begin capture or STOP to end capture. |
+| `captureInterface` | `string` |  | Network interface on the Edge device used for packet capture. Required when starting capture. |
+| `macAddressFilter` | `string` |  | Optional MAC address filter for captured traffic. |
+| `sessionId` | `string` |  | Session identifier. Required when stopping capture; must match the active session. |
+
+
+**Responses:**
+
+- `202` Accepted → `RUCKUS_Edge_OperationResponsePacketCapturePatchResponse`
 - `400` Bad/malformed request → `RUCKUS_Edge_GeneralErrorResponse`
 - `401` Unauthorized → `RUCKUS_Edge_GeneralErrorResponse`
 - `403` Forbidden → `RUCKUS_Edge_GeneralErrorResponse`
@@ -1771,7 +1843,7 @@ operationId: `updateArpTerminationSettings`
 *Check the compatibility of Edge devices.*
 
 
-*3 endpoints*
+*2 endpoints*
 
 
 ### `POST` `/edgeFeatureSets/query`
@@ -1793,35 +1865,6 @@ operationId: `queryEdgeFeaturesRequirement`
 **Responses:**
 
 - `200` OK → `RUCKUS_Edge_FeatureSetsResponseV1_1`
-- `400` Bad/malformed request → `RUCKUS_Edge_GeneralErrorResponse`
-- `401` Unauthorized → `RUCKUS_Edge_GeneralErrorResponse`
-- `403` Forbidden → `RUCKUS_Edge_GeneralErrorResponse`
-- `404` Requested resource or related entity not found → `RUCKUS_Edge_GeneralErrorResponse`
-- `422` Validation error → `RUCKUS_Edge_GeneralErrorResponse`
-- `500` Internal Server Error → `RUCKUS_Edge_GeneralErrorResponse`
-
-
----
-
-### `POST` `/venues/edgeAppCompatibilities/query`
-
-**Query EdgeApp Compatibility Information**
-
-Query the EdgeApp firmware compatibility for Edge devices in a venue.
-
-operationId: `queryEdgeAppCompatibilities`
-
-
-**Request Body:** `RUCKUS_Edge_VenueEdgeAppCompatibilityRequest`
-
-| Field | Type | Required | Description |
-|-------|------|:--------:|-------------|
-| `filters` | `RUCKUS_Edge_VenueEdgeAppCompatibilityFilter` | ✓ | Filters for querying EdgeApp compatibility. |
-
-
-**Responses:**
-
-- `200` OK → `RUCKUS_Edge_VenueEdgeAppCompatibilityResponse`
 - `400` Bad/malformed request → `RUCKUS_Edge_GeneralErrorResponse`
 - `401` Unauthorized → `RUCKUS_Edge_GeneralErrorResponse`
 - `403` Forbidden → `RUCKUS_Edge_GeneralErrorResponse`

@@ -24,7 +24,7 @@ RUCKUS cloud won't provide file service API for general purpose.
 
 All required file upload or download functions will be provided by respective RUCKUS cloud services.
 
-This method will be removed no sooner than 06/30/2026.
+This method will be removed no sooner than 08/31/2026.
 
 operationId: `getUploadUrl`
 
@@ -60,7 +60,7 @@ RUCKUS cloud won't provide file service API for general purpose.
 
 All required file upload or download functions will be provided by respective RUCKUS cloud services.
 
-This method will be removed no sooner than 06/30/2026.
+This method will be removed no sooner than 08/31/2026.
 
 operationId: `getDownloadUrl`
 
@@ -96,7 +96,7 @@ RUCKUS cloud won't provide file service API for general purpose.
 
 All required file upload or download functions will be provided by respective RUCKUS cloud services.
 
-This method will be removed no sooner than 06/30/2026.
+This method will be removed no sooner than 08/31/2026.
 
 operationId: `getFileDownloadUrl`
 

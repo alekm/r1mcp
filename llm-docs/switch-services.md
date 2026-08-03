@@ -17,7 +17,7 @@
 
 **Delete AAA Servers**
 
-Delete multiple authentication, authorization, and accounting servers. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aaaServers can be used for this content.
+Delete multiple authentication, authorization, and accounting servers. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aaaServers can be used for this content.
 
 operationId: `DeleteAaaServers_1`
 
@@ -42,7 +42,7 @@ operationId: `DeleteAaaServers_1`
 
 **Query AAA Servers**
 
-List of venue's authentication, authorization, and accounting servers. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aaaServers/query can be used for this content.
+List of venue's authentication, authorization, and accounting servers. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aaaServers/query can be used for this content.
 
 operationId: `QueryAaaServers_1`
 
@@ -77,7 +77,7 @@ operationId: `QueryAaaServers_1`
 
 **Delete AAA Server**
 
-Delete authentication, authorization, and accounting server by id. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aaaServers/{aaaServerId} can be used for this content.
+Delete authentication, authorization, and accounting server by id. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aaaServers/{aaaServerId} can be used for this content.
 
 operationId: `DeleteAaaServer_1`
 
@@ -106,7 +106,7 @@ operationId: `DeleteAaaServer_1`
 
 **Get AAA Server Setting**
 
-Get a switch's authentication, authorization, and accounting server setting. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aaaServers/{aaaServerId} can be used for this content.
+Get a switch's authentication, authorization, and accounting server setting. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aaaServers/{aaaServerId} can be used for this content.
 
 operationId: `GetAaaServer_1`
 
@@ -169,7 +169,7 @@ operationId: `DeleteAaaServers`
 
 Add authentication, authorization, and accounting server. Use activity API with request id to get the status update.
 
-operationId: `AddAaaServer_1_1`
+operationId: `AddAaaServer`
 
 
 **Parameters:**
@@ -319,7 +319,7 @@ operationId: `GetAaaServer`
 
 Update authentication, authorization, and accounting server by id. Use activity API with request id to get the status update.
 
-operationId: `PutAaaServer_1_1`
+operationId: `PutAaaServer`
 
 
 **Parameters:**
@@ -378,7 +378,7 @@ operationId: `PutAaaServer_1_1`
 
 Retrieve venue's authentication, authorization, and accounting setting.
 
-operationId: `GetAaaSettings_1_1`
+operationId: `GetAaaSettings`
 
 
 **Parameters:**
@@ -464,7 +464,7 @@ operationId: `PutAaaSetting`
 
 **Update AAA Setting**
 
-Update authentication, authorization, and accounting setting by id. Use activity API with request id to get the status update. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/aaaSettings can be used for this content.
+Update authentication, authorization, and accounting setting by id. Use activity API with request id to get the status update. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/aaaSettings can be used for this content.
 
 operationId: `PutAaaSetting_1`
 
@@ -535,7 +535,7 @@ operationId: `PutAaaSetting_1`
 
 Delete command line interface templates.
 
-operationId: `DeleteCliTemplates_1`
+operationId: `DeleteCliTemplates`
 
 
 **Request Body:** Yes
@@ -559,7 +559,7 @@ operationId: `DeleteCliTemplates_1`
 
 **Get Command Line Interface Templates**
 
-Get a list of command line interface templates. This method will be removed no sooner than 06/30/2026. The following URL /cliTemplates/{cliTemplateId} can be used for this content.
+Get a list of command line interface templates. This method will be removed no sooner than 08/31/2026. The following URL /cliTemplates/{cliTemplateId} can be used for this content.
 
 operationId: `GetCliTemplates`
 
@@ -583,7 +583,7 @@ operationId: `GetCliTemplates`
 
 Create a command line interface template for switches.
 
-operationId: `AddCliTemplate_1_1`
+operationId: `AddCliTemplate`
 
 
 **Request Body:** `Switch_Services_AcxCliTemplateBo_V1`
@@ -619,7 +619,7 @@ operationId: `AddCliTemplate_1_1`
 
 Get a list of command line interface template examples.
 
-operationId: `GetCliTemplates_2_1`
+operationId: `GetCliTemplates_1`
 
 
 **Parameters:**
@@ -648,7 +648,7 @@ operationId: `GetCliTemplates_2_1`
 
 Get a list of command line interface templates by query.
 
-operationId: `QueryCliTemplates_1_1`
+operationId: `QueryCliTemplates`
 
 
 **Request Body:** `Switch_Services_SearchableQueryRequest`
@@ -685,7 +685,7 @@ operationId: `QueryCliTemplates_1_1`
 
 Delete a command line interface template by id.
 
-operationId: `DeleteCliTemplate_1_1`
+operationId: `DeleteCliTemplate`
 
 
 **Parameters:**
@@ -715,7 +715,7 @@ operationId: `DeleteCliTemplate_1_1`
 
 Get a command line interface template by id.
 
-operationId: `GetCliTemplate_1_1`
+operationId: `GetCliTemplate`
 
 
 **Parameters:**
@@ -744,7 +744,7 @@ operationId: `GetCliTemplate_1_1`
 
 Update a command line interface template for switches by id.
 
-operationId: `UpdateCliTemplate_1_1`
+operationId: `UpdateCliTemplate`
 
 
 **Parameters:**
@@ -861,7 +861,7 @@ operationId: `AssociateCliTemplate`
 
 **Get Configuration History**
 
-Query for configuration history details on this switch. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/configHistDetails/query can be used for this content.
+Query for configuration history details on this switch. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/configHistDetails/query can be used for this content.
 
 operationId: `GetAllConfigurationHistDetailsBySwitch_1`
 
@@ -905,7 +905,7 @@ operationId: `GetAllConfigurationHistDetailsBySwitch_1`
 
 **Get Configuration History**
 
-Get the configuration history details of this transaction on this switch. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/transactions/{transactionId}/configHistDetails can be used for this content.
+Get the configuration history details of this transaction on this switch. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/transactions/{transactionId}/configHistDetails can be used for this content.
 
 operationId: `RetrieveSwitchConfigurationHistDetailByTransaction_1`
 
@@ -937,7 +937,7 @@ operationId: `RetrieveSwitchConfigurationHistDetailByTransaction_1`
 
 Query for configuration history details for switches in this venue.
 
-operationId: `GetConfigurationHistoryByVenue_1_1`
+operationId: `GetConfigurationHistoryByVenue`
 
 
 **Parameters:**
@@ -1052,7 +1052,7 @@ operationId: `RetrieveSwitchConfigurationHistDetailByTransaction`
 
 Get the configuration history details for this transaction relative to the switches in this venue.
 
-operationId: `GetVenueConfigurationHistoryDetailByTransaction_1_1`
+operationId: `GetVenueConfigurationHistoryDetailByTransaction`
 
 
 **Parameters:**
@@ -1105,7 +1105,7 @@ operationId: `GetVenueConfigurationHistoryDetailByTransaction_1_1`
 
 **Query DHCP Servers**
 
-List of venue's DHCP servers. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/dhcpServers/query can be used for this content.
+List of venue's DHCP servers. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/dhcpServers/query can be used for this content.
 
 operationId: `ListOfVenueDhcpServers`
 
@@ -1139,7 +1139,7 @@ operationId: `ListOfVenueDhcpServers`
 
 **Get DHCP Server Setting**
 
-Get switch's DHCP server setting. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/dhcpServers/{dhcpServerId} can be used for this content.
+Get switch's DHCP server setting. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/dhcpServers/{dhcpServerId} can be used for this content.
 
 operationId: `GetSwitchDhcpServerSetting_1`
 
@@ -1168,7 +1168,7 @@ operationId: `GetSwitchDhcpServerSetting_1`
 
 **Update DHCP Server**
 
-Change switch's DHCP server state. Use activity API with request id to get the status update. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/dhcpServerStates with PATCH method can be used for this content.
+Change switch's DHCP server state. Use activity API with request id to get the status update. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/dhcpServerStates with PATCH method can be used for this content.
 
 operationId: `ChangeSwitchDhcpServerState`
 
@@ -1204,9 +1204,9 @@ operationId: `ChangeSwitchDhcpServerState`
 
 **Delete DHCP Servers**
 
-Delete switch's DHCP servers. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/dhcpServers can be used for this content.
+Delete switch's DHCP servers. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/dhcpServers can be used for this content.
 
-operationId: `DeleteSwitchDhcpServerSettings_1`
+operationId: `DeleteSwitchDhcpServerSettings`
 
 
 **Parameters:**
@@ -1236,9 +1236,9 @@ operationId: `DeleteSwitchDhcpServerSettings_1`
 
 **Add DHCP Server**
 
-Add switch's DHCP server settings. Use activity API with request id to get the status update. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/dhcpServers can be used for this content.
+Add switch's DHCP server settings. Use activity API with request id to get the status update. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/dhcpServers can be used for this content.
 
-operationId: `AddSwitchDhcpServerSettings_1`
+operationId: `AddSwitchDhcpServerSettings`
 
 
 **Parameters:**
@@ -1286,7 +1286,7 @@ operationId: `AddSwitchDhcpServerSettings_1`
 
 **Update DHCP Server Setting**
 
-Update switch's DHCP server setting. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/dhcpServers/{dhcpServerId} can be used for this content.
+Update switch's DHCP server setting. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/dhcpServers/{dhcpServerId} can be used for this content.
 
 operationId: `UpdateSwitchDhcpServerSettings_1`
 
@@ -1336,7 +1336,7 @@ operationId: `UpdateSwitchDhcpServerSettings_1`
 
 **Query DHCP Servers**
 
-List of ICX's DHCP servers. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/dhcpServers/query can be used for this content.
+List of ICX's DHCP servers. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/dhcpServers/query can be used for this content.
 
 operationId: `ListOfIcxDhcpServers_1`
 
@@ -1377,7 +1377,7 @@ operationId: `ListOfIcxDhcpServers_1`
 
 **Delete DHCP Server Setting**
 
-Delete switch's DHCP server setting. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/dhcpServers/{dhcpServerId} can be used for this content.
+Delete switch's DHCP server setting. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/dhcpServers/{dhcpServerId} can be used for this content.
 
 operationId: `DeleteSwitchDhcpServerSetting_1`
 
@@ -1446,7 +1446,7 @@ operationId: `ChangeSwitchDhcpServerState_1`
 
 Delete switch's DHCP servers.
 
-operationId: `DeleteSwitchDhcpServerSettings`
+operationId: `DeleteSwitchDhcpServerSettings_1`
 
 
 **Parameters:**
@@ -1479,7 +1479,7 @@ operationId: `DeleteSwitchDhcpServerSettings`
 
 Add switch's DHCP server settings. Use activity API with request id to get the status update.
 
-operationId: `AddSwitchDhcpServerSettings`
+operationId: `AddSwitchDhcpServerSettings_1`
 
 
 **Parameters:**
@@ -1685,7 +1685,7 @@ operationId: `UpdateSwitchDhcpServerSettings`
 
 **Delete Stack Member**
 
-Delete a specific stack member. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/stacks/{stackSwitchSerialNumber} can be used for this content.
+Delete a specific stack member. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/stacks/{stackSwitchSerialNumber} can be used for this content.
 
 operationId: `DeleteStackMember_1`
 
@@ -1714,7 +1714,7 @@ operationId: `DeleteStackMember_1`
 
 **Delete ICX Switches**
 
-Delete multiple ICX switches. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches can be used for this content.
+Delete multiple ICX switches. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches can be used for this content.
 
 operationId: `DeleteMultipleSwitches_1`
 
@@ -1739,7 +1739,7 @@ operationId: `DeleteMultipleSwitches_1`
 
 **Get ICX Switches**
 
-List of tenant's ICX switches. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches can be used for this content.
+List of tenant's ICX switches. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches can be used for this content.
 
 operationId: `GetSwitchesOfTenant`
 
@@ -1761,7 +1761,7 @@ operationId: `GetSwitchesOfTenant`
 
 **Add ICX Switches**
 
-Add multiple ICX switches. Use activity API with request id to get the status update. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches can be used for this content.
+Add multiple ICX switches. Use activity API with request id to get the status update. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches can be used for this content.
 
 operationId: `AddMultipleSwitches_1`
 
@@ -1786,7 +1786,7 @@ operationId: `AddMultipleSwitches_1`
 
 **Create Multiple Device Requests**
 
-Execute sync venues admin password on multiple switch devices, switch id list should be provided on the request body. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/deviceRequests can be used for this content.
+Execute sync venues admin password on multiple switch devices, switch id list should be provided on the request body. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/deviceRequests can be used for this content.
 
 operationId: `SyncVenueAdminPasswordMultipleDeviceRequests_1`
 
@@ -1816,7 +1816,7 @@ operationId: `SyncVenueAdminPasswordMultipleDeviceRequests_1`
 
 **Delete ICX Switch**
 
-Delete ICX switch by id. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId} can be used for this content.
+Delete ICX switch by id. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId} can be used for this content.
 
 operationId: `DeleteSwitchById_1`
 
@@ -1845,7 +1845,7 @@ operationId: `DeleteSwitchById_1`
 
 **Get ICX Switch**
 
-Get ICX switch by id. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId} can be used for this content.
+Get ICX switch by id. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId} can be used for this content.
 
 operationId: `GetSwitchById_1`
 
@@ -1874,7 +1874,7 @@ operationId: `GetSwitchById_1`
 
 **Update ICX Switch**
 
-Update ICX switch. Use activity API with request id to get the status update. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId} can be used for this content.
+Update ICX switch. Use activity API with request id to get the status update. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId} can be used for this content.
 
 operationId: `UpdateSwitchById_1`
 
@@ -1935,7 +1935,7 @@ operationId: `UpdateSwitchById_1`
 
 **Sync or Reboot ICX Device**
 
-Execute sync or reboot command on the specified switch device, no need to provide switch id list on the request body. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/deviceRequests can be used for this content.
+Execute sync or reboot command on the specified switch device, no need to provide switch id list on the request body. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/deviceRequests can be used for this content.
 
 operationId: `DeviceRequests_1`
 
@@ -2073,7 +2073,7 @@ operationId: `DeleteMultipleSwitches`
 
 Retrieve list of venues' ICX switches.
 
-operationId: `GetSwitchesByVenue_1_1`
+operationId: `GetSwitchesByVenue`
 
 
 **Parameters:**
@@ -2395,7 +2395,7 @@ operationId: `UpdateSwitchPosition`
 
 **Add Switches**
 
-Add switches by CSV file. Use activity API with request id to get the status update. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/importRequests can be used for this content.
+Add switches by CSV file. Use activity API with request id to get the status update. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/importRequests can be used for this content.
 
 operationId: `ImportSwitches_1`
 
@@ -2529,7 +2529,7 @@ operationId: `GetSwitchesImportResult`
 
 **Delete LAGs**
 
-Delete switch's multiple LAG settings. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/lags can be used for this content.
+Delete switch's multiple LAG settings. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/lags can be used for this content.
 
 operationId: `DeleteLags_1`
 
@@ -2554,7 +2554,7 @@ operationId: `DeleteLags_1`
 
 **Delete LAG**
 
-Delete switch's LAG setting. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/lags/{lagId} can be used for this content.
+Delete switch's LAG setting. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/lags/{lagId} can be used for this content.
 
 operationId: `DeleteLag_1`
 
@@ -2583,7 +2583,7 @@ operationId: `DeleteLag_1`
 
 **Get LAG**
 
-Get LAG setting by id. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/lags/{lagId} can be used for this content.
+Get LAG setting by id. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/lags/{lagId} can be used for this content.
 
 operationId: `GetLag_1`
 
@@ -2612,7 +2612,7 @@ operationId: `GetLag_1`
 
 **Update LAG**
 
-Update switch's LAG setting. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/lags/{lagId} can be used for this content.
+Update switch's LAG setting. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/lags/{lagId} can be used for this content.
 
 operationId: `UpdateLag_1`
 
@@ -2663,7 +2663,7 @@ operationId: `UpdateLag_1`
 
 **Get LAGs**
 
-List of switch's LAG settings. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/lags can be used for this content.
+List of switch's LAG settings. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/lags can be used for this content.
 
 operationId: `GetLags_1`
 
@@ -2692,7 +2692,7 @@ operationId: `GetLags_1`
 
 **Add LAGs**
 
-Add switch's multiple LAG settings. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/lags can be used for this content.
+Add switch's multiple LAG settings. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/lags can be used for this content.
 
 operationId: `AddLags_1`
 
@@ -2935,7 +2935,7 @@ operationId: `UpdateLag`
 
 **Delete Switch Profiles**
 
-Delete multiple regular switch profiles or command line interface profiles. This method will be removed no sooner than 06/30/2026. The following URL /switchProfiles/{switchProfileId} can be used for this content.
+Delete multiple regular switch profiles or command line interface profiles. This method will be removed no sooner than 08/31/2026. The following URL /switchProfiles/{switchProfileId} can be used for this content.
 
 operationId: `DeleteProfiles`
 
@@ -2960,7 +2960,7 @@ operationId: `DeleteProfiles`
 
 **Get Switch Profiles**
 
-Get multiple regular switch profiles or command line interface profiles. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switchProfiles can be used for this content.
+Get multiple regular switch profiles or command line interface profiles. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switchProfiles can be used for this content.
 
 operationId: `GetProfiles`
 
@@ -2984,7 +2984,7 @@ operationId: `GetProfiles`
 
 Add a regular switch profile or command line interface profile. Use activity API with request id to get the status update.
 
-operationId: `AddProfile_1`
+operationId: `AddProfile`
 
 
 **Request Body:** `Switch_Services_ProfileBo_V1`
@@ -3028,7 +3028,7 @@ operationId: `AddProfile_1`
 
 List the regular switch profiles or command line interface profiles.
 
-operationId: `QueryProfiles_1_1`
+operationId: `QueryProfiles`
 
 
 **Request Body:** `Switch_Services_SearchableQueryRequest`
@@ -3065,7 +3065,7 @@ operationId: `QueryProfiles_1_1`
 
 Delete a regular switch profile or command line interface profile.
 
-operationId: `DeleteProfileById_1_1`
+operationId: `DeleteProfileById`
 
 
 **Parameters:**
@@ -3095,7 +3095,7 @@ operationId: `DeleteProfileById_1_1`
 
 Get a regular switch profile or command line interface profile.
 
-operationId: `GetProfileById_1`
+operationId: `GetProfileById`
 
 
 **Parameters:**
@@ -3124,7 +3124,7 @@ operationId: `GetProfileById_1`
 
 Update a regular switch profile or command line interface profile. Use activity API with request id to get the status update.
 
-operationId: `UpdateProfile_1`
+operationId: `UpdateProfile`
 
 
 **Parameters:**
@@ -3175,7 +3175,7 @@ operationId: `UpdateProfile_1`
 
 Get regular switch profiles or command line interface profiles of the venue.
 
-operationId: `GetProfilesByVenueId_1`
+operationId: `GetProfilesByVenueId`
 
 
 **Parameters:**
@@ -3272,7 +3272,7 @@ operationId: `AssociateProfile`
 
 **Delete ACLs**
 
-Delete multiple ACLs of the switch profile. This method will be removed no sooner than 06/30/2026.
+Delete multiple ACLs of the switch profile. This method will be removed no sooner than 08/31/2026.
 
 operationId: `DeleteProfileAcls`
 
@@ -3304,7 +3304,7 @@ operationId: `DeleteProfileAcls`
 
 **Get ACLs**
 
-Get multiple ACLs of the switch profile. This method will be removed no sooner than 06/30/2026.
+Get multiple ACLs of the switch profile. This method will be removed no sooner than 08/31/2026.
 
 operationId: `GetAcls`
 
@@ -3335,7 +3335,7 @@ operationId: `GetAcls`
 
 **Add ACL**
 
-Add the ACL of the switch profile. This method will be removed no sooner than 06/30/2026.
+Add the ACL of the switch profile. This method will be removed no sooner than 08/31/2026.
 
 operationId: `AddProfileAcl`
 
@@ -3375,7 +3375,7 @@ operationId: `AddProfileAcl`
 
 **Delete ACL**
 
-Delete ACL of the switch profile. This method will be removed no sooner than 06/30/2026.
+Delete ACL of the switch profile. This method will be removed no sooner than 08/31/2026.
 
 operationId: `DeleteProfileAcl`
 
@@ -3405,9 +3405,9 @@ operationId: `DeleteProfileAcl`
 
 **Get ACL**
 
-Get the ACL of the switch profile. This method will be removed no sooner than 06/30/2026.
+Get the ACL of the switch profile. This method will be removed no sooner than 08/31/2026.
 
-operationId: `GetAclById_1`
+operationId: `GetAclById`
 
 
 **Parameters:**
@@ -3435,7 +3435,7 @@ operationId: `GetAclById_1`
 
 **Update ACL**
 
-Update the ACL of the switch profile. This method will be removed no sooner than 06/30/2026.
+Update the ACL of the switch profile. This method will be removed no sooner than 08/31/2026.
 
 operationId: `UpdateProfileAcl`
 
@@ -3476,7 +3476,7 @@ operationId: `UpdateProfileAcl`
 
 **Get ACLs**
 
-Get all ACLs of switch profiles in the venue. This method will be removed no sooner than 06/30/2026.
+Get all ACLs of switch profiles in the venue. This method will be removed no sooner than 08/31/2026.
 
 operationId: `GetAclsByVenueId`
 
@@ -3515,7 +3515,7 @@ operationId: `GetAclsByVenueId`
 
 **Delete Switch Profile Templates**
 
-Delete multiple regular switch profile templates or command line interface profile templates. This method will be removed no sooner than 06/30/2026. The following URL /templates/switchProfiles/{switchProfileId} can be used for this content.
+Delete multiple regular switch profile templates or command line interface profile templates. This method will be removed no sooner than 08/31/2026. The following URL /templates/switchProfiles/{switchProfileId} can be used for this content.
 
 operationId: `DeleteProfileTemplates`
 
@@ -3540,7 +3540,7 @@ operationId: `DeleteProfileTemplates`
 
 **Get Switch Profile Templates**
 
-Get multiple regular switch profile templates or command line interface profile templates. This method will be removed no sooner than 06/30/2026. The following URL /templates/switchProfiles/{switchProfileId} can be used for this content.
+Get multiple regular switch profile templates or command line interface profile templates. This method will be removed no sooner than 08/31/2026. The following URL /templates/switchProfiles/{switchProfileId} can be used for this content.
 
 operationId: `GetProfileTemplates`
 
@@ -3564,7 +3564,7 @@ operationId: `GetProfileTemplates`
 
 Add a regular switch profile template or command line interface profile template. Use activity API with request id to get the status update.
 
-operationId: `AddProfileTemplate_1_1`
+operationId: `AddProfileTemplate`
 
 
 **Request Body:** `Switch_Services_ProfileDto_V1_1`
@@ -3603,7 +3603,7 @@ operationId: `AddProfileTemplate_1_1`
 
 List the regular switch profile templates or command line interface profile templates.
 
-operationId: `QueryProfileTemplates_1_1`
+operationId: `QueryProfileTemplates`
 
 
 **Request Body:** `Switch_Services_SearchableQueryRequest`
@@ -3640,7 +3640,7 @@ operationId: `QueryProfileTemplates_1_1`
 
 Delete a regular switch profile template or command line interface profile template.
 
-operationId: `DeleteProfileTemplateById_1_1`
+operationId: `DeleteProfileTemplateById`
 
 
 **Parameters:**
@@ -3670,7 +3670,7 @@ operationId: `DeleteProfileTemplateById_1_1`
 
 Get a regular switch profile template or command line interface profile template.
 
-operationId: `GetProfileTemplateById_1_1`
+operationId: `GetProfileTemplateById`
 
 
 **Parameters:**
@@ -3699,7 +3699,7 @@ operationId: `GetProfileTemplateById_1_1`
 
 Update a regular switch profile template or command line interface profile template. Use activity API with request id to get the status update.
 
-operationId: `UpdateProfileTemplate_1_1`
+operationId: `UpdateProfileTemplate`
 
 
 **Parameters:**
@@ -3745,7 +3745,7 @@ operationId: `UpdateProfileTemplate_1_1`
 
 Get regular switch profile templates or command line interface profile templates of the venue.
 
-operationId: `GetProfileTemplatesByVenueId_1_1`
+operationId: `GetProfileTemplatesByVenueId`
 
 
 **Parameters:**
@@ -3842,7 +3842,7 @@ operationId: `AssociateProfileTemplate`
 
 **Delete Multiple VLANs**
 
-Delete multiple VLANs of the switch profile. This method will be removed no sooner than 06/30/2026.
+Delete multiple VLANs of the switch profile. This method will be removed no sooner than 08/31/2026.
 
 operationId: `DeleteVlans`
 
@@ -3874,7 +3874,7 @@ operationId: `DeleteVlans`
 
 **Get Multiple VLANs**
 
-Get multiple VLANs of the switch profile. This method will be removed no sooner than 06/30/2026.
+Get multiple VLANs of the switch profile. This method will be removed no sooner than 08/31/2026.
 
 operationId: `GetVlans`
 
@@ -3907,7 +3907,7 @@ operationId: `GetVlans`
 
 Create a VLAN of the switch profile.
 
-operationId: `AddVlan_1_1`
+operationId: `AddVlan`
 
 
 **Parameters:**
@@ -3967,7 +3967,7 @@ operationId: `AddVlan_1_1`
 
 **Delete Profile VLAN**
 
-Delete the specified VLAN of the switch profile. This method will be removed no sooner than 06/30/2026.
+Delete the specified VLAN of the switch profile. This method will be removed no sooner than 08/31/2026.
 
 operationId: `DeleteVlanByUuid`
 
@@ -3997,7 +3997,7 @@ operationId: `DeleteVlanByUuid`
 
 **Get Profile VLAN**
 
-Get the specified VLAN of the switch profile. This method will be removed no sooner than 06/30/2026.
+Get the specified VLAN of the switch profile. This method will be removed no sooner than 08/31/2026.
 
 operationId: `GetVlanByUuid`
 
@@ -4027,7 +4027,7 @@ operationId: `GetVlanByUuid`
 
 **Update VLAN**
 
-Update the VLAN of the switch profile. This method will be removed no sooner than 06/30/2026.
+Update the VLAN of the switch profile. This method will be removed no sooner than 08/31/2026.
 
 operationId: `UpdateVlan`
 
@@ -4089,7 +4089,7 @@ operationId: `UpdateVlan`
 
 **Retrieve VLANs**
 
-List all usable VLANs for multiple ports of the same switch. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/vlanUnions can be used for this content.
+List all usable VLANs for multiple ports of the same switch. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/vlanUnions can be used for this content.
 
 operationId: `GetVlanUnion_1`
 
@@ -4120,7 +4120,7 @@ operationId: `GetVlanUnion_1`
 
 Get a list of VLANs in profiles with the specified venue.
 
-operationId: `GetVlansByVenue_1_1`
+operationId: `GetVlansByVenue`
 
 
 **Parameters:**
@@ -4177,7 +4177,7 @@ operationId: `GetVlanUnion`
 
 **Retrieve Tagged VLANs**
 
-List of venues switch profile VLANs with specific model and tagged port. This method will be removed no sooner than 06/30/2026.
+List of venues switch profile VLANs with specific model and tagged port. This method will be removed no sooner than 08/31/2026.
 
 operationId: `GetTaggedVlansByVenue`
 
@@ -4213,7 +4213,7 @@ operationId: `GetTaggedVlansByVenue`
 
 **Retrieve Untagged VLANs**
 
-List of venues switch profile VLANs with specific model and untagged port. This method will be removed no sooner than 06/30/2026.
+List of venues switch profile VLANs with specific model and untagged port. This method will be removed no sooner than 08/31/2026.
 
 operationId: `GetUntaggedVlansByVenue`
 
@@ -4249,7 +4249,7 @@ operationId: `GetUntaggedVlansByVenue`
 
 **Get VLANs**
 
-List all of VLANs in profiles with the specified venue and the specific model. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switchProfiles/vlans can be used for this content.
+List all of VLANs in profiles with the specified venue and the specific model. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switchProfiles/vlans can be used for this content.
 
 operationId: `GetVlansByVenueAndModel`
 
@@ -4289,9 +4289,9 @@ operationId: `GetVlansByVenueAndModel`
 
 **Get ACL**
 
-Get the ACL of the switch. This method will be removed no sooner than 06/30/2026.
+Get the ACL of the switch. This method will be removed no sooner than 08/31/2026.
 
-operationId: `GetAclById`
+operationId: `GetAclById_1`
 
 
 **Parameters:**
@@ -4318,7 +4318,7 @@ operationId: `GetAclById`
 
 **Get ACL Union**
 
-List all usable ACLs for this switch (the union of venue and device levels). This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/aclUnions can be used for this content.
+List all usable ACLs for this switch (the union of venue and device levels). This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/aclUnions can be used for this content.
 
 operationId: `GetAclUnion_1`
 
@@ -4347,7 +4347,7 @@ operationId: `GetAclUnion_1`
 
 **Get ACLs**
 
-Get all ACLs of the switch. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/acls can be used for this content.
+Get all ACLs of the switch. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/acls can be used for this content.
 
 operationId: `GetAclsBySwitch_1`
 
@@ -4376,7 +4376,7 @@ operationId: `GetAclsBySwitch_1`
 
 **Retrieve ACLs**
 
-Query the switch's switch level ACLs. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/acls/query can be used for this content.
+Query the switch's switch level ACLs. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/acls/query can be used for this content.
 
 operationId: `GetSwitchAclsByQuery_1`
 
@@ -4527,7 +4527,7 @@ operationId: `GetSwitchAclsByQuery`
 
 **Delete Switch Configuration Backups**
 
-Delete switch's configuration backups. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/configBackups can be used for this content.
+Delete switch's configuration backups. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/configBackups can be used for this content.
 
 operationId: `DeleteSwitchConfigBackups_1`
 
@@ -4552,7 +4552,7 @@ operationId: `DeleteSwitchConfigBackups_1`
 
 **Compare Switch Configuration Backups**
 
-Compare switch's configuration backups. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/configBackups/comparisons can be used for this content.
+Compare switch's configuration backups. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/configBackups/comparisons can be used for this content.
 
 operationId: `CompareSwitchConfigBackups_1`
 
@@ -4582,9 +4582,9 @@ operationId: `CompareSwitchConfigBackups_1`
 
 **Delete Switch Configuration Backup**
 
-Delete switch's configuration backup by id. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/configBackups/{configBackupId} can be used for this content.
+Delete switch's configuration backup by id. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/configBackups/{configBackupId} can be used for this content.
 
-operationId: `DeleteSwitchConfigBackupById_1`
+operationId: `DeleteSwitchConfigBackupById`
 
 
 **Parameters:**
@@ -4611,9 +4611,9 @@ operationId: `DeleteSwitchConfigBackupById_1`
 
 **Get Switch Configuration Backup**
 
-Get a switch's configuration backup. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/configBackups/{configBackupId} can be used for this content.
+Get a switch's configuration backup. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/configBackups/{configBackupId} can be used for this content.
 
-operationId: `GetSwitchConfigBackupById_1`
+operationId: `GetSwitchConfigBackupById`
 
 
 **Parameters:**
@@ -4640,7 +4640,7 @@ operationId: `GetSwitchConfigBackupById_1`
 
 **Restore Switch Configuration Backup**
 
-Restore switch's configuration backup. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/configBackups/{configBackupId} with PATCH method can be used for this content.
+Restore switch's configuration backup. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/configBackups/{configBackupId} with PATCH method can be used for this content.
 
 operationId: `RestoreSwitchByConfigBackup`
 
@@ -4669,7 +4669,7 @@ operationId: `RestoreSwitchByConfigBackup`
 
 **Get Switch Configuration Backups**
 
-List of switch's configuration backup. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/configBackups can be used for this content.
+List of switch's configuration backup. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/configBackups can be used for this content.
 
 operationId: `GetConfigBackupsBySwitch_1`
 
@@ -4698,7 +4698,7 @@ operationId: `GetConfigBackupsBySwitch_1`
 
 **Add Switch Configuration Backup**
 
-Create a switch's configuration backup. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/configBackups can be used for this content.
+Create a switch's configuration backup. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/configBackups can be used for this content.
 
 operationId: `AddSwitchConfigBackup_1`
 
@@ -4734,7 +4734,7 @@ operationId: `AddSwitchConfigBackup_1`
 
 **Retrieve Switch Configuration Backups**
 
-Query the switch's configuration backups. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/configBackups/query can be used for this content.
+Query the switch's configuration backups. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/configBackups/query can be used for this content.
 
 operationId: `GetSwitchConfigBackupsByQuery_1`
 
@@ -4955,7 +4955,7 @@ operationId: `GetSwitchConfigBackupsByQuery`
 
 Delete switch's configuration backup by id.
 
-operationId: `DeleteSwitchConfigBackupById`
+operationId: `DeleteSwitchConfigBackupById_1`
 
 
 **Parameters:**
@@ -4986,7 +4986,7 @@ operationId: `DeleteSwitchConfigBackupById`
 
 Get a switch's configuration backup.
 
-operationId: `GetSwitchConfigBackupById`
+operationId: `GetSwitchConfigBackupById_1`
 
 
 **Parameters:**
@@ -5096,7 +5096,7 @@ operationId: `GetFormattedConfigBackup`
 
 Get current versions of the venues.
 
-operationId: `GetCurrentVersionsByVenues_1_1`
+operationId: `GetCurrentVersionsByVenues_1`
 
 
 **Responses:**
@@ -5118,7 +5118,7 @@ operationId: `GetCurrentVersionsByVenues_1_1`
 
 Get all venues by tenant id for upgrading.
 
-operationId: `GetUpgradeVenues_1_1`
+operationId: `GetUpgradeVenues_1`
 
 
 **Request Body:** `Switch_Services_UpgradeVenueQueryFilter_V1`
@@ -5148,7 +5148,7 @@ operationId: `GetUpgradeVenues_1_1`
 
 Get all switches by tenant id for upgrading.
 
-operationId: `GetUpgradeSwitches_1_1`
+operationId: `GetUpgradeSwitches_1`
 
 
 **Request Body:** `Switch_Services_UpgradeSwitchQueryFilter_V1`
@@ -5178,7 +5178,7 @@ operationId: `GetUpgradeSwitches_1_1`
 
 Get different version type of firmware.
 
-operationId: `GetVersions_1_1`
+operationId: `GetVersions_1`
 
 
 **Parameters:**
@@ -5205,7 +5205,7 @@ operationId: `GetVersions_1_1`
 
 **Get Current Versions**
 
-Get current versions of the venues. This method will be removed no sooner than 06/30/2026. The following URL /switchFirmwares/currentVersions can be used for this content.
+Get current versions of the venues. This method will be removed no sooner than 08/31/2026. The following URL /switchFirmwares/currentVersions can be used for this content.
 
 operationId: `GetCurrentVersionsByVenues`
 
@@ -5227,7 +5227,7 @@ operationId: `GetCurrentVersionsByVenues`
 
 **Delete Upgrade Schedule**
 
-Cancel the schedule for firmware upgrade. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switchFirmwares/schedules can be used for this content.
+Cancel the schedule for firmware upgrade. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switchFirmwares/schedules can be used for this content.
 
 operationId: `SkipUpgradeSchedule_1`
 
@@ -5258,9 +5258,9 @@ operationId: `SkipUpgradeSchedule_1`
 
 **Create Upgrade Schedule**
 
-Schedule the firmware upgrade for venues. Use activity API with request id to get the status update. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switchFirmwares/schedules can be used for this content.
+Schedule the firmware upgrade for venues. Use activity API with request id to get the status update. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switchFirmwares/schedules can be used for this content.
 
-operationId: `UpdateSchedule`
+operationId: `UpdateSchedule_1`
 
 
 **Request Body:** `Switch_Services_ChangeScheduleRequest_V1`
@@ -5294,7 +5294,7 @@ operationId: `UpdateSchedule`
 
 **Get Venues**
 
-Get all venues by tenant id for upgrading. This method will be removed no sooner than 06/30/2026. The following URL /switchFirmwares/schedules/query can be used for this content.
+Get all venues by tenant id for upgrading. This method will be removed no sooner than 08/31/2026. The following URL /switchFirmwares/schedules/query can be used for this content.
 
 operationId: `GetUpgradeVenues`
 
@@ -5326,7 +5326,7 @@ operationId: `GetUpgradeVenues`
 
 **Get Switches**
 
-Get all switches by tenant id for upgrading. This method will be removed no sooner than 06/30/2026. The following URL /switchFirmwares/schedules/switches/query can be used for this content.
+Get all switches by tenant id for upgrading. This method will be removed no sooner than 08/31/2026. The following URL /switchFirmwares/schedules/switches/query can be used for this content.
 
 operationId: `GetUpgradeSwitches`
 
@@ -5356,7 +5356,7 @@ operationId: `GetUpgradeSwitches`
 
 **Get Venue Upgrade Statuses**
 
-Get venue upgrade status by venue id for upgrading. This method will be removed no sooner than 06/30/2026.
+Get venue upgrade status by venue id for upgrading. This method will be removed no sooner than 08/31/2026.
 
 operationId: `getUpgradeStatusDetails`
 
@@ -5385,7 +5385,7 @@ operationId: `getUpgradeStatusDetails`
 
 **Get Versions**
 
-Get different version type of firmware. This method will be removed no sooner than 06/30/2026. The following URL /switchFirmwares/versions/{versionType} can be used for this content.
+Get different version type of firmware. This method will be removed no sooner than 08/31/2026. The following URL /switchFirmwares/versions/{versionType} can be used for this content.
 
 operationId: `GetVersions`
 
@@ -5453,7 +5453,7 @@ operationId: `SkipUpgradeSchedule`
 
 Schedule the firmware upgrade for venues. Use activity API with request id to get the status update.
 
-operationId: `UpdateSchedule_1`
+operationId: `UpdateSchedule`
 
 
 **Parameters:**
@@ -5545,7 +5545,7 @@ operationId: `ChangeUpdateScheduleV1001`
 
 **Get Ports**
 
-Get port settings of different switches. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/portSettings can be used for this content.
+Get port settings of different switches. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/portSettings can be used for this content.
 
 operationId: `GetPortsAmongSwitches_1`
 
@@ -5570,7 +5570,7 @@ operationId: `GetPortsAmongSwitches_1`
 
 **Update Ports**
 
-Update ports of different switches. Use activity API with request id to get the status update. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/portSettings can be used for this content.
+Update ports of different switches. Use activity API with request id to get the status update. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/portSettings can be used for this content.
 
 operationId: `UpdatePortsAmongSwitches_1`
 
@@ -5595,7 +5595,7 @@ operationId: `UpdatePortsAmongSwitches_1`
 
 **Get Ports**
 
-Get switch's port settings by switch id. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/portSettings can be used for this content.
+Get switch's port settings by switch id. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/portSettings can be used for this content.
 
 operationId: `GetSwitchPortsBySwitchId_1`
 
@@ -5624,7 +5624,7 @@ operationId: `GetSwitchPortsBySwitchId_1`
 
 **Get Ports**
 
-Get switch's port settings with port ids. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/portSettings can be used for this content.
+Get switch's port settings with port ids. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/portSettings can be used for this content.
 
 operationId: `GetSwitchPortsByPortIds_1`
 
@@ -5656,7 +5656,7 @@ operationId: `GetSwitchPortsByPortIds_1`
 
 **Update Port**
 
-Update switch's port setting. Use activity API with request id to get the status update. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/portSettings can be used for this content.
+Update switch's port setting. Use activity API with request id to get the status update. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/portSettings can be used for this content.
 
 operationId: `UpdatePortSettings_1`
 
@@ -5948,7 +5948,7 @@ operationId: `UpdatePortSettings`
 
 **Delete Static Routes**
 
-Delete multiple static routes. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/staticRoutes can be used for this content.
+Delete multiple static routes. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/staticRoutes can be used for this content.
 
 operationId: `DeleteStaticRoutes_1`
 
@@ -5973,7 +5973,7 @@ operationId: `DeleteStaticRoutes_1`
 
 **Delete Static Route**
 
-Delete the specified static route. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/staticRoutes/{staticRouteId} can be used for this content.
+Delete the specified static route. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/staticRoutes/{staticRouteId} can be used for this content.
 
 operationId: `DeleteStaticRoute_1`
 
@@ -6002,7 +6002,7 @@ operationId: `DeleteStaticRoute_1`
 
 **Get Static Route**
 
-Get the specified static route. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/staticRoutes/{staticRouteId} can be used for this content.
+Get the specified static route. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/staticRoutes/{staticRouteId} can be used for this content.
 
 operationId: `GetStaticRouteById_1`
 
@@ -6031,7 +6031,7 @@ operationId: `GetStaticRouteById_1`
 
 **Update Static Route**
 
-Update the specified static route. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/staticRoutes/{staticRouteId} can be used for this content.
+Update the specified static route. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/staticRoutes/{staticRouteId} can be used for this content.
 
 operationId: `UpdateStaticRoute_1`
 
@@ -6070,7 +6070,7 @@ operationId: `UpdateStaticRoute_1`
 
 **Get Static Routes**
 
-Get multiple static routes of the switch. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/staticRoutes can be used for this content.
+Get multiple static routes of the switch. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/staticRoutes can be used for this content.
 
 operationId: `GetStaticRoutesBySwitchId_1`
 
@@ -6099,7 +6099,7 @@ operationId: `GetStaticRoutesBySwitchId_1`
 
 **Add Static Route**
 
-Add multiple static routes of the switch. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/staticRoutes can be used for this content.
+Add multiple static routes of the switch. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/staticRoutes can be used for this content.
 
 operationId: `AddStaticRoutes_1`
 
@@ -6340,7 +6340,7 @@ operationId: `UpdateStaticRoute`
 
 **Delete Switch VLANs**
 
-Delete multiple VLANs of the switch. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/vlans can be used for this content.
+Delete multiple VLANs of the switch. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/vlans can be used for this content.
 
 operationId: `DeleteSwitchVlans_1`
 
@@ -6365,7 +6365,7 @@ operationId: `DeleteSwitchVlans_1`
 
 **Add Switch VLANs**
 
-Create multiple VLANs under the specified switches. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/vlans can be used for this content.
+Create multiple VLANs under the specified switches. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/vlans can be used for this content.
 
 operationId: `AddSwitchVlans_1`
 
@@ -6390,7 +6390,7 @@ operationId: `AddSwitchVlans_1`
 
 **Retrieve Switch VLANs**
 
-Retrieve all usable VLANs under the specified switches. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/vlans/query can be used for this content.
+Retrieve all usable VLANs under the specified switches. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/vlans/query can be used for this content.
 
 operationId: `GetSwitchVlanBySwitchIds_1`
 
@@ -6420,7 +6420,7 @@ operationId: `GetSwitchVlanBySwitchIds_1`
 
 **Delete Switch VLAN**
 
-Delete a VLAN of the switch. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/vlans/{vlanId} can be used for this content.
+Delete a VLAN of the switch. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/vlans/{vlanId} can be used for this content.
 
 operationId: `DeleteSwitchVlan_1`
 
@@ -6449,7 +6449,7 @@ operationId: `DeleteSwitchVlan_1`
 
 **Get Switch VLAN**
 
-Get the specified switch level VLAN by id. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/vlans/{vlanId} can be used for this content.
+Get the specified switch level VLAN by id. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/vlans/{vlanId} can be used for this content.
 
 operationId: `GetSwitchVlan_1`
 
@@ -6478,7 +6478,7 @@ operationId: `GetSwitchVlan_1`
 
 **Update Switch VLAN**
 
-Update a VLAN of the switch. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/vlans/{vlanId} can be used for this content.
+Update a VLAN of the switch. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/vlans/{vlanId} can be used for this content.
 
 operationId: `UpdateSwitchVlan_1`
 
@@ -6539,7 +6539,7 @@ operationId: `UpdateSwitchVlan_1`
 
 **Get Switch VLANs**
 
-Get switch level VLANs by switch. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/vlans can be used for this content.
+Get switch level VLANs by switch. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/vlans can be used for this content.
 
 operationId: `GetSwitchVlans`
 
@@ -6568,7 +6568,7 @@ operationId: `GetSwitchVlans`
 
 **Add Switch VLAN**
 
-Create a VLAN of the switch. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/vlans can be used for this content.
+Create a VLAN of the switch. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/vlans can be used for this content.
 
 operationId: `AddSwitchVlan_1`
 
@@ -6629,7 +6629,7 @@ operationId: `AddSwitchVlan_1`
 
 **Query Switch VLANs**
 
-Query the switch's switch level VLANs. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/vlans/query can be used for this content.
+Query the switch's switch level VLANs. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/vlans/query can be used for this content.
 
 operationId: `QuerySwitchVlans_1`
 
@@ -6708,7 +6708,7 @@ operationId: `DeleteSwitchVlans`
 
 List all usable VLANs that are available for the VE setting.
 
-operationId: `GetVlanByVenueWithVePortsInfoBySwitchId_1`
+operationId: `GetVlanByVenueWithVePortsInfoBySwitchId`
 
 
 **Parameters:**
@@ -6938,7 +6938,7 @@ operationId: `UpdateSwitchVlan`
 
 List all usable VLANs under this venue.
 
-operationId: `GetVlanUnionByVenue_1_1`
+operationId: `GetVlanUnionByVenue`
 
 
 **Parameters:**
@@ -7039,7 +7039,7 @@ operationId: `GetSwitchVlanBySwitchIds`
 
 **Delete Virtual Ethernet Settings**
 
-Delete multiple virtual ethernet ports. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/vePorts can be used for this content.
+Delete multiple virtual ethernet ports. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/vePorts can be used for this content.
 
 operationId: `DeleteVePorts_1`
 
@@ -7064,7 +7064,7 @@ operationId: `DeleteVePorts_1`
 
 **Delete Virtual Ethernet Setting**
 
-Delete virtual ethernet port. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/vePorts/{vePortId} can be used for this content.
+Delete virtual ethernet port. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/vePorts/{vePortId} can be used for this content.
 
 operationId: `DeleteVePort_1`
 
@@ -7093,7 +7093,7 @@ operationId: `DeleteVePort_1`
 
 **Get Virtual Ethernet Setting**
 
-Get a specified virtual ethernet port. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/vePorts/{vePortId} can be used for this content.
+Get a specified virtual ethernet port. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/vePorts/{vePortId} can be used for this content.
 
 operationId: `GetVePort_1`
 
@@ -7122,7 +7122,7 @@ operationId: `GetVePort_1`
 
 **Update Virtual Ethernet Setting**
 
-Update virtual ethernet port. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/vePorts/{vePortId} can be used for this content.
+Update virtual ethernet port. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/vePorts/{vePortId} can be used for this content.
 
 operationId: `UpdateVePort_1`
 
@@ -7178,7 +7178,7 @@ operationId: `UpdateVePort_1`
 
 **Retrieve Virtual Ethernet Settings**
 
-Retrieve virtual ethernet ports of the specified switch. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/vePorts can be used for this content.
+Retrieve virtual ethernet ports of the specified switch. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/vePorts can be used for this content.
 
 operationId: `GetVePortsBySwitch_1`
 
@@ -7207,7 +7207,7 @@ operationId: `GetVePortsBySwitch_1`
 
 **Add Virtual Ethernet Settings**
 
-Add virtual ethernet ports of the switch. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/vePorts can be used for this content.
+Add virtual ethernet ports of the switch. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/vePorts can be used for this content.
 
 operationId: `AddVePorts_1`
 
@@ -7239,7 +7239,7 @@ operationId: `AddVePorts_1`
 
 **Retrieve Virtual Ethernet Settings**
 
-Retrieve virtual ethernet ports of switch by query. This method will be removed no sooner than 06/30/2026. The following URL /venues/{venueId}/switches/{switchId}/vePorts/query can be used for this content.
+Retrieve virtual ethernet ports of switch by query. This method will be removed no sooner than 08/31/2026. The following URL /venues/{venueId}/switches/{switchId}/vePorts/query can be used for this content.
 
 operationId: `GetVePortsByQuery_1`
 
@@ -7531,7 +7531,7 @@ operationId: `UpdateVePort`
 
 Retrieve virtual ethernet ports of venue by query.
 
-operationId: `GetVePortsByVenueQuery_1_1`
+operationId: `GetVePortsByVenueQuery`
 
 
 **Parameters:**
@@ -7581,7 +7581,7 @@ operationId: `GetVePortsByVenueQuery_1_1`
 
 **Delete Trusted Ports**
 
-Delete multiple trusted ports of the specified switch profile. This method will be removed no sooner than 06/30/2026.
+Delete multiple trusted ports of the specified switch profile. This method will be removed no sooner than 08/31/2026.
 
 operationId: `DeleteTrustedPorts`
 
@@ -7598,7 +7598,7 @@ operationId: `DeleteTrustedPorts`
 
 **Responses:**
 
-- `200` OK → `Switch_Services_OperationResponseBaseViewObject`
+- `200` OK → `Switch_Services_OperationResponseBaseView`
 - `400` Bad/malformed request → `Switch_Services_ErrorResponse`
 - `401` Unauthorized → `Switch_Services_ErrorResponse`
 - `403` Forbidden → `Switch_Services_ErrorResponse`
@@ -7613,7 +7613,7 @@ operationId: `DeleteTrustedPorts`
 
 **Add Trusted Port**
 
-Add the trusted port of the switch profile. This method will be removed no sooner than 06/30/2026.
+Add the trusted port of the switch profile. This method will be removed no sooner than 08/31/2026.
 
 operationId: `AddTrustedPort`
 
@@ -7656,7 +7656,7 @@ operationId: `AddTrustedPort`
 
 **Delete Trusted Port**
 
-Delete the specified trusted port of the switch profile. This method will be removed no sooner than 06/30/2026.
+Delete the specified trusted port of the switch profile. This method will be removed no sooner than 08/31/2026.
 
 operationId: `DeleteTrustedPort`
 
@@ -7686,7 +7686,7 @@ operationId: `DeleteTrustedPort`
 
 **Get Trusted Port**
 
-Get the specified trusted port of the switch profile. This method will be removed no sooner than 06/30/2026.
+Get the specified trusted port of the switch profile. This method will be removed no sooner than 08/31/2026.
 
 operationId: `GetTrustedPort`
 
@@ -7716,7 +7716,7 @@ operationId: `GetTrustedPort`
 
 **Update Trusted Port**
 
-Update the trusted port of the switch profile. This method will be removed no sooner than 06/30/2026.
+Update the trusted port of the switch profile. This method will be removed no sooner than 08/31/2026.
 
 operationId: `UpdateTrustedPort`
 
@@ -7760,7 +7760,7 @@ operationId: `UpdateTrustedPort`
 
 **Get Trusted Ports**
 
-Retrieve trusted ports with the specified venue. This method will be removed no sooner than 06/30/2026.
+Retrieve trusted ports with the specified venue. This method will be removed no sooner than 08/31/2026.
 
 operationId: `GetTrustedPortsByVenue`
 
@@ -7799,7 +7799,7 @@ operationId: `GetTrustedPortsByVenue`
 
 **Delete Venue Switch Settings**
 
-Delete switch settings of the venue. This method will be removed no sooner than 06/30/2026.The following URL /venues/{venueId}/switchSettings with PUT method can be used for this content.
+Delete switch settings of the venue. This method will be removed no sooner than 08/31/2026.The following URL /venues/{venueId}/switchSettings with PUT method can be used for this content.
 
 operationId: `DeleteVenueSwitchSettings`
 
@@ -7813,7 +7813,7 @@ operationId: `DeleteVenueSwitchSettings`
 
 **Responses:**
 
-- `200` OK → `Switch_Services_OperationResponseBaseViewObject`
+- `200` OK → `Switch_Services_OperationResponseBaseView`
 - `400` Bad/malformed request → `Switch_Services_ErrorResponse`
 - `401` Unauthorized → `Switch_Services_ErrorResponse`
 - `403` Forbidden → `Switch_Services_ErrorResponse`
@@ -7830,7 +7830,7 @@ operationId: `DeleteVenueSwitchSettings`
 
 Get the switch settings of the venue.
 
-operationId: `GetVenueSetting_1_1`
+operationId: `GetVenueSetting`
 
 
 **Parameters:**
@@ -7859,7 +7859,7 @@ operationId: `GetVenueSetting_1_1`
 
 Update the switch settings of the venue. Use activity API with request id to get the status update.
 
-operationId: `UpdateVenueSetting_1_1`
+operationId: `UpdateVenueSetting`
 
 
 **Parameters:**
@@ -7908,7 +7908,7 @@ operationId: `UpdateVenueSetting_1_1`
 
 **Delete Venue Template AAA Servers**
 
-Delete venue template's multiple authentication, authorization, and accounting servers. This method will be removed no sooner than 06/30/2026. The following URL /templates/venues/{venueId}/aaaServers can be used for this content.
+Delete venue template's multiple authentication, authorization, and accounting servers. This method will be removed no sooner than 08/31/2026. The following URL /templates/venues/{venueId}/aaaServers can be used for this content.
 
 operationId: `DeleteVenueTemplateAaaServers_1`
 
@@ -7933,7 +7933,7 @@ operationId: `DeleteVenueTemplateAaaServers_1`
 
 **Query Venue Template AAA Servers**
 
-List of venue template's authentication, authorization, and accounting servers. This method will be removed no sooner than 06/30/2026. The following URL /templates/venues/{venueId}/aaaServers/query can be used for this content.
+List of venue template's authentication, authorization, and accounting servers. This method will be removed no sooner than 08/31/2026. The following URL /templates/venues/{venueId}/aaaServers/query can be used for this content.
 
 operationId: `QueryVenueTemplateAaaServers_1`
 
@@ -7968,7 +7968,7 @@ operationId: `QueryVenueTemplateAaaServers_1`
 
 **Delete Venue Template AAA Server**
 
-Delete venue template's authentication, authorization, and accounting server by id. This method will be removed no sooner than 06/30/2026. The following URL /templates/venues/{venueId}/aaaServers/{aaaServerId} can be used for this content.
+Delete venue template's authentication, authorization, and accounting server by id. This method will be removed no sooner than 08/31/2026. The following URL /templates/venues/{venueId}/aaaServers/{aaaServerId} can be used for this content.
 
 operationId: `DeleteVenueTemplateAaaServer_1`
 
@@ -7997,7 +7997,7 @@ operationId: `DeleteVenueTemplateAaaServer_1`
 
 **Get Venue Template AAA Server**
 
-Get venue template's authentication, authorization, and accounting server. This method will be removed no sooner than 06/30/2026. The following URL /templates/venues/{venueId}/aaaServers/{aaaServerId} can be used for this content.
+Get venue template's authentication, authorization, and accounting server. This method will be removed no sooner than 08/31/2026. The following URL /templates/venues/{venueId}/aaaServers/{aaaServerId} can be used for this content.
 
 operationId: `GetVenueTemplateAaaServer_1`
 
@@ -8060,7 +8060,7 @@ operationId: `DeleteVenueTemplateAaaServers`
 
 Add venue template's authentication, authorization, and accounting server. Use activity API with request id to get the status update.
 
-operationId: `AddVenueTemplateAaaServer_1_1`
+operationId: `AddVenueTemplateAaaServer`
 
 
 **Parameters:**
@@ -8207,7 +8207,7 @@ operationId: `GetVenueTemplateAaaServer`
 
 Update venue template's authentication, authorization, and accounting server by id. Use activity API with request id to get the status update.
 
-operationId: `UpdateVenueTemplateAaaServer_1_1`
+operationId: `UpdateVenueTemplateAaaServer`
 
 
 **Parameters:**
@@ -8263,7 +8263,7 @@ operationId: `UpdateVenueTemplateAaaServer_1_1`
 
 Retrieve venue template's authentication, authorization, and accounting setting.
 
-operationId: `GetVenueTemplateAaaSettings_1_1`
+operationId: `GetVenueTemplateAaaSettings`
 
 
 **Parameters:**
@@ -8349,7 +8349,7 @@ operationId: `UpdateVenueTemplateAaaSetting`
 
 **Update Venue Template AAA Setting**
 
-Update venue template's authentication, authorization, and accounting setting by id. Use activity API with request id to get the status update. This method will be removed no sooner than 06/30/2026. The following URL /templates/venues/{venueId}/aaaSettings can be used for this content.
+Update venue template's authentication, authorization, and accounting setting by id. Use activity API with request id to get the status update. This method will be removed no sooner than 08/31/2026. The following URL /templates/venues/{venueId}/aaaSettings can be used for this content.
 
 operationId: `UpdateVenueTemplateAaaSetting_1`
 
@@ -8420,7 +8420,7 @@ operationId: `UpdateVenueTemplateAaaSetting_1`
 
 Get the switch settings of the venue template.
 
-operationId: `GetVenueTemplateSetting_1_1`
+operationId: `GetVenueTemplateSetting`
 
 
 **Parameters:**
@@ -8449,7 +8449,7 @@ operationId: `GetVenueTemplateSetting_1_1`
 
 Update the switch settings of the venue template. Use activity API with request id to get the status update.
 
-operationId: `UpdateVenueTemplateSetting_1_1`
+operationId: `UpdateVenueTemplateSetting`
 
 
 **Parameters:**
@@ -8500,7 +8500,7 @@ operationId: `UpdateVenueTemplateSetting_1_1`
 
 Add web authentication page template.
 
-operationId: `AddWebAuthPageTemplate_1_1`
+operationId: `AddWebAuthPageTemplate`
 
 
 **Request Body:** `Switch_Services_WebAuthPageTemplateBo_V1`
@@ -8538,7 +8538,7 @@ operationId: `AddWebAuthPageTemplate_1_1`
 
 List of tenant's web authentication page templates.
 
-operationId: `QueryWebAuthPageTemplates_1_1`
+operationId: `QueryWebAuthPageTemplates`
 
 
 **Request Body:** `Switch_Services_QueryRequest`
@@ -8571,7 +8571,7 @@ operationId: `QueryWebAuthPageTemplates_1_1`
 
 Delete web authentication page template by id.
 
-operationId: `DeleteWebAuthPageTemplate_1_1`
+operationId: `DeleteWebAuthPageTemplate`
 
 
 **Parameters:**
@@ -8600,7 +8600,7 @@ operationId: `DeleteWebAuthPageTemplate_1_1`
 
 Get a web authentication page template by id.
 
-operationId: `GetWebAuthPageTemplate_1_1`
+operationId: `GetWebAuthPageTemplate`
 
 
 **Parameters:**
@@ -8629,7 +8629,7 @@ operationId: `GetWebAuthPageTemplate_1_1`
 
 Update web authentication page template by id.
 
-operationId: `PutWebAuthPageTemplate_1_1`
+operationId: `PutWebAuthPageTemplate`
 
 
 **Parameters:**
@@ -8673,7 +8673,7 @@ operationId: `PutWebAuthPageTemplate_1_1`
 
 Get a web authentication page template's switch info by id.
 
-operationId: `GetWebAuthPageTemplateSwitchInfo_1_1`
+operationId: `GetWebAuthPageTemplateSwitchInfo`
 
 
 **Parameters:**

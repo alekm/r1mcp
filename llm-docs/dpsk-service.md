@@ -17,7 +17,7 @@
 
 **Get DPSK Pools**
 
-This method will be removed no sooner than 06/30/2026. The following URL /dpskServices/query can be used for this content.
+This method will be removed no sooner than 08/31/2026. The following URL /dpskServices/query can be used for this content.
 
 operationId: `listAllDpskPools`
 
@@ -43,7 +43,7 @@ operationId: `listAllDpskPools`
 
 **Create New DPSK Pool**
 
-This method will be removed no sooner than 06/30/2026.
+This method will be removed no sooner than 08/31/2026.
 
 operationId: `createDpskPool_1`
 
