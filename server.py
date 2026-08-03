@@ -19,6 +19,7 @@ TENANT_ID = os.environ.get("R1_TENANT_ID", "")
 REGION = os.environ.get("R1_REGION", "na").lower()
 MSP_ID = os.environ.get("R1_MSP_ID", "")
 DOCS_PATH = Path(os.environ.get("R1_DOCS_PATH", Path(__file__).parent / "llm-docs"))
+NOTES_PATH = Path(os.environ.get("R1_NOTES_PATH", Path(__file__).parent / "field-notes"))
 
 REGION_HOSTS = {
     "na": "https://api.ruckus.cloud",
@@ -27,7 +28,37 @@ REGION_HOSTS = {
 }
 BASE_URL = REGION_HOSTS.get(REGION, REGION_HOSTS["na"])
 
-mcp = FastMCP("ruckus-one")
+
+def _general_notes() -> str:
+    """Cross-cutting field notes, injected into the server instructions."""
+    general = NOTES_PATH / "GENERAL.md"
+    return general.read_text() if general.exists() else ""
+
+
+# field-notes/GENERAL.md rides in the server instructions so the silent-failure
+# modes are in context before the model makes its first call — by the time it
+# would think to look them up, it has already been handed a wrong answer.
+_INSTRUCTIONS = """\
+Tools for the RUCKUS One cloud WiFi management API.
+
+Discovery flow: r1_list_groups -> r1_get_docs(group) -> r1_call(...).
+
+The notes below are verified against a live tenant and are NOT in the API spec.
+They describe failures that return 2xx with plausible but wrong data. Apply them
+to every call. Per-group notes come back with r1_get_docs, or via r1_field_notes.
+
+"""
+
+
+def _group_notes(slug: str) -> str:
+    """Field notes for one API group, or '' if none exist."""
+    f = NOTES_PATH / f"{slug}.md"
+    if slug in {"GENERAL", "README"} or not f.exists():
+        return ""
+    return f.read_text()
+
+
+mcp = FastMCP("ruckus-one", instructions=_INSTRUCTIONS + _general_notes())
 
 # In-process token cache: (access_token, expires_at)
 _token_cache: tuple[str, float] = ("", 0.0)
@@ -95,7 +126,20 @@ def r1_list_groups() -> str:
     index = DOCS_PATH / "INDEX.md"
     if not index.exists():
         return f"ERROR: INDEX.md not found at {index}"
-    return index.read_text()
+
+    annotated = sorted(
+        p.stem for p in NOTES_PATH.glob("*.md") if p.stem not in {"GENERAL", "README"}
+    )
+    footer = ""
+    if annotated:
+        footer = (
+            "\n\n---\n\n## Groups with field notes\n\n"
+            "These have verified real-world behavior that the generated docs above do not "
+            "capture — broken endpoints, silent failures, destructive semantics. "
+            "`r1_get_docs` returns them automatically:\n\n"
+            + "\n".join(f"- `{g}`" for g in annotated)
+        )
+    return index.read_text() + footer
 
 
 @mcp.tool()
@@ -116,7 +160,77 @@ def r1_get_docs(group: str) -> str:
             f"ERROR: No docs found for '{group}' (tried {doc_file.name}).\n"
             f"Available groups: {', '.join(available)}"
         )
-    return doc_file.read_text()
+
+    text = doc_file.read_text()
+    notes = _group_notes(slug)
+    if notes:
+        text += (
+            "\n\n---\n\n"
+            "# ⚠ FIELD NOTES — verified against a live tenant\n\n"
+            "Not in the API spec. Where these contradict the generated documentation "
+            "above, **the field notes are correct** — they were observed on a real "
+            "system.\n\n"
+            + notes
+        )
+    return text
+
+
+def _async_hint(status: int, data) -> str:
+    """
+    A 202 means the write was accepted, not applied. The returned requestId is an
+    activity ID — undocumented, and true of ~653 operations in the spec. Point the
+    caller at the follow-up rather than letting it assume success.
+    """
+    if status != 202 or not isinstance(data, dict):
+        return ""
+    request_id = data.get("requestId") or data.get("id")
+    if not request_id:
+        return ""
+    return (
+        f"\n\n⚠ NOT YET APPLIED — this 202 means accepted, not done.\n"
+        f"'{request_id}' is an activity ID. Confirm before reporting success or "
+        f"re-reading state:\n"
+        f"  r1_call('GET', '/activities/{request_id}')\n"
+        f"Poll until status is terminal (SUCCESS/FAIL). Check "
+        f"steps[].progressSummary — a SUCCESS with a non-zero 'offline' count "
+        f"means the config never reached those devices."
+    )
+
+
+@mcp.tool()
+def r1_field_notes(group: str = "") -> str:
+    """
+    Verified real-world RUCKUS One behavior that the API spec does not document —
+    broken endpoints, silent failures, and destructive semantics.
+
+    Args:
+        group: An API group slug (e.g. 'property-management'). Omit to get
+               everything, including the cross-cutting notes.
+    """
+    if not NOTES_PATH.exists():
+        return f"ERROR: field-notes directory not found at {NOTES_PATH}"
+
+    if group:
+        slug = group.strip().lower().replace(" ", "-").replace("_", "-")
+        notes = _group_notes(slug)
+        if not notes:
+            have = sorted(
+                p.stem for p in NOTES_PATH.glob("*.md")
+                if p.stem not in {"GENERAL", "README"}
+            )
+            return (
+                f"No field notes for '{group}'. This means nothing has been recorded "
+                f"for it yet — not that it is free of surprises.\n"
+                f"Groups with notes: {', '.join(have)}"
+            )
+        return notes
+
+    parts = [_general_notes()]
+    for f in sorted(NOTES_PATH.glob("*.md")):
+        if f.stem in {"GENERAL", "README"}:
+            continue
+        parts.append(f"\n\n---\n\n# {f.stem}\n\n{f.read_text()}")
+    return "".join(parts)
 
 
 @mcp.tool()
@@ -177,13 +291,14 @@ def r1_call(
             )
 
         status = response.status_code
+        data = None
         try:
             data = response.json()
             body_text = json.dumps(data, indent=2)
         except Exception:
             body_text = response.text
 
-        return f"HTTP {status} {method} {url}\n\n{body_text}"
+        return f"HTTP {status} {method} {url}\n\n{body_text}{_async_hint(status, data)}"
 
     except httpx.ConnectError as e:
         return f"ERROR: Could not connect to {url}: {e}"
