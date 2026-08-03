@@ -99,10 +99,29 @@ POST /activities/query  {"page":1,"pageSize":50,
   not a list. It needs **`fields` + `filters.id`** and 500s without both. Covers
   `/alarms/metas/query`, `/events/metas/query`, `/events/details/query`.
 
-**Five** endpoints written off as broken turned out to be under-specified —
-the entire events and alarms surface. Before recording a sixth, retry with a
-`fields` list, full paging, both sort keys, and `filters.id` if the path ends in
-`/metas` or `/details`. Only then is a 500 evidence of anything.
+### Not every `/query` endpoint takes the same body
+
+There are **two different body shapes**, and sending the wrong one is a 500:
+
+| Shape | Body | Example |
+|---|---|---|
+| **Standard envelope** | `fields`, `page`, `pageSize`, `sortField`, `sortOrder`, `filters` | `/events/query`, `/activities/query`, `/venues/query` |
+| **Flat scope** | resource ids at the top level, no envelope at all | `/venues/wifiNetworks/query` → `{"venueIds": [...]}` |
+
+`POST /venues/wifiNetworks/query` rejects the standard envelope with
+`500 WIFI-10000` and accepts `{"venueIds": [...]}`. `networkIds` is an optional
+narrowing filter; **`venueIds` is required** and `networkIds` alone still 500s.
+Same for `/templates/venues/wifiNetworks/query`.
+
+So a 500 can mean the envelope itself is wrong, not just that a key is missing.
+If the standard envelope fails, try a flat body of the ids the path names.
+
+**Seven** endpoints written off as broken turned out to be under-specified or
+sent the wrong body shape — the entire events and alarms surface, plus both
+venue-scoped wifiNetworks queries. Four remain genuinely broken. Before recording
+an eighth, try: a `fields` list, full paging, both sort keys, `filters.id` if the
+path ends in `/metas` or `/details`, and a flat id body if the envelope fails.
+Only then is a 500 evidence of anything.
 
 ## Known-broken endpoints — verified 2026-08-02
 
@@ -111,8 +130,6 @@ Confirmed 500 across every payload variant that fixed the five above, including
 
 | Endpoint | Code |
 |---|---|
-| `POST /venues/wifiNetworks/query` | `WIFI-10000` — tenant-level `POST /wifiNetworks/query` works |
-| `POST /templates/venues/wifiNetworks/query` | `WIFI-10000` |
 | `POST /venues/aaaServers/query` | `SWITCH-10000` |
 | `POST /macRegistrationPools/query` | 500 — use `GET /macRegistrationPools` |
 | `POST /entitlements/banners/query` | `ENTITLEMENT-10000` |

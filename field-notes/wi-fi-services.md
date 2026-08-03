@@ -35,18 +35,41 @@ On models where the second ethernet port is suppressed at `802.3af`, a downstrea
 bind succeeds but the port stays dead — this presents as a binding failure and
 sends you chasing the wrong thing.
 
-## Broken as of 2026-08-02
+## `POST /venues/wifiNetworks/query` takes a flat body, not the usual envelope
 
-| Endpoint | Behavior |
-|---|---|
-| `POST /venues/wifiNetworks/query` | 500 `WIFI-10000`, with paging and sort supplied |
-| `POST /templates/venues/wifiNetworks/query` | 500 `WIFI-10000` |
+Previously recorded as broken. It is not — it rejects the standard
+`fields`/`page`/`pageSize`/`sortField`/`filters` envelope with `500 WIFI-10000`,
+and takes a flat body instead:
 
-Both are the **venue-scoped** network query endpoints. The tenant-level
-`POST /wifiNetworks/query` works — use it and filter client-side.
+```jsonc
+POST /venues/wifiNetworks/query
+{"venueIds": ["<venueId>"],
+ "networkIds": ["<networkId>", "<networkId>"]}   // optional narrowing
+```
 
-Note `GET /wifiNetworks` is **405**, not a collection endpoint; the tenant-level
-list is only reachable through `/query`.
+**`venueIds` is required**; `networkIds` alone is still a 500, as is an empty
+body. Same shape for `/templates/venues/wifiNetworks/query`.
+
+This is the **network-to-venue activation map**, which nothing else gives you:
+
+```jsonc
+{"data": [{"venueId": "<venueId>",
+           "networks": [{"networkId": "<networkId>",
+                         "isAllApGroups": false,
+                         "allApGroupsRadioTypes": ["2.4-GHz","5-GHz"],
+                         "apGroups": [{"apGroupId": "<apGroupId>",
+                                       "radioTypes": ["2.4-GHz","5-GHz","6-GHz"]}],
+                         "dual5gEnabled": false, "tripleBandEnabled": false,
+                         "urlFilteringPolicyEnabled": false, "isEnforced": false}]}]}
+```
+
+So it answers "which SSIDs are live at this venue, on which AP groups, on which
+radios" — including the per-AP-group radio overrides. The tenant-level
+`POST /wifiNetworks/query` lists networks but says nothing about where they are
+deployed.
+
+Note `GET /wifiNetworks` is **405**; the tenant-level list is only reachable
+through `/query`.
 
 `GET /venues/aps/importResults` requires a `requestId` **query parameter**
 (422 `WIFI-10008` without it), so it is only usable after an import.
