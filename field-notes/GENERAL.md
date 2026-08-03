@@ -1,107 +1,74 @@
-# RUCKUS One — field-verified behavior
+# RUCKUS One — behavior the API spec does not describe
 
-Verified against a live tenant. These are silent-failure modes: the API returns
-2xx and plausible data while giving you the wrong answer. None of this is in the
-OpenAPI spec.
+Apply these to every call. They are failure modes that return 2xx with plausible
+but wrong data, or 5xx that look like outages and are not.
 
-## 1. A 202 is not a completed write — poll the activity
+## 1. A 202 is not a completed write
 
-Mutating calls return `202 Accepted` with a `requestId`. **That `requestId` is an
-activity ID**, though nothing in the spec says so (653 operations return 202;
-two mention activities).
+Mutating calls return `202` with a `requestId`. **That `requestId` is an activity
+ID** — poll it before verifying state or reporting success:
 
 ```
-PUT /venues/{venueId}/aps/{serialNumber}   -> 202 {"requestId": "<uuid>"}
-GET /activities/<uuid>                     -> 200  status: SUCCESS | FAIL | ...
+GET /activities/{requestId}   ->  status: SUCCESS | FAIL | ...
 ```
-
-Poll `GET /activities/{requestId}` to a terminal `status` before verifying state.
-Do not sleep-and-re-GET the resource.
 
 `steps[].progressSummary` (`pending`/`inProgress`/`success`/`fail`/`offline`)
-separates "cloud accepted the config" from "config reached the device" — an
-`offline` count is why a SUCCESS can still leave a device unchanged. Per-device
+separates "cloud accepted the config" from "config reached the device". A SUCCESS
+with a non-zero `offline` count means those devices never got it. Per-device
 detail: `POST /activities/{activityId}/devices/query`.
 
-## 2. Three incompatible pagination conventions, all failing silently
+## 2. Three pagination conventions, all failing silently
 
 | Convention | Where |
 |---|---|
-| `page` / `pageSize`, **1**-indexed | most `POST /…/query` |
-| `page` / `size`, **0**-indexed | identity + Property Management `GET`s (spec says 1-indexed; it is not) |
-| paging **ignored** | `POST /identities/query` — same 20 rows forever |
+| `page` / `pageSize`, 1-indexed | most `POST /…/query` |
+| `page` / `size`, 0-indexed | identity and Property Management `GET`s |
+| paging ignored | `POST /identities/query` — same 20 rows forever |
 
 An unrecognized paging parameter is ignored, the default page size applies, and
-`totalElements` still reports the true count — so truncated data looks complete.
+the total still reports correctly — so truncated data looks complete.
 
 ```
-GET /venues/{venueId}/units?page=0&pageSize=500  ->  20 items, totalElements: 290
-GET /venues/{venueId}/units?page=0&size=500      -> 290 items, totalElements: 290
+GET /venues/{venueId}/units?page=0&pageSize=500  ->  20 rows, totalElements 290
+GET /venues/{venueId}/units?page=0&size=500      -> 290 rows, totalElements 290
 ```
 
-**Always compare returned length against `totalElements`/`totalCount`.** For
-identities use `GET /identityGroups/{groupId}/identities?page=0&size=500`, which
-pages correctly. (The path parameter is `{groupId}` — searching for
-`{identityGroupId}` finds nothing and makes it look undocumented.)
+**Always compare returned row count against the declared total.** For identities
+use `GET /identityGroups/{groupId}/identities?page=0&size=500`.
 
-## 3. Query endpoints silently drop unrecognized `fields` and filters
+## 3. Unrecognized `fields` and filters are silently dropped
 
-Confirmed on `POST /venues/aps/query` and `POST /alarms/query`. Ask for a field
-the endpoint doesn't know and it simply doesn't come back — no error. A typo is
-indistinguishable from "the API has no such data". Verify a field exists before
-concluding anything from its absence.
+Ask for a field an endpoint does not know and it simply does not come back — no
+error. A typo is indistinguishable from "no such data". Never conclude data is
+missing from its absence alone.
 
-## 4. Objects are sparse, and fields are absent rather than null
+## 4. Fields are absent, not null
 
 On APs that have never contacted the cloud, `model`, `macAddress`,
 `firmwareVersion`, `lanPortStatuses`, `switchSerialNumber`, `uptime` and
-`clientCount` are **missing entirely** (0/269 present in one venue, vs 57/57 on
-operational APs). `networkStatus` is always present.
+`clientCount` are missing entirely. `networkStatus` is always present. A missing
+key is normal; do not assume a stable schema across a mixed fleet.
 
-`.get("model") is None` is normal, not an error. Never assume a stable schema
-across a mixed fleet.
+## 5. Status lags reality by ~3 minutes
 
-## 5. Status fields lag reality by ~3 minutes
+APs report on roughly a 3-minute cycle. `poeUnderPowered`, `lanPortStatuses` and
+binding state can all be that stale. A stale value is not a stuck device.
 
-APs report on roughly a 3-minute cycle. Every status field — `poeUnderPowered`,
-`lanPortStatuses`, binding state — can be that stale. A stale value is not a
-stuck device.
+## 6. Read the error code, not the status
 
-## 6. Read the error code, not just the status
+Errors carry codes (`PROPERTY-MANAGEMENT-001`, `SWITCH-10462`, `EVENT-10002`).
+The code identifies the cause; the HTTP status usually does not.
 
-Errors carry real codes (`PROPERTY-MANAGEMENT-001`, `SWITCH-10462`,
-`EVENT-10002`) plus a `requestId`. The code identifies the cause; the HTTP status
-usually does not.
+## 7. A 500 means the wrong request body
 
-## 7. A 500 almost always means the wrong request body — not a broken endpoint
+Not an outage. The message says "please wait a few minutes and try again" —
+waiting never helps, because the request was never going to succeed as sent.
 
-**This is the most expensive mistake to make against this API.** A tenant-wide
-sweep produced eleven endpoints that returned `500` and looked dead. Every one of
-them works. Not a single confirmed-broken endpoint remains.
+Each `/query` endpoint has its own body shape. The spec lists the correct
+properties per endpoint but marks almost nothing required, so treat every
+documented property as potentially mandatory. Minimum bodies that work:
 
-The 500s say "something went wrong, please wait a few minutes and try again".
-Waiting never helps: the request was never going to succeed as sent.
-
-### The spec has the property names. It does not say they are required.
-
-Read each endpoint's `requestBody` properties in `llm-docs` — they are accurate,
-and they differ per endpoint. There is no universal query envelope.
-
-What the spec will not tell you, and what actually causes the 500s:
-
-- **Only 11 of 196 `/query` operations declare any required body field.** The
-  other 185 declare nothing and still refuse to work. Treat every documented
-  property as potentially mandatory.
-- **No `fields` array anywhere has an enum**, so valid field names are
-  undiscoverable. Send a name the endpoint does not know and it is silently
-  dropped (§3); send *only* unknown names and you get a 500.
-- **Shared DTOs lie by omission.** Several endpoints declare a generic schema
-  advertising properties they reject — `/portalServiceProfiles/query` uses one
-  with 24 properties and refuses `fields` with a 400.
-
-Required-in-practice, declared-optional-in-spec:
-
-| Endpoint | Minimum body |
+| Endpoint | Body |
 |---|---|
 | `/events/query` | `{"fields": [...]}` |
 | `/activities/query` | `page`, `pageSize`, `sortField`, `sortOrder` — all four |
@@ -111,35 +78,27 @@ Required-in-practice, declared-optional-in-spec:
 | `/entitlements/{banners,compliances}/query`, `/portalServiceProfiles/query` | `{"filters": {}}` |
 | `/macRegistrationPools/query` | `{"searchCriteriaList": []}` |
 
-### Procedure when a `/query` returns 500
+When one fails:
 
-1. Look up the endpoint's `requestBody` properties in the spec and send **those**
-   keys, not the envelope that worked elsewhere.
-2. If the path ends in `/metas` or `/details`, supply `fields` + `filters.id`.
-3. If a tenant-wide aggregate fails, try the venue-scoped path
-   (`/venues/{venueId}/…`) — they are separate implementations.
-4. Only after all of that is a 500 evidence of anything.
+1. Send the properties the spec lists for **that** endpoint, not the envelope that
+   worked elsewhere.
+2. Path ends in `/metas` or `/details` — supply `fields` + `filters.id`.
+3. Tenant-wide aggregate failing — try the venue-scoped path
+   (`/venues/{venueId}/…`); they are separate implementations.
 
-**Caveat on reading the spec:** some endpoints share a generic DTO — e.g.
-`/portalServiceProfiles/query` uses `View_Model_Resources_DynamicQueryPayloadDto`,
-which advertises 24 properties. That endpoint rejects `fields` with a 400 and 500s
-on the paging keys. The schema describes what the DTO can express, not what the
-endpoint accepts. A **400** means a key was understood and refused; a **500**
-means the shape was wrong.
+A **400** means a key was understood and refused. A **500** means the shape was
+wrong. Some endpoints declare a shared generic schema and reject properties it
+advertises.
 
-The only endpoint still returning an error is
-`GET /entitlements/licenseUsageReports` (`"Not a MSP"`) — a permission boundary on
-a non-MSP tenant, not a fault.
+## 8. Totals are not always top-level
 
-## Totals are not always at the top level
+Rows arrive under `data` or `content`; the total may be nested under
+`paging.totalCount` or `pageable`. Reading `response["totalCount"]` finds nothing,
+skips the completeness check, and reports truncated data as complete.
+`pageable.pageNumber` is 0-indexed.
 
-The spec documents which response shape each endpoint returns, so check there
-rather than guessing. The trap it does not flag: in two of the three shapes the
-row count is **nested**, under `paging.totalCount` or `pageable`. Code reading
-`response["totalCount"]` finds nothing, skips the completeness check, and reports
-truncated data as complete — the §2 failure with a different cause.
+## 9. Path parameters are not named what you expect
 
-`pageable.pageNumber` is also **0-indexed** where the standard shape is 1-indexed.
-
-Sweep scope: 237 read-only endpoints with no path parameters across all 31 groups;
-212 returned 200.
+`/activities/{activityId}` (not `{requestId}`), `/identityGroups/{groupId}/…`
+(not `{identityGroupId}`). Guessing wrong makes a documented endpoint look
+missing.
