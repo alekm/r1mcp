@@ -72,12 +72,58 @@ Errors carry real codes (`PROPERTY-MANAGEMENT-001`, `SWITCH-10462`,
 `EVENT-10002`) plus a `requestId`. The code identifies the cause; the HTTP status
 usually does not.
 
-## Known-broken endpoints — do not retry, do not work around
+## 7. A 500 usually means an under-specified body, not a broken endpoint
 
-| Endpoint | Behavior |
+**This is the most expensive mistake to make against this API.** Several `/query`
+endpoints return **500 when a required body field is missing**, where a 400 would
+be correct — and the message reads like an outage ("something went wrong, please
+wait a few minutes and try again"). Waiting does nothing. Two confirmed cases,
+both of which were previously written off as broken:
+
+```
+POST /events/query      {"page":1,"pageSize":10}                        -> 500
+POST /events/query      {"fields":["event_datetime","severity","message"]}
+                                                                        -> 200
+
+POST /activities/query  {"page":1,"pageSize":50}                        -> 500
+POST /activities/query  {"page":1,"pageSize":50,
+                         "sortField":"startDatetime","sortOrder":"DESC"} -> 200
+```
+
+- `/events/query` needs **`fields`** with at least one recognized name. Nothing
+  else is mandatory.
+- `/activities/query` needs **all four** of `page`, `pageSize`, `sortField`,
+  `sortOrder`. An unrecognized `sortField` is also a 500.
+
+Before recording an endpoint as broken, retry it with a `fields` list, full
+paging, and both sort keys. Only then is a 500 evidence of anything.
+
+## Known-broken endpoints — verified 2026-08-02
+
+Confirmed 500 across every payload variant that fixed the two above, including
+`fields`, paging and sort:
+
+| Endpoint | Code |
 |---|---|
-| `POST /events/query` | **HTTP 500** `EVENT-10002`, persistent |
-| `GET /entitlements/licenseUsageReports` | **400** with a raw Java stack trace |
+| `POST /events/metas/query` | `EVENT-10001` |
+| `POST /events/details/query` | `EVENT-10005` |
+| `POST /alarms/metas/query` | 500 |
+| `POST /venues/wifiNetworks/query` | `WIFI-10000` — tenant-level `POST /wifiNetworks/query` works |
+| `POST /templates/venues/wifiNetworks/query` | `WIFI-10000` |
+| `POST /venues/aaaServers/query` | `SWITCH-10000` |
+| `POST /macRegistrationPools/query` | 500 — use `GET /macRegistrationPools` |
+| `POST /entitlements/banners/query` | `ENTITLEMENT-10000` |
+| `POST /entitlements/compliances/query` | `ENTITLEMENT-10000` |
+| `GET /entitlements/licenseUsageReports` | 400 |
 
-For change history use `POST /activities/query` — it is the only working option
-(`/alarms/query` returns active alarms only; history is lost on recovery).
+Where a plain collection `GET` exists alongside a broken `/query`, the `GET` works
+— that is the workaround, not a retry. `POST /portalServiceProfiles/query` is
+field-sensitive rather than broken: a wrong `fields` list returns
+`400 GUEST-400000`, so it wants the right names, which are not yet known.
+
+For change history, **both** `/events/query` and `/activities/query` work — events
+for what happened on the network, activities for who changed what. `/alarms/query`
+returns active alarms only; history is lost on recovery.
+
+Sweep scope: 237 read-only endpoints with no path parameters across all 31 groups;
+212 returned 200.

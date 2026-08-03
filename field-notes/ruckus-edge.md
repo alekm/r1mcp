@@ -20,3 +20,14 @@ duration − remaining — a decent proxy for when a device last booted or renew
 **Known issue:** observed returning `totalCount: 0` while the Edge was
 demonstrably serving ~55 leases (vendor case open). **A zero here does not mean
 DHCP is broken** — do not report an outage on this alone.
+
+## Edge query endpoints require explicit filters
+
+Verified 2026-08-02 — these reject an unfiltered query rather than returning
+everything:
+
+- `POST /venues/edgeCompatibilities/query` — 400, needs `filters.venueIds`
+- `POST /edgeDhcpServices/edgeCompatibilities/query` — 422 `EDGE-10001`, needs
+  `filters.serviceIds`
+
+Get the IDs first; there is no "list all" form.

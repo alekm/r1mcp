@@ -34,3 +34,19 @@ whole ~50-model list and rewrites every model.
 On models where the second ethernet port is suppressed at `802.3af`, a downstream
 bind succeeds but the port stays dead — this presents as a binding failure and
 sends you chasing the wrong thing.
+
+## Broken as of 2026-08-02
+
+| Endpoint | Behavior |
+|---|---|
+| `POST /venues/wifiNetworks/query` | 500 `WIFI-10000`, with paging and sort supplied |
+| `POST /templates/venues/wifiNetworks/query` | 500 `WIFI-10000` |
+
+Both are the **venue-scoped** network query endpoints. The tenant-level
+`POST /wifiNetworks/query` works — use it and filter client-side.
+
+Note `GET /wifiNetworks` is **405**, not a collection endpoint; the tenant-level
+list is only reachable through `/query`.
+
+`GET /venues/aps/importResults` requires a `requestId` **query parameter**
+(422 `WIFI-10008` without it), so it is only usable after an import.

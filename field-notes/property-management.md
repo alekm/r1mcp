@@ -55,9 +55,18 @@ normalize before comparing.
 - Binding sets the AP's `useVenueSettings` to `false` and can leave `poeMode`
   unset, so venue-level LAN-port settings stop reaching it. **Set `poeMode`
   explicitly after binding.**
-- `POST /venues/{venueId}/units/query` requires `sortOrder` though it is not
-  marked required; omitting it returns `400 PROPERTY-MANAGEMENT-007`.
 - `resident` is required on a unit but `resident.email` is not —
   `{"name": "<unit>", "resident": {"name": "Vacant"}}` is accepted. Omitting the
   address means no resident notification can fire.
 - These `GET`s use `page`/`size`, **0-indexed** — see GENERAL.md §2.
+
+## `sortOrder` is required on every Property Management query
+
+Not just `/units/query`. Verified 2026-08-02 — omitting it returns
+`400 PROPERTY-MANAGEMENT-007 "Sort order must be present"` on:
+
+- `POST /venues/{venueId}/units/query`
+- `POST /venues/propertyConfigs/query`
+- `POST /residentPortals/query`
+
+None of them mark it required in the spec. Assume it is required across the group.

@@ -23,3 +23,8 @@ Same fact behind both behaviors: the switch's `id` field is its MAC address.
 empty, which does not mean the ports are unconfigured. For the actual port ↔
 device map use `POST /venues/switches/clients/query` (see
 view-model-resources.md).
+
+## Broken as of 2026-08-02
+
+`POST /venues/aaaServers/query` returns 500 `SWITCH-10000` ("an unknown error
+occurred") even with paging and sort supplied.
