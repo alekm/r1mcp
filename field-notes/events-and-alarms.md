@@ -57,16 +57,38 @@ startTime, severity, serialNumber, entityType, entityId, name, message, venueId
 
 `startTime` is epoch **milliseconds** here, while events uses ISO-8601 strings.
 
-## Genuinely broken — verified 2026-08-02 with fields, paging and sort supplied
+## `POST /alarms/metas/query` WORKS — it resolves names for alarm IDs
+
+Also previously recorded as broken. It is not a catalogue of alarm types; it is a
+**lookup keyed by alarm ID** that returns the human-readable names behind an
+alarm. It requires **both** `fields` and `filters.id`, and 500s (`ALARM-10003`)
+without either.
+
+```jsonc
+POST /alarms/metas/query
+{"fields": ["venueName","apName","switchName","edgeName","oltName"],
+ "filters": {"id": ["<alarmId>", "<alarmId>"]}}
+```
+
+Returns per id: `venueName`, `apName`, `switchName`, `edgeName`, `oltName`, plus
+`isSwitchExists` / `isEdgeExists` booleans — useful for telling "no name" apart
+from "entity is gone". `filters.alarmType: ["new"]` is accepted and optional.
+
+Get the ids from `POST /alarms/query` first. This is a second call by design: the
+alarm objects carry ids and serials, not venue or device names.
+
+## Genuinely broken — verified 2026-08-02
+
+Retried with `fields`, `filters`, paging and sort. These resisted every variant
+that fixed `/events/query` and `/alarms/metas/query`:
 
 | Endpoint | Code |
 |---|---|
 | `POST /events/metas/query` | 500 `EVENT-10001` |
 | `POST /events/details/query` | 500 `EVENT-10005` |
-| `POST /alarms/metas/query` | 500 |
 
-These resisted every payload variant that fixed `/events/query`. You can read
-events and alarms but cannot enumerate their type metadata.
+So you can read events and alarms, and resolve alarm names, but cannot enumerate
+event type metadata.
 
 ## Never-contacted devices cannot alarm
 

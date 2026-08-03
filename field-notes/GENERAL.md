@@ -94,20 +94,22 @@ POST /activities/query  {"page":1,"pageSize":50,
   else is mandatory.
 - `/activities/query` needs **all four** of `page`, `pageSize`, `sortField`,
   `sortOrder`. An unrecognized `sortField` is also a 500.
+- `/alarms/metas/query` needs **`fields` and `filters.id`** — it is a lookup by
+  alarm ID, not a list endpoint (`ALARM-10003` without them).
 
-Before recording an endpoint as broken, retry it with a `fields` list, full
-paging, and both sort keys. Only then is a 500 evidence of anything.
+Three endpoints written off as broken turned out to be under-specified. Before
+recording a fourth, retry with a `fields` list, full paging, both sort keys, and
+any `filters` the resource implies. Only then is a 500 evidence of anything.
 
 ## Known-broken endpoints — verified 2026-08-02
 
-Confirmed 500 across every payload variant that fixed the two above, including
-`fields`, paging and sort:
+Confirmed 500 across every payload variant that fixed the three above, including
+`fields`, `filters`, paging and sort:
 
 | Endpoint | Code |
 |---|---|
 | `POST /events/metas/query` | `EVENT-10001` |
 | `POST /events/details/query` | `EVENT-10005` |
-| `POST /alarms/metas/query` | 500 |
 | `POST /venues/wifiNetworks/query` | `WIFI-10000` — tenant-level `POST /wifiNetworks/query` works |
 | `POST /templates/venues/wifiNetworks/query` | `WIFI-10000` |
 | `POST /venues/aaaServers/query` | `SWITCH-10000` |
