@@ -81,8 +81,14 @@ List all switches in venue xyz and show their port status
 
 ## API docs
 
-The `llm-docs/` directory contains pre-generated markdown reference files for all 30 API groups (1592 endpoints, from the June 2026 spec). If you have access to an updated OpenAPI spec, regenerate them with the companion `generate.py` tool.
+The `llm-docs/` directory contains pre-generated markdown reference files for all 30 API groups (1592 endpoints, from the June 2026 spec). They are produced mechanically from the RUCKUS One Consolidated OpenAPI specification, which RUCKUS makes available to platform customers — if you have a newer spec, you can regenerate them with any OpenAPI-to-Markdown converter that emits one file per tag group plus an `INDEX.md`.
+
+These files are third-party content and are **not** covered by this repository's MIT license. See [llm-docs/NOTICE](llm-docs/NOTICE).
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT for the server code and original repository content — see [LICENSE](LICENSE).
+
+The `llm-docs/` directory is excluded from that grant; it reproduces documentation text authored by RUCKUS Networks and is redistributed for reference only. See [llm-docs/NOTICE](llm-docs/NOTICE) for terms.
+
+RUCKUS, RUCKUS One, and RUCKUS Networks are trademarks of their respective owner. This project is an independent integration and is not affiliated with, endorsed by, or sponsored by RUCKUS Networks.

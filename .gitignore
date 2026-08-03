@@ -2,3 +2,10 @@
 CLAUDE.md
 __pycache__/
 *.pyc
+
+# Field notes — contains unreleased vendor findings, keep local
+NOTES.md
+
+# Source OpenAPI specs and archives are not redistributed here
+r1api.zip
+RUCKUS_One_Consolidated_API*.json

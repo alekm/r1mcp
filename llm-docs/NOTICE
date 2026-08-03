@@ -1,0 +1,45 @@
+NOTICE — third-party content
+============================
+
+The Markdown files in this directory are NOT covered by the MIT License that
+applies to the rest of this repository (see ../LICENSE).
+
+Origin
+------
+
+They are mechanically generated from the RUCKUS One Consolidated OpenAPI
+specification. The generator reformats the specification into Markdown; it does
+not rewrite it. As a result these files reproduce, verbatim, descriptive text
+authored by RUCKUS Networks — endpoint summaries and descriptions, parameter
+descriptions, and schema field descriptions.
+
+That content is Copyright (c) RUCKUS Networks and/or its affiliates. All rights
+in it are reserved by its owner.
+
+The upstream specification declares no redistribution license. Its OpenAPI
+`info.license` field points to the RUCKUS Cloud Privacy Policy
+(https://support.ruckuswireless.com/ruckus-one-privacy-policy), which is a
+privacy policy rather than a grant of rights.
+
+Why it is included
+------------------
+
+The r1mcp server reads these files locally to answer `r1_list_groups` and
+`r1_get_docs` without a network call. They are included for the convenience of
+users who already have authorized access to the RUCKUS One platform and its API
+documentation.
+
+Terms
+-----
+
+This material is provided for reference only. No license, sublicense, or right
+to redistribute it is granted by this repository or by its MIT License. If you
+intend to redistribute, repackage, or make commercial use of this content,
+obtain permission from RUCKUS Networks first.
+
+RUCKUS, RUCKUS One, and RUCKUS Networks are trademarks of their respective
+owner. This project is not affiliated with, endorsed by, or sponsored by RUCKUS
+Networks.
+
+If you are a rights holder and want this content removed or its terms changed,
+please open an issue on the repository.

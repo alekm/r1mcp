@@ -1,3 +1,16 @@
+SCOPE OF THIS LICENSE
+
+The MIT License below applies to the source code and original content of this
+repository — server.py, README.md, and configuration examples.
+
+It does NOT apply to the contents of the llm-docs/ directory. Those files are
+generated from the RUCKUS One OpenAPI specification and reproduce descriptive
+text authored by RUCKUS Networks. They are redistributed here for reference
+only, and no license to them is granted or implied by this file. See
+llm-docs/NOTICE for details.
+
+---
+
 MIT License
 
 Copyright (c) 2026 Alek M
