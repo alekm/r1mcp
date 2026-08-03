@@ -1,5 +1,11 @@
 # Identity Management — field notes
 
+RUCKUS calls this surface the **Personal Identity Network (PIN)**. The identity
+group object carries a `personalIdentityNetworkId`, and it is the join point for
+DPSK, MAC registration, certificates and policy: `dpskPoolId`,
+`macRegistrationPoolId`, `certificateTemplateId`, `policySetId`, `propertyId`.
+A group is how those services are bound to a set of people or devices.
+
 ## `POST /identities/query` ignores paging entirely
 
 It returns the same first 20 rows regardless of what you send. A paging loop
@@ -9,11 +15,15 @@ than as an error. This is the worst pagination failure in the API.
 **Use instead:**
 
 ```
-GET /identityGroups/{identityGroupId}/identities?page=0&size=500
+GET /identityGroups/{groupId}/identities?page=0&size=500
 ```
 
-Not in the OpenAPI spec, but it works and pages correctly. Note `page`/`size`,
-**0-indexed** — `pageSize` is silently ignored here (GENERAL.md §2).
+This is in the spec — note the path parameter is `{groupId}`, not
+`{identityGroupId}` as earlier notes had it. Searching for the wrong name makes it
+look undocumented. Same trap as `/activities/{activityId}` vs `{requestId}`.
+
+It works and pages correctly, using `page`/`size` **0-indexed**. Rows arrive under
+`content`, not `data`.
 
 ## Identities carry the AP binding for Property Management units
 

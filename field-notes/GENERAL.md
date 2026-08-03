@@ -40,8 +40,9 @@ GET /venues/{venueId}/units?page=0&size=500      -> 290 items, totalElements: 29
 ```
 
 **Always compare returned length against `totalElements`/`totalCount`.** For
-identities use `GET /identityGroups/{identityGroupId}/identities?page=0&size=500`
-(not in the spec, but it works and pages correctly).
+identities use `GET /identityGroups/{groupId}/identities?page=0&size=500`, which
+pages correctly. (The path parameter is `{groupId}` — searching for
+`{identityGroupId}` finds nothing and makes it look undocumented.)
 
 ## 3. Query endpoints silently drop unrecognized `fields` and filters
 
@@ -81,25 +82,34 @@ them works. Not a single confirmed-broken endpoint remains.
 The 500s say "something went wrong, please wait a few minutes and try again".
 Waiting never helps: the request was never going to succeed as sent.
 
-### Each `/query` endpoint has its own body shape — read the spec first
+### The spec has the property names. It does not say they are required.
 
-There is no universal query envelope. The OpenAPI spec **does** list the correct
-property names per endpoint, under `requestBody`. It just declares
-`required: (none)` everywhere and gives `fields` no enum, so every constraint that
-actually matters is missing. Read the property list; ignore the optionality.
+Read each endpoint's `requestBody` properties in `llm-docs` — they are accurate,
+and they differ per endpoint. There is no universal query envelope.
 
-Shapes confirmed in the field:
+What the spec will not tell you, and what actually causes the 500s:
 
-| Endpoint | Body that works |
+- **Only 11 of 196 `/query` operations declare any required body field.** The
+  other 185 declare nothing and still refuse to work. Treat every documented
+  property as potentially mandatory.
+- **No `fields` array anywhere has an enum**, so valid field names are
+  undiscoverable. Send a name the endpoint does not know and it is silently
+  dropped (§3); send *only* unknown names and you get a 500.
+- **Shared DTOs lie by omission.** Several endpoints declare a generic schema
+  advertising properties they reject — `/portalServiceProfiles/query` uses one
+  with 24 properties and refuses `fields` with a 400.
+
+Required-in-practice, declared-optional-in-spec:
+
+| Endpoint | Minimum body |
 |---|---|
-| `/events/query` | `{"fields": [...]}` — at least one recognized name; nothing else required |
-| `/activities/query` | `{"page","pageSize","sortField","sortOrder"}` — **all four**, and a bogus `sortField` also 500s |
-| `/alarms/metas/query`, `/events/metas/query`, `/events/details/query` | `{"fields": [...], "filters": {"id": [...]}}` — ID-keyed lookups, not lists |
-| `/venues/wifiNetworks/query` | `{"venueIds": [...]}` — flat, no envelope; `networkIds` optional but alone is a 500 |
-| `/venues/aaaServers/query` | `{"venueId": "<id>"}` — **singular**, not `venueIds` |
-| `/entitlements/banners/query`, `/entitlements/compliances/query` | `{"filters": {}}` — an empty `filters` object is enough; omitting the key is a 500 |
-| `/macRegistrationPools/query` | `{"searchCriteriaList": []}` — Spring-style, no `fields`/`filters` at all |
-| `/portalServiceProfiles/query` | `{"filters": {}}` — and it **400s** if you send `fields` |
+| `/events/query` | `{"fields": [...]}` |
+| `/activities/query` | `page`, `pageSize`, `sortField`, `sortOrder` — all four |
+| `/*/metas/query`, `/events/details/query` | `{"fields": [...], "filters": {"id": [...]}}` |
+| `/venues/wifiNetworks/query` | `{"venueIds": [...]}` |
+| `/venues/aaaServers/query` | `{"venueId": "..."}` — singular |
+| `/entitlements/{banners,compliances}/query`, `/portalServiceProfiles/query` | `{"filters": {}}` |
+| `/macRegistrationPools/query` | `{"searchCriteriaList": []}` |
 
 ### Procedure when a `/query` returns 500
 
@@ -121,18 +131,15 @@ The only endpoint still returning an error is
 `GET /entitlements/licenseUsageReports` (`"Not a MSP"`) — a permission boundary on
 a non-MSP tenant, not a fault.
 
-## Response shapes vary too
+## Totals are not always at the top level
 
-Three shapes seen so far. **Do not assume `data` + `totalCount`:**
+The spec documents which response shape each endpoint returns, so check there
+rather than guessing. The trap it does not flag: in two of the three shapes the
+row count is **nested**, under `paging.totalCount` or `pageable`. Code reading
+`response["totalCount"]` finds nothing, skips the completeness check, and reports
+truncated data as complete — the §2 failure with a different cause.
 
-| Shape | Rows under | Total under | Example |
-|---|---|---|---|
-| Standard | `data` | `totalCount` / `totalElements` | most `/query` |
-| Spring page | `content` | `totalElements`, `pageable.pageNumber` **0-indexed** | `/macRegistrationPools/query` |
-| View-model page | `content` | **`paging.totalCount`** — nested | `/portalServiceProfiles/query` |
-
-A total nested under `paging` or `pageable` is invisible to a top-level lookup, so
-completeness checks silently pass on truncated data.
+`pageable.pageNumber` is also **0-indexed** where the standard shape is 1-indexed.
 
 Sweep scope: 237 read-only endpoints with no path parameters across all 31 groups;
 212 returned 200.

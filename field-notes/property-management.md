@@ -35,7 +35,7 @@ No Property Management endpoint returns `accessPoint` — not `GET /units/{unitI
 not the list, not `/units/query`. Read it from the identity instead:
 
 ```
-GET /identityGroups/{identityGroupId}/identities?page=0&size=500
+GET /identityGroups/{groupId}/identities?page=0&size=500
   -> "ethernetPorts": [{"macAddress": "<AA-BB-CC-DD-EE-FF>", "portIndex": 1, "name": "<apName>"}]
 ```
 
