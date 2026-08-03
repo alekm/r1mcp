@@ -72,79 +72,54 @@ Errors carry real codes (`PROPERTY-MANAGEMENT-001`, `SWITCH-10462`,
 `EVENT-10002`) plus a `requestId`. The code identifies the cause; the HTTP status
 usually does not.
 
-## 7. A 500 usually means an under-specified body, not a broken endpoint
+## 7. A 500 almost always means the wrong request body — not a broken endpoint
 
-**This is the most expensive mistake to make against this API.** Several `/query`
-endpoints return **500 when a required body field is missing**, where a 400 would
-be correct — and the message reads like an outage ("something went wrong, please
-wait a few minutes and try again"). Waiting does nothing. Every endpoint in the
-events and alarms group was written off as broken on this basis, and none of them
-are. Two illustrative cases:
+**This is the most expensive mistake to make against this API.** A tenant-wide
+sweep produced eleven endpoints that returned `500` and looked dead. Every one of
+them works. Not a single confirmed-broken endpoint remains.
 
-```
-POST /events/query      {"page":1,"pageSize":10}                        -> 500
-POST /events/query      {"fields":["event_datetime","severity","message"]}
-                                                                        -> 200
+The 500s say "something went wrong, please wait a few minutes and try again".
+Waiting never helps: the request was never going to succeed as sent.
 
-POST /activities/query  {"page":1,"pageSize":50}                        -> 500
-POST /activities/query  {"page":1,"pageSize":50,
-                         "sortField":"startDatetime","sortOrder":"DESC"} -> 200
-```
+### Each `/query` endpoint has its own body shape — read the spec first
 
-- `/events/query` needs **`fields`** with at least one recognized name. Nothing
-  else is mandatory.
-- `/activities/query` needs **all four** of `page`, `pageSize`, `sortField`,
-  `sortOrder`. An unrecognized `sortField` is also a 500.
-- Any `/query` path ending in **`/metas` or `/details`** is an ID-keyed lookup,
-  not a list. It needs **`fields` + `filters.id`** and 500s without both. Covers
-  `/alarms/metas/query`, `/events/metas/query`, `/events/details/query`.
+There is no universal query envelope. The OpenAPI spec **does** list the correct
+property names per endpoint, under `requestBody`. It just declares
+`required: (none)` everywhere and gives `fields` no enum, so every constraint that
+actually matters is missing. Read the property list; ignore the optionality.
 
-### Not every `/query` endpoint takes the same body
+Shapes confirmed in the field:
 
-There are **two different body shapes**, and sending the wrong one is a 500:
-
-| Shape | Body | Example |
-|---|---|---|
-| **Standard envelope** | `fields`, `page`, `pageSize`, `sortField`, `sortOrder`, `filters` | `/events/query`, `/activities/query`, `/venues/query` |
-| **Flat scope** | resource ids at the top level, no envelope at all | `/venues/wifiNetworks/query` → `{"venueIds": [...]}` |
-
-`POST /venues/wifiNetworks/query` rejects the standard envelope with
-`500 WIFI-10000` and accepts `{"venueIds": [...]}`. `networkIds` is an optional
-narrowing filter; **`venueIds` is required** and `networkIds` alone still 500s.
-Same for `/templates/venues/wifiNetworks/query`.
-
-So a 500 can mean the envelope itself is wrong, not just that a key is missing.
-If the standard envelope fails, try a flat body of the ids the path names.
-
-**Seven** endpoints written off as broken turned out to be under-specified or
-sent the wrong body shape — the entire events and alarms surface, plus both
-venue-scoped wifiNetworks queries. Four remain genuinely broken. Before recording
-an eighth, try: a `fields` list, full paging, both sort keys, `filters.id` if the
-path ends in `/metas` or `/details`, and a flat id body if the envelope fails.
-Only then is a 500 evidence of anything.
-
-## Known-broken endpoints — verified 2026-08-02
-
-Confirmed 500 across every payload variant that fixed the five above, including
-`fields`, `filters.id`, `filters.venueIds`, paging and sort:
-
-| Endpoint | Code |
+| Endpoint | Body that works |
 |---|---|
-| `POST /venues/aaaServers/query` | `SWITCH-10000` |
-| `POST /macRegistrationPools/query` | 500 — use `GET /macRegistrationPools` |
-| `POST /entitlements/banners/query` | `ENTITLEMENT-10000` |
-| `POST /entitlements/compliances/query` | `ENTITLEMENT-10000` |
-| `GET /entitlements/licenseUsageReports` | 400 |
+| `/events/query` | `{"fields": [...]}` — at least one recognized name; nothing else required |
+| `/activities/query` | `{"page","pageSize","sortField","sortOrder"}` — **all four**, and a bogus `sortField` also 500s |
+| `/alarms/metas/query`, `/events/metas/query`, `/events/details/query` | `{"fields": [...], "filters": {"id": [...]}}` — ID-keyed lookups, not lists |
+| `/venues/wifiNetworks/query` | `{"venueIds": [...]}` — flat, no envelope; `networkIds` optional but alone is a 500 |
+| `/venues/aaaServers/query` | `{"venueId": "<id>"}` — **singular**, not `venueIds` |
+| `/entitlements/banners/query`, `/entitlements/compliances/query` | `{"filters": {}}` — an empty `filters` object is enough; omitting the key is a 500 |
+| `/macRegistrationPools/query` | `{"searchCriteriaList": []}` — Spring-style, no `fields`/`filters` at all |
 
-Where a plain collection `GET` exists alongside a broken `/query`, the `GET` works
-— that is the workaround, not a retry. `POST /portalServiceProfiles/query` is
-field-sensitive rather than broken: a wrong `fields` list returns
-`400 GUEST-400000`, so it wants the right names, which are not yet known.
+### Procedure when a `/query` returns 500
 
-For change history, **both** `/events/query` and `/activities/query` work — events
-for what happened on the network, activities for who changed what. `/alarms/query`
-returns active alarms only; history is lost on recovery. Neither alarms nor events
-carry entity *names* — resolve those through the `/metas` lookups above.
+1. Look up the endpoint's `requestBody` properties in the spec and send **those**
+   keys, not the envelope that worked elsewhere.
+2. If the path ends in `/metas` or `/details`, supply `fields` + `filters.id`.
+3. If a tenant-wide aggregate fails, try the venue-scoped path
+   (`/venues/{venueId}/…`) — they are separate implementations.
+4. Only after all of that is a 500 evidence of anything.
+
+Two endpoints return 400 rather than 500 and remain unresolved:
+`POST /portalServiceProfiles/query` (`GUEST-400000`, wants field names not yet
+known) and `GET /entitlements/licenseUsageReports` (`"Not a MSP"` — a permission
+boundary, not a fault).
+
+## Response shapes vary too
+
+Alongside `data` + `totalCount`, some endpoints return a Spring page:
+`{"content": [...], "pageable": {"pageNumber": 0, "pageSize": 20}, "totalElements": N}`
+— note `content` rather than `data`, and a **0-indexed** `pageNumber`.
+`/macRegistrationPools/query` is one. Do not assume `data`.
 
 Sweep scope: 237 read-only endpoints with no path parameters across all 31 groups;
 212 returned 200.

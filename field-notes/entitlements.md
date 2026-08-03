@@ -15,17 +15,23 @@ laborious and wrong.
   effective/expiration dates, trial vs assigned, grace end
 - `GET /assignments/summaries` — MSP assignment
 
-## Broken — verified 2026-08-02
+## Body shapes — verified 2026-08-02
 
-| Endpoint | Behavior |
-|---|---|
-| `POST /entitlements/banners/query` | 500 `ENTITLEMENT-10000` |
-| `POST /entitlements/compliances/query` | 500 `ENTITLEMENT-10000` |
-| `GET /entitlements/licenseUsageReports` | 400 |
+`banners` and `compliances` were previously recorded as broken. They are not —
+they take **only** a `filters` object, and an empty one is enough. Omitting the
+key is a 500 `ENTITLEMENT-10000`.
 
-`licenseUsageReports` has been seen two ways: a raw Java stack trace, and a plain
-`"Not a MSP"` on a non-MSP tenant. Either way there is no working variant — do not
-route around it.
+```jsonc
+POST /entitlements/banners/query      {"filters": {}}   -> 200 {"data": []}
+POST /entitlements/compliances/query  {"filters": {}}   -> 200 {"compliances": [null]}
+```
+
+Note `compliances` returns its rows under a `compliances` key, not `data`, and can
+contain `null` entries — guard before dereferencing.
+
+`GET /entitlements/licenseUsageReports` returns 400 `"Not a MSP"` on a non-MSP
+tenant. That is a permission boundary rather than a fault; it has also been seen
+returning a raw Java stack trace.
 
 Endpoints that need extra fields rather than being broken:
 

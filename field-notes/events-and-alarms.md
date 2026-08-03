@@ -28,17 +28,43 @@ are ISO-8601 strings. `filters.entity_type` accepts
 `["AP","SECURITY","CLIENT","SWITCH","NETWORK","EDGE","IOT","PROFILE","OPTICAL"]`.
 `detailLevel: "debug"` is accepted and optional.
 
-Known field names, from the console's own request:
+### Only 20 of the 56 accepted fields ever return data
+
+The console sends 56 field names. Measured over 200 events on a live tenant, these
+**20** came back:
 
 ```
-event_datetime severity entity_type product entity_id message dpName apMac
-clientMac macAddress apName switchName serialNumber networkName serviceName
-networkId ssid radio raw_event sourceType adminName clientName userName hostname
-adminEmail administratorEmail venueName venueId apGroupId apGroupName
-floorPlanName recipientName transactionId name ipAddress detailedDescription
-duration remoteEdgeId apModel clientMldMac portList authenticationType
-profileName action macOui lldpTlv macAcl ethPort successCount failureCount
+event_datetime severity entity_type product entity_id message name
+apMac clientMac macAddress serialNumber venueId
+networkName ssid radio adminName clientName userName hostname ethPort
 ```
+
+`id` and `indexName` come back **without being requested** — convenient, since
+`id` is what the `/metas` lookups need.
+
+The other 36 returned nothing across the whole sample:
+
+```
+dpName apName switchName serviceName networkId raw_event sourceType adminEmail
+administratorEmail venueName apGroupId apGroupName floorPlanName recipientName
+transactionId ipAddress detailedDescription Persona-ID duration remoteEdgeId
+apModel minimumRequiredVersion clientMldMac turnOnTimestamp turnOffTimestamp
+portList authenticationType profileName action macOui lldpTlv macAcl
+rodanAvProfileTemplate cleanupNote successCount failureCount
+```
+
+**This is by design, not a gap — and it is why `/metas` exists.** Nine of those
+absent fields (`apName`, `switchName`, `venueName`, `apGroupId`, `apGroupName`,
+`floorPlanName`, `networkId`, `recipientName`, `administratorEmail`) are exactly
+what `/events/metas/query` resolves. `/events/query` hands you **ids and MACs**;
+names come from the second call. Asking `/events/query` for `apName` returns
+nothing and looks like missing data (GENERAL.md §3) rather than a routing
+decision.
+
+Caveat on the sample: it covered `CLIENT` (167), `SECURITY` (22) and `AP` (11)
+events only. Fields specific to switch, edge or IoT events may populate where this
+sample could not show it. Absence here means "not for these event types", not
+"never".
 
 `message` comes back as a **JSON-encoded string**, not prose — it holds a
 `message_template` with `@@placeholder` / `%%placeholder` markers plus a `data`

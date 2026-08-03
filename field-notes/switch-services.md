@@ -24,7 +24,40 @@ empty, which does not mean the ports are unconfigured. For the actual port ↔
 device map use `POST /venues/switches/clients/query` (see
 view-model-resources.md).
 
-## Broken as of 2026-08-02
+## AAA servers: query per venue, not tenant-wide
 
-`POST /venues/aaaServers/query` returns 500 `SWITCH-10000` ("an unknown error
-occurred") even with paging and sort supplied.
+`POST /venues/aaaServers/query` takes **`venueId` — singular**, not the `venueIds`
+array that the neighbouring wifiNetworks query uses:
+
+```jsonc
+POST /venues/aaaServers/query   {"venueId": "<venueId>"}
+```
+
+Without it: 500 `SWITCH-10000` "an unknown error occurred". The standard
+`fields`/`page`/`sortField` envelope may be added but does not substitute for it.
+
+The venue-scoped path also works and is unfussy — envelope, flat, or even `{}`:
+
+```
+POST /venues/{venueId}/aaaServers/query   {}
+```
+
+`POST /templates/venues/aaaServers/query` works tenant-wide with any body.
+
+**Two lessons:** singular vs plural id keys differ between adjacent endpoints, so
+read each `requestBody` in the spec; and when a tenant-wide aggregate fails, the
+venue-scoped path is a separate implementation worth trying.
+
+### ⚠ This endpoint returns switch admin credentials
+
+```jsonc
+{"id": "…", "name": "admin", "username": "admin", "password": "<in cleartext>",
+ "purpose": "DEFAULT", "level": "READ_WRITE", "serverType": "LOCAL",
+ "authPort": 0, "switchCountInVenue": 5, "syncedPasswordSwitchCount": 5}
+```
+
+`password` comes back in the response body. **Do not echo this into chat output,
+logs, tickets or commits.** Read the fields you need and drop the rest.
+
+`syncedPasswordSwitchCount` vs `switchCountInVenue` is the useful signal — a
+mismatch means some switches never took the credential change.
