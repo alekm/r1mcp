@@ -4,13 +4,14 @@ An [MCP](https://modelcontextprotocol.io) server that connects Claude to the [RU
 
 ## How it works
 
-The server exposes five tools that follow a deliberate discovery flow:
+The server exposes six tools that follow a deliberate discovery flow:
 
 | Tool | Purpose |
 |------|---------|
 | `r1_list_groups` | Returns the full API surface (31 groups, 1616 endpoints) from a local index — no network call |
 | `r1_get_docs(group)` | Returns full endpoint documentation for a group, plus any field notes for it |
 | `r1_call(method, path, ...)` | Makes an authenticated live API call and returns the JSON response |
+| `r1_fetch_all(method, path, ...)` | Pages through a list endpoint, works out its paging convention, and verifies completeness |
 | `r1_wait_for_activity(request_id)` | Polls a 202's `requestId` to completion and reports per-device progress |
 | `r1_field_notes(group)` | Verified real-world behavior the API spec does not document |
 
@@ -23,7 +24,8 @@ Authentication uses OAuth2 client credentials with automatic token caching and r
 ### Guardrails in `r1_call`
 
 - **Size** — oversized list responses are trimmed to whole rows with an explicit count of what was dropped, never silently. `count_only=True` returns totals and field names instead of rows.
-- **Completeness** — when a response returns fewer rows than its own `totalCount`, that mismatch is called out. RUCKUS One uses three incompatible pagination conventions and ignores the wrong one silently.
+- **Completeness** — when a response returns fewer rows than its own `totalCount`, that mismatch is called out. RUCKUS One uses three incompatible pagination conventions and ignores the wrong one silently. `r1_fetch_all` goes further: it probes which convention an endpoint honors, pages to the declared total, and stops with a warning if an endpoint repeats rows instead of paging — collecting further pages there would inflate the result with duplicates rather than extend it.
+- **Retries** — 429 is retried with backoff (honoring `Retry-After`), and 5xx is retried for reads only. Writes are never retried on 5xx: RUCKUS One offers no idempotency key, and a repeated `DELETE` on a Property Management unit reissues its DPSK.
 - **Async writes** — a `202` carries a `requestId` that is an activity ID. Responses say so and point at `r1_wait_for_activity`, which reports whether the config actually reached the devices or only the cloud.
 - **Errors** — responses lead with the RUCKUS error code (`HTTP 400 PROPERTY-MANAGEMENT-001: ...`) rather than burying it in JSON.
 

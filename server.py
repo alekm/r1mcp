@@ -24,6 +24,11 @@ NOTES_PATH = Path(os.environ.get("R1_NOTES_PATH", Path(__file__).parent / "field
 # A fleet-scale query is hundreds of KB and will swallow a context window.
 MAX_RESPONSE_CHARS = int(os.environ.get("R1_MAX_RESPONSE_CHARS", "40000"))
 TIMEOUT = float(os.environ.get("R1_TIMEOUT", "30"))
+MAX_RETRIES = int(os.environ.get("R1_MAX_RETRIES", "3"))
+
+# The two paging conventions that work. Which one an endpoint wants is not
+# derivable from the spec, and sending the wrong one fails silently.
+_CONVENTIONS = (("page", "pageSize", 1), ("page", "size", 0))
 
 # Keys R1 uses for the row list and the true total across its query endpoints.
 _LIST_KEYS = ("data", "content", "items", "results", "list")
@@ -203,6 +208,31 @@ def _async_hint(status: int, data) -> str:
         f"steps[].progressSummary — a SUCCESS with a non-zero 'offline' count "
         f"means the config never reached those devices."
     )
+
+
+def _should_retry(method: str, path: str, response) -> bool:
+    """
+    429 is always safe to retry — rate limiting means the request was rejected,
+    not processed. 5xx is only safe when the call cannot have changed anything:
+    a retried DELETE here can destroy a unit's DPSK twice (see field notes), and
+    R1 gives no idempotency key to protect against that.
+    """
+    if response.status_code == 429:
+        return True
+    if response.status_code < 500:
+        return False
+    return method == "GET" or (method == "POST" and path.rstrip("/").endswith("/query"))
+
+
+def _retry_delay(response, attempt: int) -> float:
+    """Honor Retry-After when R1 sends one, else exponential backoff."""
+    header = response.headers.get("Retry-After")
+    if header:
+        try:
+            return min(float(header), 30.0)
+        except ValueError:
+            pass
+    return min(1.0 * (2 ** attempt), 8.0)
 
 
 def _error_detail(status: int, data) -> str:
@@ -388,6 +418,145 @@ def _activity_report(activity: dict, elapsed: float, polls: int) -> str:
     return "\n".join(lines)
 
 
+def _fetch_page(method, path, query_params, body, conv, page, size, tenant):
+    """One page under a given convention. Paging goes in the body for POST."""
+    page_key, size_key, base = conv
+    paging = {page_key: base + page, size_key: size}
+    if method == "POST":
+        payload = {**(body or {}), **paging}
+        params = query_params
+    else:
+        payload = body
+        params = {**(query_params or {}), **paging}
+
+    raw = r1_call(method, path, query_params=params, body=payload,
+                  target_tenant_id=tenant, max_chars=10_000_000)
+    if raw.startswith("ERROR") or not raw.startswith("HTTP 2"):
+        return None, raw
+    try:
+        return json.loads(raw.split("\n\n", 1)[1]), ""
+    except Exception:
+        return None, raw
+
+
+def _row_key(row):
+    """A stable-enough identity for detecting a page that repeats itself."""
+    if not isinstance(row, dict):
+        return json.dumps(row, sort_keys=True)[:200]
+    for k in ("id", "serialNumber", "mac", "macAddress", "name", "requestId"):
+        if row.get(k):
+            return f"{k}={row[k]}"
+    return json.dumps(row, sort_keys=True)[:200]
+
+
+@mcp.tool()
+def r1_fetch_all(
+    method: str,
+    path: str,
+    query_params: dict | None = None,
+    body: dict | None = None,
+    page_size: int = 500,
+    max_pages: int = 40,
+    target_tenant_id: str | None = None,
+) -> str:
+    """
+    Fetch every row from a paginated endpoint, working out which paging
+    convention it wants and verifying the result is actually complete.
+
+    Use this instead of r1_call for any list you intend to count, reconcile or
+    report on. RUCKUS One has three paging behaviors and picking the wrong one
+    fails silently — you get the default page size back while the total still
+    reports correctly, so short data looks complete.
+
+    Args:
+        method: GET or POST (POST for '/…/query' endpoints)
+        path: API path
+        query_params: Query parameters, excluding paging
+        body: Request body, excluding paging
+        page_size: Rows per page (default 500)
+        max_pages: Safety stop (default 40)
+        target_tenant_id: For MSP operations
+
+    Returns:
+        A completeness report, then the rows — trimmed with a notice if large.
+    """
+    method = method.upper()
+    if method not in {"GET", "POST"}:
+        return "ERROR: r1_fetch_all supports GET and POST only"
+
+    # Probe both conventions and keep whichever actually honors page_size.
+    chosen, first, probe_note = None, None, ""
+    for conv in _CONVENTIONS:
+        data, err = _fetch_page(method, path, query_params, body, conv, 0,
+                                page_size, target_tenant_id)
+        if data is None:
+            return f"ERROR while probing paging convention {conv[0]}/{conv[1]}:\n\n{err}"
+        _, rows = _rows(data)
+        if rows is None:
+            return f"Not a paginated list response.\n\n{json.dumps(data, indent=2)[:4000]}"
+        _, total = _declared_total(data)
+        chosen, first = conv, data
+        # Honored if it filled the page, or returned everything there is.
+        if len(rows) > 20 or (total is not None and len(rows) >= total):
+            break
+        probe_note += (f"'{conv[1]}' returned only {len(rows)} rows"
+                       f"{f' of {total}' if total is not None else ''}; ")
+
+    _, rows = _rows(first)
+    _, total = _declared_total(first)
+    key, _ = _rows(first)
+    collected, seen, pages, stopped = list(rows), {_row_key(r) for r in rows}, 1, ""
+
+    while total is not None and len(collected) < total and pages < max_pages:
+        data, err = _fetch_page(method, path, query_params, body, chosen, pages,
+                                page_size, target_tenant_id)
+        if data is None:
+            stopped = f"stopped after page {pages}: {err.splitlines()[0]}"
+            break
+        _, page_rows = _rows(data)
+        if not page_rows:
+            stopped = f"page {pages + 1} came back empty before reaching {total}"
+            break
+
+        fresh = [r for r in page_rows if _row_key(r) not in seen]
+        if not fresh:
+            stopped = (
+                f"page {pages + 1} repeated rows already seen — this endpoint ignores "
+                f"paging. Collecting further pages would INFLATE the result with "
+                f"duplicates rather than extend it. Known true of POST /identities/query; "
+                f"use GET /identityGroups/{{identityGroupId}}/identities instead."
+            )
+            break
+        seen.update(_row_key(r) for r in fresh)
+        collected.extend(fresh)
+        pages += 1
+
+    head = [
+        f"{len(collected)} rows collected over {pages} page(s) "
+        f"using {chosen[0]}/{chosen[1]} ({chosen[2]}-indexed)"
+    ]
+    if total is not None:
+        head.append(f"endpoint reports {total}")
+        if len(collected) == total:
+            head.append("✓ COMPLETE")
+        else:
+            head.append(f"⚠ INCOMPLETE — {total - len(collected)} rows missing. "
+                        f"Do not treat this as the full set.")
+    else:
+        head.append("⚠ endpoint declared no total, so completeness cannot be verified")
+    if stopped:
+        head.append(f"⚠ {stopped}")
+    if probe_note:
+        head.append(f"(probe: {probe_note.strip('; ')})")
+    if pages >= max_pages and total is not None and len(collected) < total:
+        head.append(f"⚠ hit the {max_pages}-page safety stop")
+
+    payload = {**first, key: collected} if key and isinstance(first, dict) else collected
+    text = json.dumps(payload, indent=2)
+    text, notice = _shrink(payload, text, MAX_RESPONSE_CHARS)
+    return "\n".join(head) + "\n\n" + text + notice
+
+
 @mcp.tool()
 def r1_wait_for_activity(
     request_id: str,
@@ -493,13 +662,17 @@ def r1_call(
     url = BASE_URL + path
     try:
         with httpx.Client(timeout=TIMEOUT) as client:
-            response = client.request(
-                method=method,
-                url=url,
-                headers=headers,
-                params=query_params or {},
-                json=body,
-            )
+            for attempt in range(MAX_RETRIES + 1):
+                response = client.request(
+                    method=method,
+                    url=url,
+                    headers=headers,
+                    params=query_params or {},
+                    json=body,
+                )
+                if attempt == MAX_RETRIES or not _should_retry(method, path, response):
+                    break
+                time.sleep(_retry_delay(response, attempt))
 
         status = response.status_code
         data = None
