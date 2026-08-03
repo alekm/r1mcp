@@ -77,8 +77,9 @@ usually does not.
 **This is the most expensive mistake to make against this API.** Several `/query`
 endpoints return **500 when a required body field is missing**, where a 400 would
 be correct — and the message reads like an outage ("something went wrong, please
-wait a few minutes and try again"). Waiting does nothing. Two confirmed cases,
-both of which were previously written off as broken:
+wait a few minutes and try again"). Waiting does nothing. Every endpoint in the
+events and alarms group was written off as broken on this basis, and none of them
+are. Two illustrative cases:
 
 ```
 POST /events/query      {"page":1,"pageSize":10}                        -> 500
@@ -94,22 +95,22 @@ POST /activities/query  {"page":1,"pageSize":50,
   else is mandatory.
 - `/activities/query` needs **all four** of `page`, `pageSize`, `sortField`,
   `sortOrder`. An unrecognized `sortField` is also a 500.
-- `/alarms/metas/query` needs **`fields` and `filters.id`** — it is a lookup by
-  alarm ID, not a list endpoint (`ALARM-10003` without them).
+- Any `/query` path ending in **`/metas` or `/details`** is an ID-keyed lookup,
+  not a list. It needs **`fields` + `filters.id`** and 500s without both. Covers
+  `/alarms/metas/query`, `/events/metas/query`, `/events/details/query`.
 
-Three endpoints written off as broken turned out to be under-specified. Before
-recording a fourth, retry with a `fields` list, full paging, both sort keys, and
-any `filters` the resource implies. Only then is a 500 evidence of anything.
+**Five** endpoints written off as broken turned out to be under-specified —
+the entire events and alarms surface. Before recording a sixth, retry with a
+`fields` list, full paging, both sort keys, and `filters.id` if the path ends in
+`/metas` or `/details`. Only then is a 500 evidence of anything.
 
 ## Known-broken endpoints — verified 2026-08-02
 
-Confirmed 500 across every payload variant that fixed the three above, including
-`fields`, `filters`, paging and sort:
+Confirmed 500 across every payload variant that fixed the five above, including
+`fields`, `filters.id`, `filters.venueIds`, paging and sort:
 
 | Endpoint | Code |
 |---|---|
-| `POST /events/metas/query` | `EVENT-10001` |
-| `POST /events/details/query` | `EVENT-10005` |
 | `POST /venues/wifiNetworks/query` | `WIFI-10000` — tenant-level `POST /wifiNetworks/query` works |
 | `POST /templates/venues/wifiNetworks/query` | `WIFI-10000` |
 | `POST /venues/aaaServers/query` | `SWITCH-10000` |
@@ -125,7 +126,8 @@ field-sensitive rather than broken: a wrong `fields` list returns
 
 For change history, **both** `/events/query` and `/activities/query` work — events
 for what happened on the network, activities for who changed what. `/alarms/query`
-returns active alarms only; history is lost on recovery.
+returns active alarms only; history is lost on recovery. Neither alarms nor events
+carry entity *names* — resolve those through the `/metas` lookups above.
 
 Sweep scope: 237 read-only endpoints with no path parameters across all 31 groups;
 212 returned 200.

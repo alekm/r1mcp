@@ -57,6 +57,30 @@ startTime, severity, serialNumber, entityType, entityId, name, message, venueId
 
 `startTime` is epoch **milliseconds** here, while events uses ISO-8601 strings.
 
+## The `/metas` and `/details` endpoints are ID-keyed lookups, not lists
+
+**Generalizable rule.** A `/query` endpoint ending in `/metas` or `/details` does
+not list anything. It takes ids you already have and returns extra columns for
+them. All of them require **`fields` plus `filters.id`**, and every one returns
+500 without both — which is why the whole set was written off as broken.
+
+| Endpoint | Needs | Returns |
+|---|---|---|
+| `POST /alarms/metas/query` | `fields` + `filters.id` | names behind each alarm |
+| `POST /events/metas/query` | `fields` + `filters.id` | names behind each event |
+| `POST /events/details/query` | `fields` + `filters.id` | detail rows (often empty) |
+
+Get the ids from `/alarms/query` or `/events/query` first. Those return ids,
+serials and timestamps but **no venue, AP, switch or network names** — resolving
+them is a deliberate second call, and this is it.
+
+`filters.fromTime`/`toTime` are accepted inside `filters` here and are optional
+when ids are supplied.
+
+`/events/details/query` returns 200 with zero rows for ordinary client-connect
+events; detail rows appear only for event types that carry them. Zero rows is a
+valid answer, not a failure.
+
 ## `POST /alarms/metas/query` WORKS — it resolves names for alarm IDs
 
 Also previously recorded as broken. It is not a catalogue of alarm types; it is a
@@ -77,18 +101,13 @@ from "entity is gone". `filters.alarmType: ["new"]` is accepted and optional.
 Get the ids from `POST /alarms/query` first. This is a second call by design: the
 alarm objects carry ids and serials, not venue or device names.
 
-## Genuinely broken — verified 2026-08-02
+## Nothing in this group is broken
 
-Retried with `fields`, `filters`, paging and sort. These resisted every variant
-that fixed `/events/query` and `/alarms/metas/query`:
-
-| Endpoint | Code |
-|---|---|
-| `POST /events/metas/query` | 500 `EVENT-10001` |
-| `POST /events/details/query` | 500 `EVENT-10005` |
-
-So you can read events and alarms, and resolve alarm names, but cannot enumerate
-event type metadata.
+Every endpoint here that was previously recorded as a persistent 500 —
+`/events/query`, `/events/metas/query`, `/events/details/query`,
+`/alarms/metas/query` — works once the required body fields are supplied. The
+"please wait a few minutes and try again" text is misleading: waiting changes
+nothing, and the request was never going to succeed as sent.
 
 ## Never-contacted devices cannot alarm
 
