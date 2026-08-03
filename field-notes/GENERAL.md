@@ -99,6 +99,7 @@ Shapes confirmed in the field:
 | `/venues/aaaServers/query` | `{"venueId": "<id>"}` — **singular**, not `venueIds` |
 | `/entitlements/banners/query`, `/entitlements/compliances/query` | `{"filters": {}}` — an empty `filters` object is enough; omitting the key is a 500 |
 | `/macRegistrationPools/query` | `{"searchCriteriaList": []}` — Spring-style, no `fields`/`filters` at all |
+| `/portalServiceProfiles/query` | `{"filters": {}}` — and it **400s** if you send `fields` |
 
 ### Procedure when a `/query` returns 500
 
@@ -109,17 +110,29 @@ Shapes confirmed in the field:
    (`/venues/{venueId}/…`) — they are separate implementations.
 4. Only after all of that is a 500 evidence of anything.
 
-Two endpoints return 400 rather than 500 and remain unresolved:
-`POST /portalServiceProfiles/query` (`GUEST-400000`, wants field names not yet
-known) and `GET /entitlements/licenseUsageReports` (`"Not a MSP"` — a permission
-boundary, not a fault).
+**Caveat on reading the spec:** some endpoints share a generic DTO — e.g.
+`/portalServiceProfiles/query` uses `View_Model_Resources_DynamicQueryPayloadDto`,
+which advertises 24 properties. That endpoint rejects `fields` with a 400 and 500s
+on the paging keys. The schema describes what the DTO can express, not what the
+endpoint accepts. A **400** means a key was understood and refused; a **500**
+means the shape was wrong.
+
+The only endpoint still returning an error is
+`GET /entitlements/licenseUsageReports` (`"Not a MSP"`) — a permission boundary on
+a non-MSP tenant, not a fault.
 
 ## Response shapes vary too
 
-Alongside `data` + `totalCount`, some endpoints return a Spring page:
-`{"content": [...], "pageable": {"pageNumber": 0, "pageSize": 20}, "totalElements": N}`
-— note `content` rather than `data`, and a **0-indexed** `pageNumber`.
-`/macRegistrationPools/query` is one. Do not assume `data`.
+Three shapes seen so far. **Do not assume `data` + `totalCount`:**
+
+| Shape | Rows under | Total under | Example |
+|---|---|---|---|
+| Standard | `data` | `totalCount` / `totalElements` | most `/query` |
+| Spring page | `content` | `totalElements`, `pageable.pageNumber` **0-indexed** | `/macRegistrationPools/query` |
+| View-model page | `content` | **`paging.totalCount`** — nested | `/portalServiceProfiles/query` |
+
+A total nested under `paging` or `pageable` is invisible to a top-level lookup, so
+completeness checks silently pass on truncated data.
 
 Sweep scope: 237 read-only endpoints with no path parameters across all 31 groups;
 212 returned 200.

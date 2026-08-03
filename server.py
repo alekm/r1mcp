@@ -271,11 +271,22 @@ def _rows(data):
 
 
 def _declared_total(data):
-    """The count R1 claims exists, which is not always the count it returned."""
-    if isinstance(data, dict):
-        for k in _TOTAL_KEYS:
-            if isinstance(data.get(k), int):
-                return k, data[k]
+    """
+    The count R1 claims exists, which is not always the count it returned.
+    Some endpoints nest it under `paging` (View Model Resources) or `pageable`
+    (Spring-style, e.g. /macRegistrationPools/query) instead of the top level.
+    """
+    if not isinstance(data, dict):
+        return None, None
+    for k in _TOTAL_KEYS:
+        if isinstance(data.get(k), int):
+            return k, data[k]
+    for wrapper in ("paging", "pageable", "page"):
+        nested = data.get(wrapper)
+        if isinstance(nested, dict):
+            for k in _TOTAL_KEYS:
+                if isinstance(nested.get(k), int):
+                    return f"{wrapper}.{k}", nested[k]
     return None, None
 
 
