@@ -35,7 +35,7 @@ identity-management.md.
 ## Assorted
 
 - `UnitAp` binds by **AP name**, not serial. Bind an unnamed AP and it is recorded
-  under its serial string, which is unusable later. Name APs before binding.
+  under its serial string, which cannot be resolved later. Name APs before binding.
 - `selectedPorts[].portIndex` must be positive, and is 1-indexed while
   `lanPortStatuses` ids are 0-indexed: `portIndex: 1` is the port reported as
   `id: "0"`.

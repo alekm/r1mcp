@@ -19,7 +19,7 @@ Authentication uses OAuth2 client credentials with automatic token caching and r
 
 ### Field notes
 
-`llm-docs/` is generated from the OpenAPI spec and says what endpoints exist. `field-notes/` is hand-maintained and says which ones lie — broken endpoints, pagination that fails silently, and writes that clobber omitted fields. The cross-cutting notes ride in the server instructions so they are always in context; per-group notes come back automatically with `r1_get_docs`. See [field-notes/README.md](field-notes/README.md).
+`llm-docs/` is generated from the OpenAPI spec and says what endpoints exist. `field-notes/` is hand-maintained and covers what the spec leaves out — request fields that are required but marked optional, pagination conventions that differ per endpoint, and which call resolves data another one omits. The cross-cutting notes ride in the server instructions so they are always in context; per-group notes come back automatically with `r1_get_docs`. See [field-notes/README.md](field-notes/README.md).
 
 ### Guardrails in `r1_call`
 

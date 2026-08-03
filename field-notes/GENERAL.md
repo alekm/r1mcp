@@ -1,7 +1,7 @@
 # RUCKUS One — behavior the API spec does not describe
 
-Apply these to every call. They are failure modes that return 2xx with plausible
-but wrong data, or 5xx that look like outages and are not.
+Apply these to every call. They cover cases where a response is misleading — 2xx
+with incomplete data, or a 5xx that means the request needs changing.
 
 ## 1. A 202 is not a completed write
 
@@ -59,10 +59,9 @@ binding state can all be that stale. A stale value is not a stuck device.
 Errors carry codes (`PROPERTY-MANAGEMENT-001`, `SWITCH-10462`, `EVENT-10002`).
 The code identifies the cause; the HTTP status usually does not.
 
-## 7. A 500 means the wrong request body
+## 7. Treat a 500 from `/query` as a body-shape problem
 
-Not an outage. The message says "please wait a few minutes and try again" —
-waiting never helps, because the request was never going to succeed as sent.
+Retrying unchanged will not help — correct the request instead.
 
 Each `/query` endpoint has its own body shape. The spec lists the correct
 properties per endpoint but marks almost nothing required, so treat every
@@ -86,9 +85,9 @@ When one fails:
 3. Tenant-wide aggregate failing — try the venue-scoped path
    (`/venues/{venueId}/…`); they are separate implementations.
 
-A **400** means a key was understood and refused. A **500** means the shape was
-wrong. Some endpoints declare a shared generic schema and reject properties it
-advertises.
+A **400** means a key was understood and refused; a **500** means the shape needs
+changing. Note that some endpoints declare a shared generic schema and accept only
+a subset of the properties it advertises.
 
 ## 8. Totals are not always top-level
 

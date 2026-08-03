@@ -21,7 +21,7 @@ not mean the ports are unconfigured. For the actual port-to-device map use
 ## AAA servers
 
 `POST /venues/aaaServers/query` takes **`venueId` singular**, not the `venueIds`
-array the neighbouring wifiNetworks query uses. Without it: `500 SWITCH-10000`.
+array the neighbouring wifiNetworks query uses. The request is rejected without it.
 
 The venue-scoped path works with any body, including `{}`:
 

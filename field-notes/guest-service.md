@@ -6,12 +6,11 @@
 {"filters": {}}   -> 200
 ```
 
-An empty `filters` object is the whole requirement. Sending `fields` returns
-`400 GUEST-400000`; sending paging or sort keys without `filters` returns
-`500 GUEST-500999`.
+An empty `filters` object is the whole requirement. Sending `fields` is rejected
+with `400 GUEST-400000`; paging or sort keys without `filters` are rejected too.
 
-This endpoint declares a shared generic query schema advertising ~24 properties it
-does not accept — see GENERAL.md §7.
+This endpoint declares a shared generic query schema advertising ~24 properties,
+and accepts only a subset — see GENERAL.md §7.
 
 Response is `content` + `paging`, with the total nested at `paging.totalCount`.
 

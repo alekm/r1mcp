@@ -17,8 +17,8 @@ confirmation a write landed. See GENERAL.md §1.
 
 ## `POST /activities/query` is the configuration change log
 
-Requires all four of `page`, `pageSize`, `sortField`, `sortOrder`. Any missing —
-or an unrecognized `sortField` — returns 500.
+Requires all four of `page`, `pageSize`, `sortField`, `sortOrder`, and a
+`sortField` it recognizes. Anything less is rejected.
 
 ```jsonc
 {"page": 1, "pageSize": 500, "sortField": "startDatetime", "sortOrder": "DESC"}

@@ -16,13 +16,13 @@ Floorplan `PUT` has the same shape — see venues.md.
 
 ## `POST /venues/wifiNetworks/query` takes a flat body
 
-Not the standard envelope, which returns `500 WIFI-10000`:
+Not the standard envelope, which this endpoint does not accept:
 
 ```jsonc
 {"venueIds": ["<venueId>"], "networkIds": ["<networkId>"]}   // networkIds optional
 ```
 
-`venueIds` is required; `networkIds` alone is still a 500. Same for
+`venueIds` is required; `networkIds` alone is not sufficient. Same for
 `/templates/venues/wifiNetworks/query`.
 
 This is the **network-to-venue activation map** — which SSIDs are live at a venue,
@@ -51,5 +51,6 @@ it over `PUT /venues/{venueId}/apModelLanPortSettings`, which takes the whole
 
 `poeMode`: `Auto | 802.3af | 802.3at | 802.3bt-Class_5…8`
 
-On models where the second ethernet port is suppressed at `802.3af`, a downstream
-bind succeeds but the port stays dead — which presents as a binding failure.
+On models where the second ethernet port is unavailable at `802.3af`, a downstream
+bind succeeds but the port does not come up — which presents as a binding problem.
+Check `poeMode` before investigating the bind.

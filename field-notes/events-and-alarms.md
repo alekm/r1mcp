@@ -2,8 +2,8 @@
 
 ## `POST /events/query` requires `fields`
 
-Without a `fields` list holding at least one recognized name: `500 EVENT-10002`.
-Nothing else is mandatory.
+A `fields` list holding at least one recognized name is required; without it the
+request is rejected. Nothing else is mandatory.
 
 ```jsonc
 {"fields": ["event_datetime","severity","entity_type","message","apMac","venueId"],
@@ -37,7 +37,7 @@ rather than printing it raw.
 ## `/metas` and `/details` are ID-keyed lookups, not lists
 
 They take ids you already hold and return extra columns. All require `fields`
-**and** `filters.id`; without both, 500.
+**and** `filters.id`; the request is rejected without both.
 
 | Endpoint | Returns |
 |---|---|

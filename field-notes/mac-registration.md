@@ -8,7 +8,7 @@ No `fields`, no `filters`, no `sortField`:
 {"searchCriteriaList": [], "dataOption": "SUMMARY"}   // dataOption optional
 ```
 
-Omitting `searchCriteriaList` returns 500.
+`searchCriteriaList` is required — omitting it is rejected.
 
 The response is a Spring page:
 
