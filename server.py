@@ -9,7 +9,10 @@ from pathlib import Path
 
 import httpx
 from dotenv import load_dotenv
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
+from mcp_types import ToolAnnotations
+
+__version__ = "0.2.0"  # this server, not the SDK
 
 load_dotenv(Path(__file__).parent / ".env")
 
@@ -71,7 +74,21 @@ def _group_notes(slug: str) -> str:
     return f.read_text()
 
 
-mcp = FastMCP("ruckus-one", instructions=_INSTRUCTIONS + _general_notes())
+mcp = MCPServer(
+    "ruckus-one",
+    title="RUCKUS One",
+    version=__version__,
+    instructions=_INSTRUCTIONS + _general_notes(),
+)
+
+# Read-only tools that never leave the machine: the docs and notes are local files.
+_LOCAL_READ = ToolAnnotations(
+    read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=False
+)
+# Read-only against the live tenant.
+_API_READ = ToolAnnotations(
+    read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True
+)
 
 # In-process token cache: (access_token, expires_at)
 _token_cache: tuple[str, float] = ("", 0.0)
@@ -130,7 +147,7 @@ def _get_token() -> str:
     raise RuntimeError(f"Authentication failed: {last_err}")
 
 
-@mcp.tool()
+@mcp.tool(annotations=_LOCAL_READ)
 def r1_list_groups() -> str:
     """
     List all available RUCKUS One API groups and their endpoint counts.
@@ -155,7 +172,7 @@ def r1_list_groups() -> str:
     return index.read_text() + footer
 
 
-@mcp.tool()
+@mcp.tool(annotations=_LOCAL_READ)
 def r1_get_docs(group: str) -> str:
     """
     Get full API documentation for a specific RUCKUS One API group.
@@ -355,7 +372,7 @@ def _shrink(data, body_text: str, limit: int) -> tuple[str, str]:
     )
 
 
-@mcp.tool()
+@mcp.tool(annotations=_LOCAL_READ)
 def r1_field_notes(group: str = "") -> str:
     """
     Verified real-world RUCKUS One behavior that the API spec does not document —
@@ -460,7 +477,7 @@ def _row_key(row):
     return json.dumps(row, sort_keys=True)[:200]
 
 
-@mcp.tool()
+@mcp.tool(annotations=_API_READ)
 def r1_fetch_all(
     method: str,
     path: str,
@@ -568,7 +585,7 @@ def r1_fetch_all(
     return "\n".join(head) + "\n\n" + text + notice
 
 
-@mcp.tool()
+@mcp.tool(annotations=_API_READ)
 def r1_wait_for_activity(
     request_id: str,
     timeout_seconds: float = 120.0,
@@ -617,7 +634,14 @@ def r1_wait_for_activity(
         delay = min(delay * 1.5, 10.0)
 
 
-@mcp.tool()
+@mcp.tool(
+    annotations=ToolAnnotations(
+        read_only_hint=False,
+        destructive_hint=True,
+        idempotent_hint=False,
+        open_world_hint=True,
+    )
+)
 def r1_call(
     method: str,
     path: str,

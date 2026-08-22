@@ -15,6 +15,8 @@ The server exposes six tools that follow a deliberate discovery flow:
 | `r1_wait_for_activity(request_id)` | Polls a 202's `requestId` to completion and reports per-device progress |
 | `r1_field_notes(group)` | Verified real-world behavior the API spec does not document |
 
+Every tool carries MCP tool annotations, so a client can tell the five read-only tools from `r1_call` — the one that writes, and which is marked non-idempotent because RUCKUS One has no idempotency key.
+
 Authentication uses OAuth2 client credentials with automatic token caching and refresh. MSP tenants can pass `target_tenant_id` to `r1_call` to operate on a customer tenant.
 
 ### Field notes
@@ -33,8 +35,13 @@ Authentication uses OAuth2 client credentials with automatic token caching and r
 
 **1. Install dependencies**
 
+Requires the MCP Python SDK 2.x (the 2026-07-28 spec) and Python 3.10+. A virtualenv is
+recommended — SDK 2.0 removed `mcp.server.fastmcp`, so installing it system-wide will
+break any MCP server on the machine still written against 1.x.
+
 ```bash
-pip install "mcp[cli]" httpx python-dotenv
+python3 -m venv .venv
+./.venv/bin/pip install -r requirements.txt
 ```
 
 **2. Configure credentials**
@@ -60,19 +67,26 @@ Add to `~/.claude.json` under `mcpServers`:
 ```json
 "ruckus-one": {
   "type": "stdio",
-  "command": "python3",
+  "command": "/path/to/r1mcp/.venv/bin/python",
   "args": ["/path/to/r1mcp/server.py"]
 }
 ```
+
+Point `command` at the virtualenv's interpreter, not a bare `python3`, or the server
+starts against whatever SDK happens to be on the system path.
 
 Restart Claude Code to pick up the new server.
 
 **4. Verify**
 
 ```bash
-python3 server.py          # should exit cleanly
-mcp dev server.py          # interactive smoke test
+./.venv/bin/python server.py    # should exit cleanly
+./.venv/bin/mcp dev server.py   # interactive smoke test
 ```
+
+Note that over stdio the handshake negotiates `2025-11-25`. That is expected: the
+2026-07-28 stateless wire protocol is negotiated over HTTP, so it only comes into play
+if you run this server on `streamable-http` instead.
 
 ## Usage examples
 
