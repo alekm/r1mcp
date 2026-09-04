@@ -31,7 +31,11 @@ MAX_RETRIES = int(os.environ.get("R1_MAX_RETRIES", "3"))
 
 # The two paging conventions that work. Which one an endpoint wants is not
 # derivable from the spec, and sending the wrong one fails silently.
-_CONVENTIONS = (("page", "pageSize", 1), ("page", "size", 0))
+# Key pairs only. The index base is NOT a property of the key naming — verified
+# 2026-09-04, /dpskServices/{pool}/passphrases/query is page/pageSize 1-indexed while
+# /passphrases/{id}/devices/query is page/pageSize 0-indexed — so it is probed per
+# endpoint by _probe_base() rather than baked in here.
+_CONVENTIONS = (("page", "pageSize"), ("page", "size"))
 
 # Keys R1 uses for the row list and the true total across its query endpoints.
 _LIST_KEYS = ("data", "content", "items", "results", "list")
@@ -120,17 +124,25 @@ def _get_token() -> str:
     if not all([CLIENT_ID, CLIENT_SECRET, TENANT_ID]):
         raise RuntimeError("R1_CLIENT_ID, R1_CLIENT_SECRET, and R1_TENANT_ID must all be set in .env")
 
-    tenant_path = f"/oauth2/token/{TENANT_ID}"
+    # The token is minted against the tenant that OWNS the credential, which is not
+    # necessarily the tenant we want to act on. With an MSP application, R1_TENANT_ID is
+    # the end customer and minting against it returns 401 invalid_client — which looks
+    # exactly like a bad secret. Mint against R1_MSP_ID and select the customer per
+    # request with x-rks-tenantid instead. Verified 2026-09-04.
+    token_tenants = [t for t in (MSP_ID, TENANT_ID) if t]
     basic = base64.b64encode(f"{CLIENT_ID}:{CLIENT_SECRET}".encode()).decode()
+    form = {"grant_type": "client_credentials", "client_id": CLIENT_ID, "client_secret": CLIENT_SECRET}
 
-    attempts = [
+    attempts = []
+    for tid in token_tenants:
         # Preferred: credentials in form body, tenant-scoped endpoint
-        (tenant_path, {"grant_type": "client_credentials", "client_id": CLIENT_ID, "client_secret": CLIENT_SECRET}, {}),
+        attempts.append((f"/oauth2/token/{tid}", form, {}))
         # Fallback: HTTP Basic auth, tenant-scoped endpoint
-        (tenant_path, {"grant_type": "client_credentials"}, {"Authorization": f"Basic {basic}"}),
-        # Alternative: credentials in form body, bare endpoint (no tenant in path)
-        ("/oauth2/token", {"grant_type": "client_credentials", "client_id": CLIENT_ID, "client_secret": CLIENT_SECRET}, {}),
-    ]
+        attempts.append((f"/oauth2/token/{tid}", {"grant_type": "client_credentials"},
+                         {"Authorization": f"Basic {basic}"}))
+    # Last resort: bare endpoint (no tenant in path). Note this 302s to the console login
+    # rather than returning an error, so it is a poor diagnostic — it is tried last.
+    attempts.append(("/oauth2/token", form, {}))
 
     last_err: Exception = RuntimeError("No attempts made")
     with httpx.Client(timeout=15) as client:
@@ -446,9 +458,9 @@ def _activity_report(activity: dict, elapsed: float, polls: int) -> str:
     return "\n".join(lines)
 
 
-def _fetch_page(method, path, query_params, body, conv, page, size, tenant):
+def _fetch_page(method, path, query_params, body, conv, page, size, tenant, base=0):
     """One page under a given convention. Paging goes in the body for POST."""
-    page_key, size_key, base = conv
+    page_key, size_key = conv[0], conv[1]
     paging = {page_key: base + page, size_key: size}
     if method == "POST":
         payload = {**(body or {}), **paging}
@@ -462,9 +474,40 @@ def _fetch_page(method, path, query_params, body, conv, page, size, tenant):
     if raw.startswith("ERROR") or not raw.startswith("HTTP 2"):
         return None, raw
     try:
-        return json.loads(raw.split("\n\n", 1)[1]), ""
+        # r1_call appends its own completeness warning after the JSON when a response
+        # looks short, which is *always* true of a deliberately-paged request. A plain
+        # json.loads then dies with "Extra data" and fetch_all fails on exactly the
+        # endpoints it exists for. raw_decode stops at the end of the JSON value and
+        # ignores whatever follows.
+        body_text = raw.split("\n\n", 1)[1].lstrip()
+        return json.JSONDecoder().raw_decode(body_text)[0], ""
     except Exception:
         return None, raw
+
+
+def _probe_base(method, path, query_params, body, conv, tenant):
+    """Determine whether this endpoint's page index starts at 0 or 1.
+
+    Two requests at size 1. The signals, in order:
+      * page 0 errors while page 1 succeeds  -> 1-indexed (page 0 is rejected outright,
+        as /passphrases/query does with a 500)
+      * both succeed and return the same row -> 1-indexed (0 was clamped to the first page)
+      * both succeed and return differing rows -> 0-indexed
+    Falls back to 0 when the endpoint has too few rows to tell them apart.
+    """
+    d0, _ = _fetch_page(method, path, query_params, body, conv, 0, 1, tenant, base=0)
+    d1, _ = _fetch_page(method, path, query_params, body, conv, 1, 1, tenant, base=0)
+    if d0 is None and d1 is not None:
+        return 1, "page 0 rejected, page 1 accepted"
+    if d0 is None or d1 is None:
+        return 0, "base probe inconclusive, assuming 0-indexed"
+    _, r0 = _rows(d0)
+    _, r1 = _rows(d1)
+    if not r0 or not r1:
+        return 0, "too few rows to probe the base, assuming 0-indexed"
+    if {_row_key(r) for r in r0} == {_row_key(r) for r in r1}:
+        return 1, "page 0 and page 1 returned the same row"
+    return 0, "page 0 and page 1 returned different rows"
 
 
 def _row_key(row):
@@ -512,23 +555,29 @@ def r1_fetch_all(
     if method not in {"GET", "POST"}:
         return "ERROR: r1_fetch_all supports GET and POST only"
 
-    # Probe both conventions and keep whichever actually honors page_size.
-    chosen, first, probe_note = None, None, ""
+    # Two separate questions: which key names does this endpoint accept, and where does
+    # its page index start. They are independent — see _CONVENTIONS.
+    chosen, base, first, probe_note = None, 0, None, ""
     for conv in _CONVENTIONS:
+        cand_base, why = _probe_base(method, path, query_params, body, conv, target_tenant_id)
         data, err = _fetch_page(method, path, query_params, body, conv, 0,
-                                page_size, target_tenant_id)
+                                page_size, target_tenant_id, base=cand_base)
         if data is None:
-            return f"ERROR while probing paging convention {conv[0]}/{conv[1]}:\n\n{err}"
+            probe_note += f"'{conv[1]}' failed: {err.splitlines()[0]}; "
+            continue
         _, rows = _rows(data)
         if rows is None:
             return f"Not a paginated list response.\n\n{json.dumps(data, indent=2)[:4000]}"
         _, total = _declared_total(data)
-        chosen, first = conv, data
+        chosen, base, first = conv, cand_base, data
         # Honored if it filled the page, or returned everything there is.
         if len(rows) > 20 or (total is not None and len(rows) >= total):
+            probe_note += f"base {cand_base} ({why}); "
             break
         probe_note += (f"'{conv[1]}' returned only {len(rows)} rows"
                        f"{f' of {total}' if total is not None else ''}; ")
+    if first is None:
+        return f"ERROR while probing paging convention: {probe_note}"
 
     _, rows = _rows(first)
     _, total = _declared_total(first)
@@ -537,7 +586,7 @@ def r1_fetch_all(
 
     while total is not None and len(collected) < total and pages < max_pages:
         data, err = _fetch_page(method, path, query_params, body, chosen, pages,
-                                page_size, target_tenant_id)
+                                page_size, target_tenant_id, base=base)
         if data is None:
             stopped = f"stopped after page {pages}: {err.splitlines()[0]}"
             break
@@ -561,7 +610,7 @@ def r1_fetch_all(
 
     head = [
         f"{len(collected)} rows collected over {pages} page(s) "
-        f"using {chosen[0]}/{chosen[1]} ({chosen[2]}-indexed)"
+        f"using {chosen[0]}/{chosen[1]} ({base}-indexed, probed)"
     ]
     if total is not None:
         head.append(f"endpoint reports {total}")
@@ -686,13 +735,18 @@ def r1_call(
         "Accept": "application/json",
     }
 
-    # MSP headers — set when operating on a customer tenant via an MSP account
-    if target_tenant_id:
-        headers["x-rks-tenantid"] = target_tenant_id
-        if MSP_ID:
-            headers["X-MSP-ID"] = MSP_ID
-    elif MSP_ID:
+    # MSP headers — set when operating on a customer tenant via an MSP account.
+    # The token is MSP-scoped (see _get_token), so without x-rks-tenantid the call lands on
+    # the MSP's own tenant rather than the customer's. Default it to R1_TENANT_ID so the
+    # server acts on the tenant the .env names; an explicit target_tenant_id overrides, and
+    # passing "-" selects the MSP tenant itself (for /mspCustomers and friends).
+    if MSP_ID:
         headers["X-MSP-ID"] = MSP_ID
+        effective = target_tenant_id or TENANT_ID
+        if effective and effective != "-" and effective != MSP_ID:
+            headers["x-rks-tenantid"] = effective
+    elif target_tenant_id:
+        headers["x-rks-tenantid"] = target_tenant_id
 
     url = BASE_URL + path
     try:
