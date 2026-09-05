@@ -253,6 +253,11 @@ def _should_retry(method: str, path: str, response) -> bool:
     return method == "GET" or (method == "POST" and path.rstrip("/").endswith("/query"))
 
 
+def _is_read(method: str, path: str) -> bool:
+    """A call that cannot change anything: GET, or the POST /…/query read idiom."""
+    return method == "GET" or (method == "POST" and path.rstrip("/").endswith("/query"))
+
+
 def _retry_delay(response, attempt: int) -> float:
     """Honor Retry-After when R1 sends one, else exponential backoff."""
     header = response.headers.get("Retry-After")
@@ -697,6 +702,7 @@ def r1_call(
     query_params: dict | None = None,
     body: dict | None = None,
     target_tenant_id: str | None = None,
+    confirm_write: bool = False,
     count_only: bool = False,
     max_chars: int | None = None,
 ) -> str:
@@ -711,6 +717,9 @@ def r1_call(
         body: Optional dict for the request body (POST/PUT/PATCH)
         target_tenant_id: For MSP operations — the customer tenant ID to operate on
                           (sets x-rks-tenantid header; R1_MSP_ID must also be set in .env)
+        confirm_write: Required for any call that is not a read. GET and POST to a
+                       /…/query endpoint go through without it; PUT, PATCH, DELETE and
+                       any other POST are refused unless this is explicitly True.
         count_only: Return row counts, declared totals and field names instead of
                     the rows. Use this FIRST on any fleet-scale query — it is cheap
                     and it reveals silent truncation.
@@ -723,6 +732,19 @@ def r1_call(
     method = method.upper()
     if method not in {"GET", "POST", "PUT", "PATCH", "DELETE"}:
         return f"ERROR: Unsupported HTTP method '{method}'"
+
+    # This server exists to LOOK THINGS UP. A mutating call needs explicit per-call intent,
+    # because the failure mode is silent and lands on someone's live network: a DELETE typed
+    # while exploring leaves a real audit entry attributed to this application, and R1 offers
+    # no idempotency key to undo a repeat. confirm_write is deliberately a parameter rather
+    # than an env var, so the intent is visible in the call itself and cannot be left on.
+    if not _is_read(method, path) and not confirm_write:
+        return (
+            f"REFUSED: {method} {path} would change state, and confirm_write is not set.\n"
+            "  This server is for reading. If a write is genuinely intended, re-issue with\n"
+            "  confirm_write=True — and say so first, because it is someone's live network.\n"
+            "  Reads (GET, and POST to a /…/query endpoint) need no confirmation."
+        )
 
     try:
         token = _get_token()
